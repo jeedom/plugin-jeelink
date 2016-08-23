@@ -71,6 +71,15 @@ foreach ($masters as $master) {
 								<input type="text" class="jeeLinkMasterAttr form-control" data-l1key="apikey" />
 							</div>
 						</div>
+						<div class="form-group">
+							<label class="col-sm-3 control-label">{{Mode d'accès}}</label>
+							<div class="col-sm-3">
+								<select class="jeeLinkMasterAttr form-control" data-l1key="configuration" data-l2key="network::access" >
+									<option value="internal">{{Interne}}</option>
+									<option value="external">{{Externe}}</option>
+								</select>
+							</div>
+						</div>
 					</fieldset>
 				</form>
 			</div>

@@ -199,7 +199,7 @@ class jeelink_master {
 	public function sendEqlogicToMaster() {
 		$toSend = array(
 			'eqLogics' => array(),
-			'address' => network::getNetworkAccess('external'),
+			'address' => network::getNetworkAccess($this->getConfiguration('network::access')),
 			'key' => self::getJeelinkSlaveKey(),
 			'apikey' => config::byKey('api'),
 		);
