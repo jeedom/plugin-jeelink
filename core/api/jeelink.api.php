@@ -26,7 +26,7 @@ if (!is_object($jsonrpc)) {
 $params = $jsonrpc->getParams();
 
 if ($jsonrpc->getMethod() == 'createEqLogic') {
-	jeelink::createEqLogicFromDef($params['eqLogics']);
+	jeelink::createEqLogicFromDef($params);
 	$jsonrpc->makeSuccess();
 }
 

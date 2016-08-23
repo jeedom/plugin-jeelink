@@ -25,7 +25,7 @@ class jeelink extends eqLogic {
 	/*     * ***********************Methode static*************************** */
 
 	public static function event() {
-		$cmds = cmd::byLogicalId('remote::' . init('remote_cmd_id'), 'info');
+		$cmds = cmd::byLogicalId('remote::' . init('remote_cmd_id') . '::' . init('remote_key'), 'info');
 		if (count($cmds) == 0) {
 			return;
 		}
@@ -36,20 +36,20 @@ class jeelink extends eqLogic {
 		$cmd->event(init('remote_cmd_value'));
 	}
 
-	public static function createEqLogicFromDef($_eqLogics) {
-		foreach ($_eqLogics as $eqLogic_info) {
-			$eqLogic = self::byLogicalId('remote::' . $eqLogic_info['id'], 'jeelink');
+	public static function createEqLogicFromDef($_params) {
+		foreach ($_params['eqLogics'] as $eqLogic_info) {
+			$eqLogic = self::byLogicalId('remote::' . $eqLogic_info['id'] . '::' . $_params['key'], 'jeelink');
 			if (!is_object($eqLogic)) {
 				$eqLogic = new jeelink();
 				utils::a2o($eqLogic, $eqLogic_info);
 				$eqLogic->setId('');
 				$eqLogic->setObject_id('');
 			}
-			$eqLogic->setLogicalId('remote::' . $eqLogic_info['id']);
+			$eqLogic->setLogicalId('remote::' . $eqLogic_info['id'] . '::' . $_params['key']);
 			$eqLogic->setEqType_name('jeelink');
 			$eqLogic->save();
 			foreach ($eqLogic_info['cmds'] as $cmd_info) {
-				$cmd = $eqLogic->getCmd(null, 'remote::' . $cmd_info['id']);
+				$cmd = $eqLogic->getCmd(null, 'remote::' . $cmd_info['id'] . '::' . $_params['key']);
 				if (!is_object($cmd)) {
 					$cmd = new jeelinkCmd();
 					utils::a2o($cmd, $cmd_info);
@@ -57,7 +57,7 @@ class jeelink extends eqLogic {
 				}
 				$cmd->setEqType('jeelink');
 				$cmd->setEqLogic_id($eqLogic->getId());
-				$cmd->setLogicalId('remote::' . $cmd_info['id']);
+				$cmd->setLogicalId('remote::' . $cmd_info['id'] . '::' . $_params['key']);
 				$cmd->save();
 			}
 		}
@@ -138,6 +138,15 @@ class jeelink_master {
 
 	/*     * ***********************Methode static*************************** */
 
+	public static function getJeelinkSlaveKey() {
+		$key = config::byKey('slave_key', 'jeelink');
+		if ($key == '') {
+			$key = config::genKey(10);
+			config::save('slave_key', $key, 'jeelink');
+		}
+		return $key;
+	}
+
 	public static function byId($_id) {
 		$values = array(
 			'id' => $_id,
@@ -163,6 +172,7 @@ class jeelink_master {
 		$url .= '&type=jeelink';
 		$url .= '&remote_cmd_id=' . $_options['event_id'];
 		$url .= '&remote_cmd_value=' . urlencode($_options['value']);
+		$url .= '&remote_key=' . urlencode(self::getJeelinkSlaveKey());
 		log::add('jeelink', 'debug', $url);
 		$request_http = new com_http($url);
 		$request_http->exec();
@@ -224,6 +234,9 @@ class jeelink_master {
 	public function sendEqlogicToMaster() {
 		$toSend = array(
 			'eqLogics' => array(),
+			'address' => network::getNetworkAccess('external'),
+			'key' => self::getJeelinkSlaveKey(),
+			'apikey' => config::byKey('api'),
 		);
 		if (is_array($this->getConfiguration('eqLogics'))) {
 			foreach ($this->getConfiguration('eqLogics') as $eqLogic_info) {
