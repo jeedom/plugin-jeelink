@@ -45,6 +45,7 @@ class jeelink extends eqLogic {
 				$eqLogic->setId('');
 				$eqLogic->setObject_id('');
 			}
+			$eqLogic->setConfiguration('remote_id', $eqLogic_info['id']);
 			$eqLogic->setLogicalId('remote::' . $eqLogic_info['id'] . '::' . $_params['key']);
 			$eqLogic->setEqType_name('jeelink');
 			$eqLogic->save();
@@ -58,51 +59,15 @@ class jeelink extends eqLogic {
 				$cmd->setEqType('jeelink');
 				$cmd->setEqLogic_id($eqLogic->getId());
 				$cmd->setLogicalId('remote::' . $cmd_info['id'] . '::' . $_params['key']);
+				$cmd->setConfiguration('remote_id', $cmd_info['id']);
+				$cmd->setConfiguration('apikey', $_params['apikey']);
+				$cmd->setConfiguration('address', $_params['address']);
 				$cmd->save();
 			}
 		}
 	}
 
 	/*     * *********************Méthodes d'instance************************* */
-
-	public function preInsert() {
-
-	}
-
-	public function postInsert() {
-
-	}
-
-	public function preSave() {
-
-	}
-
-	public function postSave() {
-
-	}
-
-	public function preUpdate() {
-
-	}
-
-	public function postUpdate() {
-
-	}
-
-	public function preRemove() {
-
-	}
-
-	public function postRemove() {
-
-	}
-
-	/*
-		     * Non obligatoire mais permet de modifier l'affichage du widget si vous en avez besoin
-		      public function toHtml($_version = 'dashboard') {
-
-		      }
-	*/
 
 	/*     * **********************Getteur Setteur*************************** */
 }
@@ -114,15 +79,16 @@ class jeelinkCmd extends cmd {
 
 	/*     * *********************Methode d'instance************************* */
 
-	/*
-		     * Non obligatoire permet de demander de ne pas supprimer les commandes même si elles ne sont pas dans la nouvelle configuration de l'équipement envoyé en JS
-		      public function dontRemoveCmd() {
-		      return true;
-		      }
-	*/
-
 	public function execute($_options = array()) {
-
+		$url = $this->getConfiguration('address') . '/core/api/jeeApi.php?type=cmd&apikey=' . $this->getConfiguration('apikey');
+		$url .= '&id=' . $this->getConfiguration('remote_id');
+		if (count($_options) > 0) {
+			foreach ($_options as $key => $value) {
+				$url .= '&' . $key . '=' . urlencode($value);
+			}
+		}
+		$request_http = new com_http($url);
+		$request_http->exec();
 	}
 
 	/*     * **********************Getteur Setteur*************************** */
@@ -173,7 +139,6 @@ class jeelink_master {
 		$url .= '&remote_cmd_id=' . $_options['event_id'];
 		$url .= '&remote_cmd_value=' . urlencode($_options['value']);
 		$url .= '&remote_key=' . urlencode(self::getJeelinkSlaveKey());
-		log::add('jeelink', 'debug', $url);
 		$request_http = new com_http($url);
 		$request_http->exec();
 	}
@@ -247,7 +212,7 @@ class jeelink_master {
 				$toSend['eqLogics'][$eqLogic->getId()] = utils::o2a($eqLogic);
 				unset($toSend['eqLogics'][$eqLogic->getId()]['html']);
 				$toSend['eqLogics'][$eqLogic->getId()]['cmds'] = array();
-				foreach ($eqLogic->getCmd('info') as $cmd) {
+				foreach ($eqLogic->getCmd() as $cmd) {
 					$toSend['eqLogics'][$eqLogic->getId()]['cmds'][$cmd->getId()] = utils::o2a($cmd);
 				}
 			}
