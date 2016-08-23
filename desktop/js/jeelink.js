@@ -36,6 +36,25 @@
     tr += '<span class="type" type="' + init(_cmd.type) + '">' + jeedom.cmd.availableType() + '</span>';
     tr += '<span class="subType" subType="' + init(_cmd.subType) + '"></span>';
     tr += '</td>';
+
+    tr += '<td>';
+    tr += '<input class="cmdAttr form-control input-sm" data-l1key="configuration" data-l2key="returnStateValue" placeholder="{{Valeur retour d\'état}}" style="width : 20%; display : inline-block;margin-top : 5px;margin-right : 5px;">';
+    tr += '<input class="cmdAttr form-control input-sm" data-l1key="configuration" data-l2key="returnStateTime" placeholder="{{Durée avant retour d\'état (min)}}" style="width : 20%; display : inline-block;margin-top : 5px;margin-right : 5px;">';
+    tr += '</td>';
+    tr += '<td>';
+    tr += '<span><label class="checkbox-inline"><input type="checkbox" class="cmdAttr checkbox-inline" data-l1key="isVisible" checked/>{{Afficher}}</label></span> ';
+    tr += '<span><label class="checkbox-inline"><input type="checkbox" class="cmdAttr checkbox-inline" data-l1key="isHistorized" checked/>{{Historiser}}</label></span> ';
+    tr += '<span><label class="checkbox-inline"><input type="checkbox" class="cmdAttr expertModeVisible" data-l1key="display" data-l2key="invertBinary"/>{{Inverser}}</label></span> ';
+    tr += '</td>';
+    tr += '<td>';
+    tr += '<select class="cmdAttr form-control input-sm" data-l1key="configuration" data-l2key="updateCmdId" style="display : none;margin-bottom : 5px;" title="Commande d\'information à mettre à jour">';
+    tr += '<option value="">Aucune</option>';
+    tr += '</select>';
+    tr += '<input class="cmdAttr form-control input-sm" data-l1key="configuration" data-l2key="updateCmdToValue" placeholder="Valeur de l\'information" style="display : none;width : 20%; display : inline-block;margin-right : 5px;">';
+    tr += '<input class="cmdAttr form-control input-sm" data-l1key="unite"  style="width : 100px;display : inline-block;margin-right : 5px;" placeholder="Unité" title="Unité" >';
+    tr += '<input class="cmdAttr form-control input-sm expertModeVisible" data-l1key="configuration" data-l2key="minValue" placeholder="Min" title="Min" style="width : 20%; display : inline-block;margin-right : 5px;"> ';
+    tr += '<input class="cmdAttr form-control input-sm expertModeVisible" data-l1key="configuration" data-l2key="maxValue" placeholder="Max" title="Max" style="width : 20%; display : inline-block;margin-right : 5px;">';
+    tr += '</td>';
     tr += '<td>';
     if (is_numeric(_cmd.id)) {
         tr += '<a class="btn btn-default btn-xs cmdAction expertModeVisible" data-action="configure"><i class="fa fa-cogs"></i></a> ';
@@ -45,11 +64,20 @@
     tr += '</td>';
     tr += '</tr>';
     $('#table_cmd tbody').append(tr);
-    $('#table_cmd tbody tr:last').setValues(_cmd, '.cmdAttr');
-    if (isset(_cmd.type)) {
-        $('#table_cmd tbody tr:last .cmdAttr[data-l1key=type]').value(init(_cmd.type));
-    }
-    jeedom.cmd.changeType($('#table_cmd tbody tr:last'), init(_cmd.subType));
+    var tr = $('#table_cmd tbody tr:last');
+    jeedom.eqLogic.builSelectCmd({
+        id: $(".li_eqLogic.active").attr('data-eqLogic_id'),
+        filter: {type: 'info'},
+        error: function (error) {
+            $('#div_alert').showAlert({message: error.message, level: 'danger'});
+        },
+        success: function (result) {
+            tr.find('.cmdAttr[data-l1key=value]').append(result);
+            tr.find('.cmdAttr[data-l1key=configuration][data-l2key=updateCmdId]').append(result);
+            tr.setValues(_cmd, '.cmdAttr');
+            jeedom.cmd.changeType(tr, init(_cmd.subType));
+        }
+    });
 }
 
 $('#bt_jeelinkMasterConfiguration').on('click',function(){
