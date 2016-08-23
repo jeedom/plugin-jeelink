@@ -24,26 +24,44 @@ class jeelink extends eqLogic {
 
 	/*     * ***********************Methode static*************************** */
 
-	/*
-		     * Fonction exécutée automatiquement toutes les minutes par Jeedom
-		      public static function cron() {
+	public static function event() {
+		$cmds = cmd::byLogicalId('remote::' . init('remote_cmd_id'), 'info');
+		if (count($cmds) == 0) {
+			return;
+		}
+		$cmd = $cmds[0];
+		if (!is_object($cmd)) {
+			return;
+		}
+		$cmd->event(init('remote_cmd_value'));
+	}
 
-		      }
-	*/
-
-	/*
-		     * Fonction exécutée automatiquement toutes les heures par Jeedom
-		      public static function cronHourly() {
-
-		      }
-	*/
-
-	/*
-		     * Fonction exécutée automatiquement tous les jours par Jeedom
-		      public static function cronDayly() {
-
-		      }
-	*/
+	public static function createEqLogicFromDef($_eqLogics) {
+		foreach ($_eqLogics as $eqLogic_info) {
+			$eqLogic = self::byLogicalId('remote::' . $eqLogic_info['id'], 'jeelink');
+			if (!is_object($eqLogic)) {
+				$eqLogic = new jeelink();
+				utils::a2o($eqLogic, $eqLogic_info);
+				$eqLogic->setId('');
+				$eqLogic->setObject_id('');
+			}
+			$eqLogic->setLogicalId('remote::' . $eqLogic_info['id']);
+			$eqLogic->setEqType_name('jeelink');
+			$eqLogic->save();
+			foreach ($eqLogic_info['cmds'] as $cmd_info) {
+				$cmd = $eqLogic->getCmd(null, 'remote::' . $cmd_info['id']);
+				if (!is_object($cmd)) {
+					$cmd = new jeelinkCmd();
+					utils::a2o($cmd, $cmd_info);
+					$cmd->setId('');
+				}
+				$cmd->setEqType('jeelink');
+				$cmd->setEqLogic_id($eqLogic->getId());
+				$cmd->setLogicalId('remote::' . $cmd_info['id']);
+				$cmd->save();
+			}
+		}
+	}
 
 	/*     * *********************Méthodes d'instance************************* */
 
@@ -136,14 +154,100 @@ class jeelink_master {
 		return DB::Prepare($sql, array(), DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
 	}
 
+	public static function sendEvent($_options) {
+		$jeelink_master = self::byId($_options['master_id']);
+		if (!is_object($jeelink_master)) {
+			return;
+		}
+		$url = $jeelink_master->getAddress() . '/core/api/jeeApi.php?apikey=' . $jeelink_master->getApikey();
+		$url .= '&type=jeelink';
+		$url .= '&remote_cmd_id=' . $_options['event_id'];
+		$url .= '&remote_cmd_value=' . urlencode($_options['value']);
+		log::add('jeelink', 'debug', $url);
+		$request_http = new com_http($url);
+		$request_http->exec();
+	}
+
 	/*     * *********************Methode d'instance************************* */
+
+	public function removeListener() {
+		$listeners = listener::byClass(__CLASS__);
+		foreach ($listeners as $listener) {
+			if ($listener->getFunction() != 'sendEvent') {
+				continue;
+			}
+			$options = $listener->getOption();
+			if (!isset($options['master_id']) || $options['master_id'] != $this->getId()) {
+				continue;
+			}
+			$listener->remove();
+		}
+	}
 
 	public function save() {
 		return DB::save($this);
 	}
 
+	public function postSave() {
+		$this->removeListener();
+		if (is_array($this->getConfiguration('eqLogics'))) {
+			foreach ($this->getConfiguration('eqLogics') as $eqLogic_info) {
+				$eqLogic = eqLogic::byId(str_replace('eqLogic', '', str_replace('#', '', $eqLogic_info['eqLogic'])));
+				if (!is_object($eqLogic)) {
+					continue;
+				}
+				$listener = listener::byClassAndFunction(__CLASS__, 'sendEvent', array('master_id' => intval($this->getId()), 'eqLogic_id' => intval($eqLogic->getId())));
+				if (!is_object($listener)) {
+					$listener = new listener();
+				}
+				$listener->setClass(__CLASS__);
+				$listener->setFunction('sendEvent');
+				$listener->setOption(array('master_id' => intval($this->getId()), 'eqLogic_id' => intval($eqLogic->getId())));
+				$listener->emptyEvent();
+				foreach ($eqLogic->getCmd('info') as $cmd) {
+					$listener->addEvent('#' . $cmd->getId() . '#');
+				}
+				$listener->save();
+			}
+		}
+		$this->sendEqlogicToMaster();
+	}
+
+	public function preRemove() {
+		$this->removeListener();
+	}
+
 	public function remove() {
 		return DB::remove($this);
+	}
+
+	public function sendEqlogicToMaster() {
+		$toSend = array(
+			'eqLogics' => array(),
+		);
+		if (is_array($this->getConfiguration('eqLogics'))) {
+			foreach ($this->getConfiguration('eqLogics') as $eqLogic_info) {
+				$eqLogic = eqLogic::byId(str_replace('eqLogic', '', str_replace('#', '', $eqLogic_info['eqLogic'])));
+				if (!is_object($eqLogic)) {
+					continue;
+				}
+				$toSend['eqLogics'][$eqLogic->getId()] = utils::o2a($eqLogic);
+				unset($toSend['eqLogics'][$eqLogic->getId()]['html']);
+				$toSend['eqLogics'][$eqLogic->getId()]['cmds'] = array();
+				foreach ($eqLogic->getCmd('info') as $cmd) {
+					$toSend['eqLogics'][$eqLogic->getId()]['cmds'][$cmd->getId()] = utils::o2a($cmd);
+				}
+			}
+		}
+		$params = array(
+			'apikey' => $this->getApikey(),
+			'plugin' => 'jeelink',
+		);
+		$jsonrpc = new jsonrpcClient($this->getAddress() . '/core/api/jeeApi.php', '', $params);
+		$jsonrpc->setNoSslCheck(true);
+		if (!$jsonrpc->sendRequest('createEqLogic', $toSend)) {
+			throw new Exception($jsonrpc->getError(), $jsonrpc->getErrorCode());
+		}
 	}
 
 	/*     * **********************Getteur Setteur*************************** */

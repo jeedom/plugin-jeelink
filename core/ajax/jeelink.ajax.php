@@ -25,14 +25,14 @@ try {
 	}
 
 	if (init('action') == 'save_jeelinkMaster') {
-		$jeelinkMasterSave = json_decode(init('jeelink_master'), true);
+		$jeelinkMasterSave = jeedom::fromHumanReadable(json_decode(init('jeelink_master'), true));
 		$jeelink_master = jeelink_master::byId($jeelinkMasterSave['id']);
 		if (!is_object($jeelink_master)) {
 			$jeelink_master = new jeelink_master();
 		}
 		utils::a2o($jeelink_master, $jeelinkMasterSave);
 		$jeelink_master->save();
-		ajax::success();
+		ajax::success(utils::o2a($jeelink_master));
 	}
 
 	if (init('action') == 'get_jeelinkMaster') {
@@ -40,7 +40,16 @@ try {
 		if (!is_object($jeelink_master)) {
 			throw new Exception(__('Jeelink inconnu : ', __FILE__) . init('id'), 9999);
 		}
-		ajax::success(utils::o2a($jeelink_master));
+		ajax::success(jeedom::toHumanReadable(utils::o2a($jeelink_master)));
+	}
+
+	if (init('action') == 'remove_jeelinkMaster') {
+		$jeelink_master = jeelink_master::byId(init('id'));
+		if (!is_object($jeelink_master)) {
+			throw new Exception(__('Jeelink inconnu : ', __FILE__) . init('id'), 9999);
+		}
+		$jeelink_master->remove();
+		ajax::success();
 	}
 
 	throw new Exception(__('Aucune méthode correspondante à : ', __FILE__) . init('action'));

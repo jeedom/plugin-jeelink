@@ -75,8 +75,12 @@ foreach ($masters as $master) {
 				</form>
 			</div>
 			<div role="tabpanel" class="tab-pane" id="jeelinkMasterAffecttab">
-
-
+				<a class="btn btn-success btn-sm pull-right" id="bt_jeelinkMasterAddEqLogic"><i class="fa fa-plus-circle"></i> {{Ajouter un équipement}}</a><br>
+				<form class="form-horizontal">
+					<fieldset>
+						<div id="div_jeelinkMasterEqLogicList"></div>
+					</fieldset>
+				</form>
 			</div>
 		</div>
 	</div>
@@ -89,14 +93,49 @@ foreach ($masters as $master) {
 		$('.jeeLinkMasterAttr').value('');
 	});
 
-	$('.li_jeelinkMaster').on('click',function(){
-		var id =  $(this).attr('data-jeelinkMaster_id');
+	$('#bt_jeelinkMasterAddEqLogic').on('click',function(){
+		addJeelinkMasterEqLogic();
+	});
+
+	function addJeelinkMasterEqLogic(_eqLogic){
+		if (!isset(_eqLogic)) {
+			_eqLogic = {};
+		}
+		var div = '<div class="jeelinkMasterEqLogic">';
+		div += '<div class="form-group">';
+		div += '<label class="col-sm-1 control-label">{{Equipement}}</label>';
+		div += '<div class="col-sm-5 has-success">';
+		div += '<div class="input-group">';
+		div += '<span class="input-group-btn">';
+		div += '<a class="btn btn-default bt_removeTrigger btn-sm"><i class="fa fa-minus-circle"></i></a>';
+		div += '</span>';
+		div += '<input class="jeelinkMasterEqLogicAttr form-control input-sm" data-l1key="eqLogic" />';
+		div += '<span class="input-group-btn">';
+		div += '<a class="btn btn-sm listEqLogic btn-success"><i class="fa fa-list-alt"></i></a>';
+		div += '</span>';
+		div += '</div>';
+		div += '</div>';
+		div += '</div>';
+		$('#div_jeelinkMasterEqLogicList').append(div);
+		$('#div_jeelinkMasterEqLogicList .jeelinkMasterEqLogic:last').setValues(_eqLogic, '.jeelinkMasterEqLogicAttr');
+	}
+
+	$('#div_jeelinkMasterEqLogicList').on('click','.listEqLogic', function() {
+		var el = $(this);
+		jeedom.eqLogic.getSelectModal({cmd: {type: 'info'}}, function(result) {
+			el.closest('.jeelinkMasterEqLogic').find('.jeelinkMasterEqLogicAttr[data-l1key=eqLogic]').value(result.human);
+		});
+	});
+
+	function displayJeelinkMaster(_id){
+		$('.li_jeelinkMaster').removeClass('active');
+		$('.li_jeelinkMaster[data-jeelinkMaster_id='+_id+']').addClass('active');
 		$.ajax({
 			type: "POST",
 			url: "plugins/jeelink/core/ajax/jeelink.ajax.php",
 			data: {
 				action: "get_jeelinkMaster",
-				id: id,
+				id: _id,
 			},
 			dataType: 'json',
 			global: false,
@@ -109,14 +148,31 @@ foreach ($masters as $master) {
 					return;
 				}
 				$('.jeelinkMaster').show();
+				$('#div_jeelinkMasterEqLogicList').empty();
 				$('.jeeLinkMasterAttr').value('');
 				$('.jeelinkMaster').setValues(data.result,'.jeeLinkMasterAttr');
+				if(!isset(data.result.configuration)){
+					data.result.configuration = {};
+				}
+				if(isset(data.result.configuration.eqLogics)){
+					for(var i in data.result.configuration.eqLogics){
+						addJeelinkMasterEqLogic(data.result.configuration.eqLogics[i]);
+					}
+				}
 			}
 		});
+	}
+
+	$('.li_jeelinkMaster').on('click',function(){
+		displayJeelinkMaster($(this).attr('data-jeelinkMaster_id'));
 	});
 
 	$('.jeelinkMasterAction[data-action=save]').on('click',function(){
 		var jeelink_master = $('.jeelinkMaster').getValues('.jeeLinkMasterAttr')[0];
+		if(!isset(jeelink_master.configuration)){
+			jeelink_master.configuration = {};
+		}
+		jeelink_master.configuration.eqLogics = $('#div_jeelinkMasterEqLogicList .jeelinkMasterEqLogic').getValues('.jeelinkMasterEqLogicAttr');
 		$.ajax({
 			type: "POST",
 			url: "plugins/jeelink/core/ajax/jeelink.ajax.php",
@@ -134,8 +190,34 @@ foreach ($masters as $master) {
 					$('#div_jeelinkMasterAlert').showAlert({message: data.result, level: 'danger'});
 					return;
 				}
-				$('#div_jeelinkMasterAlert').showAlert({message: 'Sauvegarde réussie', level: 'success'});
+				$('#div_jeelinkMasterAlert').showAlert({message: '{{Sauvegarde réussie}}', level: 'success'});
+				displayJeelinkMaster(data.result.id);
 			}
 		});
+	});
+
+	$('.jeelinkMasterAction[data-action=remove]').on('click',function(){
+		$.ajax({
+			type: "POST",
+			url: "plugins/jeelink/core/ajax/jeelink.ajax.php",
+			data: {
+				action: "remove_jeelinkMaster",
+				id: $('.li_jeelinkMaster.active').attr('data-jeelinkMaster_id'),
+			},
+			dataType: 'json',
+			global: false,
+			error: function (request, status, error) {
+				handleAjaxError(request, status, error,$('#div_jeelinkMasterAlert'));
+			},
+			success: function (data) {
+				if (data.state != 'ok') {
+					$('#div_jeelinkMasterAlert').showAlert({message: data.result, level: 'danger'});
+					return;
+				}
+				$('.li_jeelinkMaster.active').remove();
+				$('.jeelinkMaster').hide();
+			}
+		});
+
 	});
 </script>
