@@ -110,4 +110,84 @@ class jeelinkCmd extends cmd {
 	/*     * **********************Getteur Setteur*************************** */
 }
 
+class jeelink_master {
+	/*     * *************************Attributs****************************** */
+	private $id;
+	private $name;
+	private $address;
+	private $apikey;
+	private $configuration;
+
+	/*     * ***********************Methode static*************************** */
+
+	public static function byId($_id) {
+		$values = array(
+			'id' => $_id,
+		);
+		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
+		FROM jeelink_master
+		WHERE id=:id';
+		return DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__);
+	}
+
+	public static function all() {
+		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
+		FROM jeelink_master';
+		return DB::Prepare($sql, array(), DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
+	}
+
+	/*     * *********************Methode d'instance************************* */
+
+	public function save() {
+		return DB::save($this);
+	}
+
+	public function remove() {
+		return DB::remove($this);
+	}
+
+	/*     * **********************Getteur Setteur*************************** */
+
+	public function getId() {
+		return $this->id;
+	}
+
+	public function setId($id) {
+		$this->id = $id;
+	}
+
+	public function getName() {
+		return $this->name;
+	}
+
+	public function setName($name) {
+		$this->name = $name;
+	}
+
+	public function getAddress() {
+		return $this->address;
+	}
+
+	public function setAddress($address) {
+		$this->address = $address;
+	}
+
+	public function getApikey() {
+		return $this->apikey;
+	}
+
+	public function setApikey($apikey) {
+		$this->apikey = $apikey;
+	}
+
+	public function getConfiguration($_key = '', $_default = '') {
+		return utils::getJsonAttr($this->configuration, $_key, $_default);
+	}
+
+	public function setConfiguration($_key, $_value) {
+		$this->configuration = utils::setJsonAttr($this->configuration, $_key, $_value);
+	}
+
+}
+
 ?>
