@@ -4,8 +4,7 @@
     <name>Jeedom Link</name>
     <description>Plugin permettant de liéer deux Jeedoms</description>
     <licence>AGPL</licence>
-    <author>Loïc Gevrey</author>
-    <installation>Aucune</installation>
+    <author>Loïc</author>
     <require>2.3</require>
     <category>communication</category>
 </info>
