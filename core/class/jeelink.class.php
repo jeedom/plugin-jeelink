@@ -46,6 +46,9 @@ class jeelink extends eqLogic {
 				$eqLogic->setObject_id('');
 			}
 			$eqLogic->setConfiguration('remote_id', $eqLogic_info['id']);
+			$eqLogic->setConfiguration('remote_key', $_params['key']);
+			$eqLogic->setConfiguration('remote_address', $_params['address']);
+			$eqLogic->setConfiguration('remote_apikey', $_params['apikey']);
 			$eqLogic->setLogicalId('remote::' . $eqLogic_info['id'] . '::' . $_params['key']);
 			$eqLogic->setEqType_name('jeelink');
 			$eqLogic->save();
@@ -60,14 +63,28 @@ class jeelink extends eqLogic {
 				$cmd->setEqLogic_id($eqLogic->getId());
 				$cmd->setLogicalId('remote::' . $cmd_info['id'] . '::' . $_params['key']);
 				$cmd->setConfiguration('remote_id', $cmd_info['id']);
-				$cmd->setConfiguration('apikey', $_params['apikey']);
-				$cmd->setConfiguration('address', $_params['address']);
 				$cmd->save();
 			}
 		}
 	}
 
 	/*     * *********************Méthodes d'instance************************* */
+
+	public function preSave() {
+		if ($this->getConfiguration('remote_id') == '') {
+			throw new Exception(__('Le remote ID ne peut etre vide', __FILE__));
+		}
+		if ($this->getConfiguration('remote_address') == '') {
+			throw new Exception(__('La remote addresse ne peut etre vide', __FILE__));
+		}
+		if ($this->getConfiguration('remote_apikey') == '') {
+			throw new Exception(__('La remote apikey ne peut etre vide', __FILE__));
+		}
+		if ($this->getConfiguration('remote_key') == '') {
+			throw new Exception(__('La remote key ne peut etre vide', __FILE__));
+		}
+		$this->setLogicalId('remote::' . $this->getConfiguration('remote_id') . '::' . $this->getConfiguration('remote_key'));
+	}
 
 	/*     * **********************Getteur Setteur*************************** */
 }
@@ -79,8 +96,17 @@ class jeelinkCmd extends cmd {
 
 	/*     * *********************Methode d'instance************************* */
 
+	public function preSave() {
+		if ($this->getConfiguration('remote_id') == '') {
+			throw new Exception(__('Le remote ID ne peut etre vide', __FILE__));
+		}
+		$eqLogic = $this->getEqLogic();
+		$this->setLogicalId('remote::' . $this->getConfiguration('remote_id') . '::' . $eqLogic->getConfiguration('remote_key'));
+	}
+
 	public function execute($_options = array()) {
-		$url = $this->getConfiguration('address') . '/core/api/jeeApi.php?type=cmd&apikey=' . $this->getConfiguration('apikey');
+		$eqLogic = $this->getEqLogic();
+		$url = $eqLogic->getConfiguration('remote_address') . '/core/api/jeeApi.php?type=cmd&apikey=' . $eqLogic->getConfiguration('remote_apikey');
 		$url .= '&id=' . $this->getConfiguration('remote_id');
 		if (count($_options) > 0) {
 			foreach ($_options as $key => $value) {
