@@ -38,6 +38,7 @@ class jeelink extends eqLogic {
 
 	public static function createEqLogicFromDef($_params) {
 		foreach ($_params['eqLogics'] as $eqLogic_info) {
+			$map_id = array();
 			$eqLogic = self::byLogicalId('remote::' . $eqLogic_info['id'] . '::' . $_params['key'], 'jeelink');
 			if (!is_object($eqLogic)) {
 				$eqLogic = new jeelink();
@@ -70,11 +71,36 @@ class jeelink extends eqLogic {
 					$cmd = new jeelinkCmd();
 					utils::a2o($cmd, $cmd_info);
 					$cmd->setId('');
+					$cmd->setValue('');
 				}
 				$cmd->setEqType('jeelink');
 				$cmd->setEqLogic_id($eqLogic->getId());
 				$cmd->setLogicalId('remote::' . $cmd_info['id'] . '::' . $_params['key']);
 				$cmd->setConfiguration('remote_id', $cmd_info['id']);
+				$cmd->save();
+				$map_id[$cmd_info['id']] = $cmd->getId();
+			}
+
+			foreach ($eqLogic_info['cmds'] as $cmd_info) {
+				log::add('jeelink', 'debug', print_r($cmd_info, true));
+				if (!isset($cmd_info['value']) || !isset($map_id[$cmd_info['value']])) {
+					continue;
+				}
+				if (!isset($map_id[$cmd_info['id']])) {
+					continue;
+				}
+				log::add('jeelink', 'debug', 'je passe');
+				$cmd = cmd::byId($map_id[$cmd_info['id']]);
+				if (!is_object($cmd)) {
+					continue;
+				}
+				log::add('jeelink', 'debug', 'je passe 2');
+				log::add('jeelink', 'debug', print_r($cmd, true));
+				if ($cmd->getValue() != '') {
+					continue;
+				}
+				log::add('jeelink', 'debug', 'je passe 3');
+				$cmd->setValue($map_id[$cmd_info['value']]);
 				$cmd->save();
 			}
 		}
