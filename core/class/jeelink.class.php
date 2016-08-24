@@ -141,7 +141,7 @@ class jeelinkCmd extends cmd {
 			}
 		}
 		$request_http = new com_http($url);
-		$request_http->exec();
+		$request_http->exec(60);
 	}
 
 	/*     * **********************Getteur Setteur*************************** */
@@ -184,7 +184,7 @@ class jeelink_master {
 		$url .= '&remote_cmd_value=' . urlencode($_options['value']);
 		$url .= '&remote_apikey=' . config::byKey('api');
 		$request_http = new com_http($url);
-		$request_http->exec();
+		$request_http->exec(60);
 	}
 
 	/*     * *********************Methode d'instance************************* */
@@ -268,7 +268,7 @@ class jeelink_master {
 		);
 		$jsonrpc = new jsonrpcClient($this->getAddress() . '/core/api/jeeApi.php', '', $params);
 		$jsonrpc->setNoSslCheck(true);
-		if (!$jsonrpc->sendRequest('createEqLogic', $toSend)) {
+		if (!$jsonrpc->sendRequest('createEqLogic', $toSend, 300)) {
 			throw new Exception($jsonrpc->getError(), $jsonrpc->getErrorCode());
 		}
 	}
