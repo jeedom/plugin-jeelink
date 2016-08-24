@@ -197,13 +197,10 @@ class jeelink_master {
 				if (!is_object($eqLogic)) {
 					continue;
 				}
-				$listener = listener::byClassAndFunction(__CLASS__, 'sendEvent', array('master_id' => intval($this->getId()), 'eqLogic_id' => intval($eqLogic->getId())));
-				if (!is_object($listener)) {
-					$listener = new listener();
-				}
+				$listener = new listener();
 				$listener->setClass(__CLASS__);
 				$listener->setFunction('sendEvent');
-				$listener->setOption(array('master_id' => intval($this->getId()), 'eqLogic_id' => intval($eqLogic->getId())));
+				$listener->setOption(array('background' => 0, 'master_id' => intval($this->getId()), 'eqLogic_id' => intval($eqLogic->getId())));
 				$listener->emptyEvent();
 				foreach ($eqLogic->getCmd('info') as $cmd) {
 					$listener->addEvent('#' . $cmd->getId() . '#');
