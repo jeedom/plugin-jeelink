@@ -44,6 +44,12 @@ class jeelink extends eqLogic {
 				utils::a2o($eqLogic, $eqLogic_info);
 				$eqLogic->setId('');
 				$eqLogic->setObject_id('');
+				if (isset($eqLogic_info['object_name']) && $eqLogic_info['object_name'] != '') {
+					$object = object::byName($eqLogic_info['object_name']);
+					if (is_object($object)) {
+						$eqLogic->setObject_id($object->getId());
+					}
+				}
 			}
 			$eqLogic->setConfiguration('remote_id', $eqLogic_info['id']);
 			$eqLogic->setConfiguration('remote_key', $_params['key']);
@@ -51,7 +57,13 @@ class jeelink extends eqLogic {
 			$eqLogic->setConfiguration('remote_apikey', $_params['apikey']);
 			$eqLogic->setLogicalId('remote::' . $eqLogic_info['id'] . '::' . $_params['key']);
 			$eqLogic->setEqType_name('jeelink');
-			$eqLogic->save();
+			try {
+				$eqLogic->save();
+			} catch (Exception $e) {
+				$eqLogic->setName($eqLogic->getName() . ' remote ' . rand(0, 9999));
+				$eqLogic->save();
+			}
+
 			foreach ($eqLogic_info['cmds'] as $cmd_info) {
 				$cmd = $eqLogic->getCmd(null, 'remote::' . $cmd_info['id'] . '::' . $_params['key']);
 				if (!is_object($cmd)) {
@@ -233,6 +245,11 @@ class jeelink_master {
 					continue;
 				}
 				$toSend['eqLogics'][$eqLogic->getId()] = utils::o2a($eqLogic);
+				$toSend['eqLogics'][$eqLogic->getId()]['object_name'] = '';
+				$object = $eqLogic->getObject();
+				if (is_object($object)) {
+					$toSend['eqLogics'][$eqLogic->getId()]['object_name'] = $object->getName();
+				}
 				unset($toSend['eqLogics'][$eqLogic->getId()]['html']);
 				$toSend['eqLogics'][$eqLogic->getId()]['cmds'] = array();
 				foreach ($eqLogic->getCmd() as $cmd) {
