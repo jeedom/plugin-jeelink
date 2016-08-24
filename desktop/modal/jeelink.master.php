@@ -147,7 +147,6 @@ foreach ($masters as $master) {
 				id: _id,
 			},
 			dataType: 'json',
-			global: false,
 			error: function (request, status, error) {
 				handleAjaxError(request, status, error,$('#div_jeelinkMasterAlert'));
 			},
@@ -190,7 +189,6 @@ foreach ($masters as $master) {
 				jeelink_master: json_encode(jeelink_master),
 			},
 			dataType: 'json',
-			global: false,
 			error: function (request, status, error) {
 				handleAjaxError(request, status, error,$('#div_jeelinkMasterAlert'));
 			},
@@ -214,7 +212,6 @@ foreach ($masters as $master) {
 				id: $('.li_jeelinkMaster.active').attr('data-jeelinkMaster_id'),
 			},
 			dataType: 'json',
-			global: false,
 			error: function (request, status, error) {
 				handleAjaxError(request, status, error,$('#div_jeelinkMasterAlert'));
 			},

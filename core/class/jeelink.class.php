@@ -25,7 +25,7 @@ class jeelink extends eqLogic {
 	/*     * ***********************Methode static*************************** */
 
 	public static function event() {
-		$cmds = cmd::byLogicalId('remote::' . init('remote_cmd_id') . '::' . init('remote_key'), 'info');
+		$cmds = cmd::byLogicalId('remote::' . init('remote_cmd_id') . '::' . init('remote_apikey'), 'info');
 		if (count($cmds) == 0) {
 			return;
 		}
@@ -39,7 +39,7 @@ class jeelink extends eqLogic {
 	public static function createEqLogicFromDef($_params) {
 		foreach ($_params['eqLogics'] as $eqLogic_info) {
 			$map_id = array();
-			$eqLogic = self::byLogicalId('remote::' . $eqLogic_info['id'] . '::' . $_params['key'], 'jeelink');
+			$eqLogic = self::byLogicalId('remote::' . $eqLogic_info['id'] . '::' . $_params['remote_apikey'], 'jeelink');
 			if (!is_object($eqLogic)) {
 				$eqLogic = new jeelink();
 				utils::a2o($eqLogic, $eqLogic_info);
@@ -53,10 +53,8 @@ class jeelink extends eqLogic {
 				}
 			}
 			$eqLogic->setConfiguration('remote_id', $eqLogic_info['id']);
-			$eqLogic->setConfiguration('remote_key', $_params['key']);
 			$eqLogic->setConfiguration('remote_address', $_params['address']);
-			$eqLogic->setConfiguration('remote_apikey', $_params['apikey']);
-			$eqLogic->setLogicalId('remote::' . $eqLogic_info['id'] . '::' . $_params['key']);
+			$eqLogic->setConfiguration('remote_apikey', $_params['remote_apikey']);
 			$eqLogic->setEqType_name('jeelink');
 			try {
 				$eqLogic->save();
@@ -66,7 +64,7 @@ class jeelink extends eqLogic {
 			}
 
 			foreach ($eqLogic_info['cmds'] as $cmd_info) {
-				$cmd = $eqLogic->getCmd(null, 'remote::' . $cmd_info['id'] . '::' . $_params['key']);
+				$cmd = $eqLogic->getCmd(null, 'remote::' . $cmd_info['id'] . '::' . $_params['remote_apikey']);
 				if (!is_object($cmd)) {
 					$cmd = new jeelinkCmd();
 					utils::a2o($cmd, $cmd_info);
@@ -75,31 +73,25 @@ class jeelink extends eqLogic {
 				}
 				$cmd->setEqType('jeelink');
 				$cmd->setEqLogic_id($eqLogic->getId());
-				$cmd->setLogicalId('remote::' . $cmd_info['id'] . '::' . $_params['key']);
 				$cmd->setConfiguration('remote_id', $cmd_info['id']);
 				$cmd->save();
 				$map_id[$cmd_info['id']] = $cmd->getId();
 			}
 
 			foreach ($eqLogic_info['cmds'] as $cmd_info) {
-				log::add('jeelink', 'debug', print_r($cmd_info, true));
 				if (!isset($cmd_info['value']) || !isset($map_id[$cmd_info['value']])) {
 					continue;
 				}
 				if (!isset($map_id[$cmd_info['id']])) {
 					continue;
 				}
-				log::add('jeelink', 'debug', 'je passe');
 				$cmd = cmd::byId($map_id[$cmd_info['id']]);
 				if (!is_object($cmd)) {
 					continue;
 				}
-				log::add('jeelink', 'debug', 'je passe 2');
-				log::add('jeelink', 'debug', print_r($cmd, true));
 				if ($cmd->getValue() != '') {
 					continue;
 				}
-				log::add('jeelink', 'debug', 'je passe 3');
 				$cmd->setValue($map_id[$cmd_info['value']]);
 				$cmd->save();
 			}
@@ -118,10 +110,7 @@ class jeelink extends eqLogic {
 		if ($this->getConfiguration('remote_apikey') == '') {
 			throw new Exception(__('La remote apikey ne peut etre vide', __FILE__));
 		}
-		if ($this->getConfiguration('remote_key') == '') {
-			throw new Exception(__('La remote key ne peut etre vide', __FILE__));
-		}
-		$this->setLogicalId('remote::' . $this->getConfiguration('remote_id') . '::' . $this->getConfiguration('remote_key'));
+		$this->setLogicalId('remote::' . $this->getConfiguration('remote_id') . '::' . $this->getConfiguration('remote_apikey'));
 	}
 
 	/*     * **********************Getteur Setteur*************************** */
@@ -139,7 +128,7 @@ class jeelinkCmd extends cmd {
 			throw new Exception(__('Le remote ID ne peut etre vide', __FILE__));
 		}
 		$eqLogic = $this->getEqLogic();
-		$this->setLogicalId('remote::' . $this->getConfiguration('remote_id') . '::' . $eqLogic->getConfiguration('remote_key'));
+		$this->setLogicalId('remote::' . $this->getConfiguration('remote_id') . '::' . $eqLogic->getConfiguration('remote_apikey'));
 	}
 
 	public function execute($_options = array()) {
@@ -168,15 +157,6 @@ class jeelink_master {
 
 	/*     * ***********************Methode static*************************** */
 
-	public static function getJeelinkSlaveKey() {
-		$key = config::byKey('slave_key', 'jeelink');
-		if ($key == '') {
-			$key = config::genKey(10);
-			config::save('slave_key', $key, 'jeelink');
-		}
-		return $key;
-	}
-
 	public static function byId($_id) {
 		$values = array(
 			'id' => $_id,
@@ -202,7 +182,7 @@ class jeelink_master {
 		$url .= '&type=jeelink';
 		$url .= '&remote_cmd_id=' . $_options['event_id'];
 		$url .= '&remote_cmd_value=' . urlencode($_options['value']);
-		$url .= '&remote_key=' . urlencode(self::getJeelinkSlaveKey());
+		$url .= '&remote_apikey=' . config::byKey('api');
 		$request_http = new com_http($url);
 		$request_http->exec();
 	}
@@ -261,8 +241,7 @@ class jeelink_master {
 		$toSend = array(
 			'eqLogics' => array(),
 			'address' => network::getNetworkAccess($this->getConfiguration('network::access')),
-			'key' => self::getJeelinkSlaveKey(),
-			'apikey' => config::byKey('api'),
+			'remote_apikey' => config::byKey('api'),
 		);
 		if (is_array($this->getConfiguration('eqLogics'))) {
 			foreach ($this->getConfiguration('eqLogics') as $eqLogic_info) {
