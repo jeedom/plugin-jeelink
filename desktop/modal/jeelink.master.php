@@ -27,7 +27,7 @@ $masters = jeelink_master::all();
 	<div class="col-lg-2 col-md-3 col-sm-4 col-xs-4">
 		<div class="bs-sidebar">
 			<ul id="ul_eqLogic" class="nav nav-list bs-sidenav">
-				<a class="btn btn-default jeelinkMasterAction" style="width : 100%;margin-top : 5px;margin-bottom: 5px;" data-action="add"><i class="fa fa-plus-circle"></i> {{Ajouter un master}}</a>
+				<a class="btn btn-default jeelinkMasterAction" style="width : 100%;margin-top : 5px;margin-bottom: 5px;" data-action="add"><i class="fa fa-plus-circle"></i> {{Ajouter un jeedom distant}}</a>
 				<li class="filter" style="margin-bottom: 5px;"><input class="filter form-control input-sm" placeholder="{{Rechercher}}" style="width: 100%"/></li>
 				<?php
 foreach ($masters as $master) {
@@ -53,10 +53,10 @@ foreach ($masters as $master) {
 					<fieldset>
 						<legend>{{Général}}</legend>
 						<div class="form-group">
-							<label class="col-sm-3 control-label">{{Nom du master}}</label>
+							<label class="col-sm-3 control-label">{{Nom du jeedom distant}}</label>
 							<div class="col-sm-3">
 								<input type="text" class="jeeLinkMasterAttr form-control" data-l1key="id" style="display : none;" />
-								<input type="text" class="jeeLinkMasterAttr form-control" data-l1key="name" placeholder="{{Nom du master}}"/>
+								<input type="text" class="jeeLinkMasterAttr form-control" data-l1key="name" placeholder="{{Nom du jeedom distant}}"/>
 							</div>
 						</div>
 						<div class="form-group">
@@ -116,7 +116,7 @@ foreach ($masters as $master) {
 		div += '<div class="col-sm-5 has-success">';
 		div += '<div class="input-group">';
 		div += '<span class="input-group-btn">';
-		div += '<a class="btn btn-default bt_removeTrigger btn-sm"><i class="fa fa-minus-circle"></i></a>';
+		div += '<a class="btn btn-default bt_removeJeelinkMasterEqLogic btn-sm"><i class="fa fa-minus-circle"></i></a>';
 		div += '</span>';
 		div += '<input class="jeelinkMasterEqLogicAttr form-control input-sm" data-l1key="eqLogic" />';
 		div += '<span class="input-group-btn">';
@@ -134,6 +134,10 @@ foreach ($masters as $master) {
 		jeedom.eqLogic.getSelectModal({cmd: {type: 'info'}}, function(result) {
 			el.closest('.jeelinkMasterEqLogic').find('.jeelinkMasterEqLogicAttr[data-l1key=eqLogic]').value(result.human);
 		});
+	});
+
+	$('#div_jeelinkMasterEqLogicList').on('click','.bt_removeJeelinkMasterEqLogic', function() {
+		$(this).closest('.jeelinkMasterEqLogic').remove();
 	});
 
 	function displayJeelinkMaster(_id){
