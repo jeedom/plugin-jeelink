@@ -3,6 +3,7 @@
 === Description
 Plugin servant à liéer 2 Jeedoms
 
+include::configuration.asciidoc[]
 
 '''
 === FAQ

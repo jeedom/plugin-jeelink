@@ -48,7 +48,7 @@
     tr += '</td>';
 
     tr += '<td>';
-    tr += '<input class="cmdAttr form-control input-sm" data-l1key="configuration" data-l2key="remote_id" style="width : 140px;" placeholder="{{ID distant}}">';
+    tr += '<input class="cmdAttr form-control input-sm" data-l1key="configuration" data-l2key="remote_id" style="width : 140px;" placeholder="{{ID source}}">';
     tr += '</td>';
 
     tr += '<td>';

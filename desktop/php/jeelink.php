@@ -35,7 +35,7 @@ foreach ($eqLogics as $eqLogic) {
     <center>
       <i class="fa fa-wrench" style="font-size : 6em;color:#767676;"></i>
     </center>
-    <span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;color:#767676"><center>{{Ajouter un jeedom distant}}</center></span>
+    <span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;color:#767676"><center>{{Configurer les jeedoms distants}}</center></span>
   </div>
 </div>
 <legend><i class="fa fa-table"></i> {{Mes jeelinks}}</legend>
@@ -95,19 +95,19 @@ foreach (object::all() as $object) {
        </div>
      </div>
      <div class="form-group">
-      <label class="col-sm-3 control-label">{{Addresse distante}}</label>
+      <label class="col-sm-3 control-label">{{Addresse jeedom source}}</label>
       <div class="col-sm-3">
         <input type="text" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="remote_address" />
       </div>
     </div>
     <div class="form-group">
-      <label class="col-sm-3 control-label">{{Apikey distante}}</label>
+      <label class="col-sm-3 control-label">{{Apikey jeedom source}}</label>
       <div class="col-sm-3">
         <input type="text" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="remote_apikey" />
       </div>
     </div>
      <div class="form-group">
-      <label class="col-sm-3 control-label">{{ID de l'équipement distant}}</label>
+      <label class="col-sm-3 control-label">{{ID de l'équipement source}}</label>
       <div class="col-sm-3">
         <input type="text" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="remote_id" />
       </div>
@@ -120,7 +120,7 @@ foreach (object::all() as $object) {
   <table id="table_cmd" class="table table-bordered table-condensed">
     <thead>
       <tr>
-        <th>{{Nom}}</th><th>{{Type}}</th><th>{{ID distant}}</th><th>{{Retour d'état}}</th><th>{{Paramètres}}</th><th>{{Options}}</th><th>{{Action}}</th>
+        <th>{{Nom}}</th><th>{{Type}}</th><th>{{ID source}}</th><th>{{Retour d'état}}</th><th>{{Paramètres}}</th><th>{{Options}}</th><th>{{Action}}</th>
       </tr>
     </thead>
     <tbody>
