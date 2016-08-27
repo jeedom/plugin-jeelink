@@ -74,6 +74,11 @@ class jeelink extends eqLogic {
 				$cmd->setEqType('jeelink');
 				$cmd->setEqLogic_id($eqLogic->getId());
 				$cmd->setConfiguration('remote_id', $cmd_info['id']);
+				if ($cmd_info['logicalId'] == 'refresh') {
+					$cmd->setConfiguration('isRefreshCmd', 1);
+				} else {
+					$cmd->setConfiguration('isRefreshCmd', 0);
+				}
 				$cmd->save();
 				$map_id[$cmd_info['id']] = $cmd->getId();
 			}

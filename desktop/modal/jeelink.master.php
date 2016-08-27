@@ -208,26 +208,29 @@ foreach ($masters as $master) {
 	});
 
 	$('.jeelinkMasterAction[data-action=remove]').on('click',function(){
-		$.ajax({
-			type: "POST",
-			url: "plugins/jeelink/core/ajax/jeelink.ajax.php",
-			data: {
-				action: "remove_jeelinkMaster",
-				id: $('.li_jeelinkMaster.active').attr('data-jeelinkMaster_id'),
-			},
-			dataType: 'json',
-			error: function (request, status, error) {
-				handleAjaxError(request, status, error,$('#div_jeelinkMasterAlert'));
-			},
-			success: function (data) {
-				if (data.state != 'ok') {
-					$('#div_jeelinkMasterAlert').showAlert({message: data.result, level: 'danger'});
-					return;
-				}
-				$('.li_jeelinkMaster.active').remove();
-				$('.jeelinkMaster').hide();
+		bootbox.confirm('{{Etês-vous sûr de vouloir supprimer ce jeedom distant ?}}', function (result) {
+			if (result) {
+				$.ajax({
+					type: "POST",
+					url: "plugins/jeelink/core/ajax/jeelink.ajax.php",
+					data: {
+						action: "remove_jeelinkMaster",
+						id: $('.li_jeelinkMaster.active').attr('data-jeelinkMaster_id'),
+					},
+					dataType: 'json',
+					error: function (request, status, error) {
+						handleAjaxError(request, status, error,$('#div_jeelinkMasterAlert'));
+					},
+					success: function (data) {
+						if (data.state != 'ok') {
+							$('#div_jeelinkMasterAlert').showAlert({message: data.result, level: 'danger'});
+							return;
+						}
+						$('.li_jeelinkMaster.active').remove();
+						$('.jeelinkMaster').hide();
+					}
+				});
 			}
 		});
-
 	});
 </script>
