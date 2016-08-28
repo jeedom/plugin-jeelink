@@ -101,9 +101,139 @@ class jeelink extends eqLogic {
 				$cmd->save();
 			}
 		}
+		$eqLogic = self::byLogicalId('remote::core::' . $_params['remote_apikey'], 'jeelink');
+		if (!is_object($eqLogic)) {
+			$eqLogic = new jeelink();
+			$eqLogic->setName(__('Controle', __FILE__) . ' ' . $_params['name']);
+			$eqLogic->setIsEnable(1);
+		}
+		$eqLogic->setConfiguration('remote_id', 'core');
+		$eqLogic->setConfiguration('remote_address', $_params['address']);
+		$eqLogic->setConfiguration('remote_apikey', $_params['remote_apikey']);
+		$eqLogic->setConfiguration('deamons', $_params['deamons']);
+		$eqLogic->setEqType_name('jeelink');
+		try {
+			$eqLogic->save();
+		} catch (Exception $e) {
+			$eqLogic->setName($eqLogic->getName() . ' remote ' . rand(0, 9999));
+			$eqLogic->save();
+		}
+		$i = 0;
+		foreach ($_params['deamons'] as $info) {
+			$cmd = $eqLogic->getCmd(null, 'deamonState::' . $info['id']);
+			if (!is_object($cmd)) {
+				$cmd = new jeelinkCmd();
+				$cmd->setName(__('Démon', __FILE__) . ' ' . $info['name']);
+				$cmd->setTemplate('mobile', 'line');
+				$cmd->setTemplate('dashboard', 'line');
+				$cmd->setOrder(100 + $i);
+			}
+			$cmd->setConfiguration('remote_plugin_id', $info['id']);
+			$cmd->setEqLogic_id($eqLogic->getId());
+			$cmd->setLogicalId('deamonState::' . $info['id']);
+			$cmd->setType('info');
+			$cmd->setSubType('binary');
+			$cmd->save();
+
+			$cmd = $eqLogic->getCmd(null, 'deamonStart::' . $info['id']);
+			if (!is_object($cmd)) {
+				$cmd = new jeelinkCmd();
+				$cmd->setName(__('Démarrer', __FILE__) . ' ' . $info['name']);
+				$cmd->setOrder(101 + $i);
+			}
+			$cmd->setConfiguration('remote_plugin_id', $info['id']);
+			$cmd->setEqLogic_id($eqLogic->getId());
+			$cmd->setLogicalId('deamonStart::' . $info['id']);
+			$cmd->setType('action');
+			$cmd->setSubType('other');
+			$cmd->save();
+
+			$cmd = $eqLogic->getCmd(null, 'deamonStop::' . $info['id']);
+			if (!is_object($cmd)) {
+				$cmd = new jeelinkCmd();
+				$cmd->setName(__('Arrêter', __FILE__) . ' ' . $info['name']);
+				$cmd->setOrder(102 + $i);
+			}
+			$cmd->setConfiguration('remote_plugin_id', $info['id']);
+			$cmd->setEqLogic_id($eqLogic->getId());
+			$cmd->setLogicalId('deamonStop::' . $info['id']);
+			$cmd->setType('action');
+			$cmd->setSubType('other');
+			$cmd->save();
+			$i += 10;
+		}
+		try {
+			$eqLogic->updateSysInfo();
+		} catch (Exception $e) {
+
+		}
+	}
+
+	public static function cron10($_eqLogic_id = null) {
+		if ($_eqLogic_id == null) {
+			$eqLogics = eqLogic::byType('jeelink');
+		} else {
+			$eqLogics = array(eqLogic::byId($_eqLogic_id));
+		}
+		foreach ($eqLogics as $eqLogic) {
+			if ($eqLogic->getConfiguration('remote_id') != 'core') {
+				continue;
+			}
+			$eqLogic->updateSysInfo();
+		}
 	}
 
 	/*     * *********************Méthodes d'instance************************* */
+
+	public function getJsonRpc() {
+		$params = array(
+			'apikey' => $this->getConfiguration('remote_apikey'),
+		);
+		$jsonrpc = new jsonrpcClient($this->getConfiguration('remote_address') . '/core/api/jeeApi.php', '', $params);
+		$jsonrpc->setNoSslCheck(true);
+		return $jsonrpc;
+	}
+
+	public function updateSysInfo() {
+		$jsonrpc = $this->getJsonRpc();
+
+		$cmd = $this->getCmd(null, 'ping');
+		if ($jsonrpc->sendRequest('ping')) {
+			$cmd->event(1);
+		} else {
+			$cmd->event(0);
+		}
+
+		$cmd = $this->getCmd(null, 'state');
+		if ($jsonrpc->sendRequest('jeedom::isOk')) {
+			if ($jsonrpc->getResult()) {
+				$cmd->event(1);
+			} else {
+				$cmd->event(0);
+			}
+		} else {
+			$cmd->event(0);
+		}
+
+		$cmd = $this->getCmd(null, 'version');
+		if ($jsonrpc->sendRequest('version')) {
+			$cmd->event($jsonrpc->getResult());
+		}
+
+		foreach ($this->getConfiguration('deamons') as $info) {
+			$cmd = $this->getCmd(null, 'deamonState::' . $info['id']);
+			if ($jsonrpc->sendRequest('plugin::deamonInfo', array('plugin_id' => $info['id']))) {
+				$result = $jsonrpc->getResult();
+				if ($result['state'] == 'ok') {
+					$cmd->event(1);
+				} else {
+					$cmd->event(0);
+				}
+			} else {
+				$cmd->event(0);
+			}
+		}
+	}
 
 	public function preSave() {
 		if ($this->getConfiguration('remote_id') == '') {
@@ -118,6 +248,114 @@ class jeelink extends eqLogic {
 		$this->setLogicalId('remote::' . $this->getConfiguration('remote_id') . '::' . $this->getConfiguration('remote_apikey'));
 	}
 
+	public function postSave() {
+		if ($this->getConfiguration('remote_id') != 'core') {
+			return;
+		}
+
+		$cmd = $this->getCmd(null, 'refresh');
+		if (!is_object($cmd)) {
+			$cmd = new jeelinkCmd();
+			$cmd->setName(__('Rafraichir', __FILE__));
+			$cmd->setOrder(0);
+		}
+		$cmd->setEqLogic_id($this->getId());
+		$cmd->setLogicalId('refresh');
+		$cmd->setType('action');
+		$cmd->setSubType('other');
+		$cmd->save();
+
+		$cmd = $this->getCmd(null, 'ping');
+		if (!is_object($cmd)) {
+			$cmd = new jeelinkCmd();
+			$cmd->setName(__('Joignable', __FILE__));
+			$cmd->setTemplate('mobile', 'line');
+			$cmd->setTemplate('dashboard', 'line');
+			$cmd->setOrder(1);
+		}
+		$cmd->setEqLogic_id($this->getId());
+		$cmd->setLogicalId('ping');
+		$cmd->setType('info');
+		$cmd->setSubType('binary');
+		$cmd->save();
+
+		$cmd = $this->getCmd(null, 'state');
+		if (!is_object($cmd)) {
+			$cmd = new jeelinkCmd();
+			$cmd->setName(__('Status', __FILE__));
+			$cmd->setTemplate('mobile', 'line');
+			$cmd->setTemplate('dashboard', 'line');
+			$cmd->setOrder(2);
+		}
+		$cmd->setEqLogic_id($this->getId());
+		$cmd->setLogicalId('state');
+		$cmd->setType('info');
+		$cmd->setSubType('binary');
+		$cmd->save();
+
+		$cmd = $this->getCmd(null, 'version');
+		if (!is_object($cmd)) {
+			$cmd = new jeelinkCmd();
+			$cmd->setName(__('Version', __FILE__));
+			$cmd->setTemplate('mobile', 'line');
+			$cmd->setTemplate('dashboard', 'line');
+			$cmd->setOrder(3);
+		}
+		$cmd->setEqLogic_id($this->getId());
+		$cmd->setLogicalId('version');
+		$cmd->setType('info');
+		$cmd->setSubType('string');
+		$cmd->save();
+
+		$cmd = $this->getCmd(null, 'restart');
+		if (!is_object($cmd)) {
+			$cmd = new jeelinkCmd();
+			$cmd->setName(__('Redémarrer', __FILE__));
+			$cmd->setOrder(4);
+		}
+		$cmd->setEqLogic_id($this->getId());
+		$cmd->setLogicalId('restart');
+		$cmd->setType('action');
+		$cmd->setSubType('other');
+		$cmd->save();
+
+		$cmd = $this->getCmd(null, 'halt');
+		if (!is_object($cmd)) {
+			$cmd = new jeelinkCmd();
+			$cmd->setName(__('Arrêter', __FILE__));
+			$cmd->setOrder(5);
+		}
+		$cmd->setEqLogic_id($this->getId());
+		$cmd->setLogicalId('halt');
+		$cmd->setType('action');
+		$cmd->setSubType('other');
+		$cmd->save();
+
+		$cmd = $this->getCmd(null, 'update');
+		if (!is_object($cmd)) {
+			$cmd = new jeelinkCmd();
+			$cmd->setName(__('Mettre à jour', __FILE__));
+			$cmd->setOrder(6);
+		}
+		$cmd->setEqLogic_id($this->getId());
+		$cmd->setLogicalId('update');
+		$cmd->setType('action');
+		$cmd->setSubType('other');
+		$cmd->save();
+
+		$cmd = $this->getCmd(null, 'backup');
+		if (!is_object($cmd)) {
+			$cmd = new jeelinkCmd();
+			$cmd->setName(__('Lancer un backup', __FILE__));
+			$cmd->setOrder(7);
+		}
+		$cmd->setEqLogic_id($this->getId());
+		$cmd->setLogicalId('backup');
+		$cmd->setType('action');
+		$cmd->setSubType('other');
+		$cmd->save();
+	}
+
 	/*     * **********************Getteur Setteur*************************** */
 }
 
@@ -129,24 +367,73 @@ class jeelinkCmd extends cmd {
 	/*     * *********************Methode d'instance************************* */
 
 	public function preSave() {
-		if ($this->getConfiguration('remote_id') == '') {
+		$eqLogic = $this->getEqLogic();
+		if ($eqLogic->getConfiguration('remote_id') != 'core' && $this->getConfiguration('remote_id') == '') {
 			throw new Exception(__('Le remote ID ne peut etre vide', __FILE__));
 		}
-		$eqLogic = $this->getEqLogic();
-		$this->setLogicalId('remote::' . $this->getConfiguration('remote_id') . '::' . $eqLogic->getConfiguration('remote_apikey'));
+		if ($eqLogic->getConfiguration('remote_id') != 'core') {
+			$this->setLogicalId('remote::' . $this->getConfiguration('remote_id') . '::' . $eqLogic->getConfiguration('remote_apikey'));
+		}
 	}
 
 	public function execute($_options = array()) {
 		$eqLogic = $this->getEqLogic();
-		$url = $eqLogic->getConfiguration('remote_address') . '/core/api/jeeApi.php?type=cmd&apikey=' . $eqLogic->getConfiguration('remote_apikey');
-		$url .= '&id=' . $this->getConfiguration('remote_id');
-		if (count($_options) > 0) {
-			foreach ($_options as $key => $value) {
-				$url .= '&' . $key . '=' . urlencode($value);
+		if ($eqLogic->getConfiguration('remote_id') != 'core') {
+			$url = $eqLogic->getConfiguration('remote_address') . '/core/api/jeeApi.php?type=cmd&apikey=' . $eqLogic->getConfiguration('remote_apikey');
+			$url .= '&id=' . $this->getConfiguration('remote_id');
+			if (count($_options) > 0) {
+				foreach ($_options as $key => $value) {
+					$url .= '&' . $key . '=' . urlencode($value);
+				}
+			}
+			$request_http = new com_http($url);
+			$request_http->exec(60);
+		}
+
+		if ($this->getLogicalId() == 'refresh') {
+			$eqLogic->updateSysInfo();
+			return;
+		}
+
+		$jsonrpc = $eqLogic->getJsonRpc();
+		if ($this->getLogicalId() == 'restart') {
+			if (!$jsonrpc->sendRequest('jeeNetwork::reboot')) {
+				throw new Exception($jsonrpc->getError(), $jsonrpc->getErrorCode());
 			}
 		}
-		$request_http = new com_http($url);
-		$request_http->exec(60);
+
+		if ($this->getLogicalId() == 'halt') {
+			if (!$jsonrpc->sendRequest('jeeNetwork::halt')) {
+				throw new Exception($jsonrpc->getError(), $jsonrpc->getErrorCode());
+			}
+		}
+
+		if ($this->getLogicalId() == 'update') {
+			if (!$jsonrpc->sendRequest('update::update')) {
+				throw new Exception($jsonrpc->getError(), $jsonrpc->getErrorCode());
+			}
+		}
+
+		if ($this->getLogicalId() == 'backup') {
+			if (!$jsonrpc->sendRequest('jeeNetwork::backup')) {
+				throw new Exception($jsonrpc->getError(), $jsonrpc->getErrorCode());
+			}
+		}
+
+		if (strpos($this->getLogicalId(), 'deamonStop') !== false) {
+			if (!$jsonrpc->sendRequest('plugin::deamonStop', array('plugin_id' => $this->getConfiguration('remote_plugin_id')))) {
+				throw new Exception($jsonrpc->getError(), $jsonrpc->getErrorCode());
+			}
+		}
+
+		if (strpos($this->getLogicalId(), 'deamonStart') !== false) {
+			if (!$jsonrpc->sendRequest('plugin::deamonStart', array('plugin_id' => $this->getConfiguration('remote_plugin_id')))) {
+				throw new Exception($jsonrpc->getError(), $jsonrpc->getErrorCode());
+			}
+		}
+
+		$eqLogic->updateSysInfo();
+
 	}
 
 	/*     * **********************Getteur Setteur*************************** */
@@ -247,6 +534,7 @@ class jeelink_master {
 			'eqLogics' => array(),
 			'address' => network::getNetworkAccess($this->getConfiguration('network::access')),
 			'remote_apikey' => config::byKey('api'),
+			'name' => config::byKey('name', 'core', 'Jeedom'),
 		);
 		if (is_array($this->getConfiguration('eqLogics'))) {
 			foreach ($this->getConfiguration('eqLogics') as $eqLogic_info) {
@@ -266,6 +554,13 @@ class jeelink_master {
 					$toSend['eqLogics'][$eqLogic->getId()]['cmds'][$cmd->getId()] = utils::o2a($cmd);
 				}
 			}
+		}
+		$toSend['deamons'] = array();
+		foreach (plugin::listPlugin(true) as $plugin) {
+			if ($plugin->getHasOwnDeamon() != 1) {
+				continue;
+			}
+			$toSend['deamons'][] = array('id' => $plugin->getId(), 'name' => $plugin->getName());
 		}
 		$params = array(
 			'apikey' => $this->getApikey(),
