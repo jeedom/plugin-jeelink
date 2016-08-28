@@ -1,37 +1,37 @@
 == Configuration du plugin
 
-Après installation il vous suffit d'activer le plugin celui-ci ne nénessite aucune configuration
+Après installation il vous suffit d'activer le plugin, celui-ci ne nécessite aucune configuration.
 
-== Configuration des jeedoms distants
+== Configuration des Jeedoms distants
 
-Une fois sur la page du plugin (en allant sur Gestion des plugins -> Communication -> Jeedom link) il vous suffit de cliquer sur "Configurer les jeedoms distants". Une fenêtre va apparaitre et vous pourrais à partir de celle-ci configurer ou ajouter des jeedom distants.
+Une fois sur la page du plugin (en allant sur Gestion des plugins -> Communication -> Jeedom link), il vous suffit de cliquer sur "Configurer les Jeedoms distants". Une fenêtre va apparaître et vous pourrez à partir de celle-ci configurer ou ajouter des Jeedom distants.
 
-Pour ajouter un jeedom distant il suffit de donner : 
+Pour ajouter un Jeedom distant, il suffit de donner : 
 
-- son addresse (interne ou externe au choix) pour le joindre
+- son adresse (interne ou externe au choix) pour le joindre
 - sa clef api
-- indiquer si la communication est interne ou externe (c'est utilisé pour le retour d'information, du jeedom distant vers le jeedom actuel)
+- indiquer si la communication est interne ou externe (c'est utilisé pour le retour d'information, du Jeedom distant vers le Jeedom actuel)
 
 [IMPORTANT]
-Il faut ABSOLUMENT que la configuration réseaux des 2 jeedoms soit OK sinon le plugins ne marchera
+Il faut ABSOLUMENT que les configurations réseaux des 2 Jeedoms soientt OK sinon le plugin ne fonctionnera pas.
 
 [IMPORTANT]
-Il faut que le plugin soit installé sur les 2 jeedoms
+Il faut que le plugin soit installé sur les 2 Jeedoms.
 
-Après avoir mis la configuration de votre jeedom distant il faut aller dans l'onglet équipement pour donner les équipements à transmettre au Jeedom distant. Toutes les commandes de l'équipement seront automatique crées et configurées sur le Jeedom distant
+Après avoir mis la configuration de votre Jeedom distant, il faut aller dans l'onglet équipement pour donner les équipements à transmettre au Jeedom distant. Toutes les commandes de l'équipement seront automatiquement créées et configurées sur le Jeedom distant.
 
 [TIP]
-Attention les plugins ayant un widgets spécifique ne l'auront pas sur le Jeedom distant (plugin camera, netatmo, network...)
+Attention : les plugins ayant un widget spécifique ne l'auront pas sur le Jeedom distant (plugin camera, netatmo, network...).
 
 [IMPORTANT]
-La suppression de l'équipement sur la page de configuration des jeeodm distant ne le supprime pas automatiquement sur le jeedom distant, cela est volontaire et non un bug (c'est une sécuritée)
+La suppression de l'équipement sur la page de configuration des Jeedoms distants ne le supprime pas automatiquement sur le Jeedom distant, cela est volontaire et non un bug (c'est une sécurité).
 
 == Les équipements jeelink
 
-Les équipements jeelink sont automatiquement créer lors de l'ajout d'un jeedom distant, mais vous pouvez modifier leur configuration : 
+Les équipements jeelink sont automatiquement créés lors de l'ajout d'un Jeedom distant, mais vous pouvez modifier leur configuration : 
 
-- Addresse du jeedom source
-- Apikey du jeedom source
-- ID de l'équipement sources et des commandes
+- Adresse du Jeedom source
+- Apikey du Jeedom source
+- ID de l'équipement source et des commandes
 
-Ces 3 parametres vous permettez de changer le jeedom source, par exemple lors du remplacement d'un jeedom sans perdre les données (historique par exemple). Pour cela il vous suffit de mettre la nouvelle addresse et clef api du jeedom source et de changer les identifiants de l'équipement et des commandes (vous les trouvez dans la configuration avancée de ceux-ci en cliquant sur la roue crantée)
+Ces 3 paramètres vous permettent de changer le Jeedom source comme par exemple lors du remplacement d'un Jeedom sans perdre les données (historique par exemple). Pour cela il vous suffit de mettre la nouvelle adresse et clef api du Jeedom source et de changer les identifiants de l'équipement et des commandes (vous les trouvez dans la configuration avancée de ceux-ci en cliquant sur la roue crantée).
