@@ -282,7 +282,7 @@ class jeelink extends eqLogic {
 		$cmd = $this->getCmd(null, 'state');
 		if (!is_object($cmd)) {
 			$cmd = new jeelinkCmd();
-			$cmd->setName(__('Status', __FILE__));
+			$cmd->setName(__('Statut', __FILE__));
 			$cmd->setTemplate('mobile', 'line');
 			$cmd->setTemplate('dashboard', 'line');
 			$cmd->setOrder(2);
