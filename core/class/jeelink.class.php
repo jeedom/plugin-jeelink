@@ -198,39 +198,47 @@ class jeelink extends eqLogic {
 		$jsonrpc = $this->getJsonRpc();
 
 		$cmd = $this->getCmd(null, 'ping');
-		if ($jsonrpc->sendRequest('ping')) {
-			$cmd->event(1);
-		} else {
-			$cmd->event(0);
-		}
-
-		$cmd = $this->getCmd(null, 'state');
-		if ($jsonrpc->sendRequest('jeedom::isOk')) {
-			if ($jsonrpc->getResult()) {
+		if (is_object($cmd)) {
+			if ($jsonrpc->sendRequest('ping')) {
 				$cmd->event(1);
 			} else {
 				$cmd->event(0);
 			}
-		} else {
-			$cmd->event(0);
 		}
 
-		$cmd = $this->getCmd(null, 'version');
-		if ($jsonrpc->sendRequest('version')) {
-			$cmd->event($jsonrpc->getResult());
-		}
-
-		foreach ($this->getConfiguration('deamons') as $info) {
-			$cmd = $this->getCmd(null, 'deamonState::' . $info['id']);
-			if ($jsonrpc->sendRequest('plugin::deamonInfo', array('plugin_id' => $info['id']))) {
-				$result = $jsonrpc->getResult();
-				if ($result['state'] == 'ok') {
+		$cmd = $this->getCmd(null, 'state');
+		if (is_object($cmd)) {
+			if ($jsonrpc->sendRequest('jeedom::isOk')) {
+				if ($jsonrpc->getResult()) {
 					$cmd->event(1);
 				} else {
 					$cmd->event(0);
 				}
 			} else {
 				$cmd->event(0);
+			}
+		}
+
+		$cmd = $this->getCmd(null, 'version');
+		if (is_object($cmd)) {
+			if ($jsonrpc->sendRequest('version')) {
+				$cmd->event($jsonrpc->getResult());
+			}
+		}
+
+		foreach ($this->getConfiguration('deamons') as $info) {
+			$cmd = $this->getCmd(null, 'deamonState::' . $info['id']);
+			if (is_object($cmd)) {
+				if ($jsonrpc->sendRequest('plugin::deamonInfo', array('plugin_id' => $info['id']))) {
+					$result = $jsonrpc->getResult();
+					if ($result['state'] == 'ok') {
+						$cmd->event(1);
+					} else {
+						$cmd->event(0);
+					}
+				} else {
+					$cmd->event(0);
+				}
 			}
 		}
 	}
@@ -388,6 +396,7 @@ class jeelinkCmd extends cmd {
 			}
 			$request_http = new com_http($url);
 			$request_http->exec(60);
+			return;
 		}
 
 		if ($this->getLogicalId() == 'refresh') {
@@ -470,16 +479,20 @@ class jeelink_master {
 		if (!is_object($jeelink_master)) {
 			return;
 		}
-		$url = $jeelink_master->getAddress() . '/core/api/jeeApi.php?apikey=' . $jeelink_master->getApikey();
+		$jeelink_master->apiCallCmdEvent($_options['event_id'], $_options['value']);
+	}
+
+	/*     * *********************Methode d'instance************************* */
+
+	public function apiCallCmdEvent($_cmd_id, $_value) {
+		$url = $this->getAddress() . '/core/api/jeeApi.php?apikey=' . $this->getApikey();
 		$url .= '&type=jeelink';
-		$url .= '&remote_cmd_id=' . $_options['event_id'];
-		$url .= '&remote_cmd_value=' . urlencode($_options['value']);
+		$url .= '&remote_cmd_id=' . $_cmd_id;
+		$url .= '&remote_cmd_value=' . urlencode($_value);
 		$url .= '&remote_apikey=' . config::byKey('api');
 		$request_http = new com_http($url);
 		$request_http->exec(60);
 	}
-
-	/*     * *********************Methode d'instance************************* */
 
 	public function removeListener() {
 		$listeners = listener::byClass(__CLASS__);
@@ -571,6 +584,18 @@ class jeelink_master {
 		if (!$jsonrpc->sendRequest('createEqLogic', $toSend, 300)) {
 			throw new Exception($jsonrpc->getError(), $jsonrpc->getErrorCode());
 		}
+		if (is_array($this->getConfiguration('eqLogics'))) {
+			foreach ($this->getConfiguration('eqLogics') as $eqLogic_info) {
+				$eqLogic = eqLogic::byId(str_replace('eqLogic', '', str_replace('#', '', $eqLogic_info['eqLogic'])));
+				if (!is_object($eqLogic)) {
+					continue;
+				}
+				foreach ($eqLogic->getCmd('info') as $cmd) {
+					$this->apiCallCmdEvent($cmd->getId(), $cmd->execCmd());
+				}
+			}
+		}
+
 	}
 
 	/*     * **********************Getteur Setteur*************************** */
