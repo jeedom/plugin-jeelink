@@ -1,7 +1,7 @@
 == Jeelink
 
 === Description
-Plugin servant à liéer 2 Jeedoms
+Plugin servant à lier 2 Jeedoms
 
 include::configuration.asciidoc[]
 
