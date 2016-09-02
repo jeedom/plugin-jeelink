@@ -13,7 +13,7 @@ Pour ajouter un Jeedom distant, il suffit de donner :
 - indiquer si la communication est interne ou externe (c'est utilisé pour le retour d'information, du Jeedom distant vers le Jeedom actuel)
 
 [IMPORTANT]
-Il faut ABSOLUMENT que les configurations réseaux des 2 Jeedoms soientt OK sinon le plugin ne fonctionnera pas.
+Il faut ABSOLUMENT que les configurations réseaux des 2 Jeedoms soient OK sinon le plugin ne fonctionnera pas.
 
 [IMPORTANT]
 Il faut que le plugin soit installé sur les 2 Jeedoms.
