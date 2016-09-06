@@ -406,13 +406,13 @@ class jeelinkCmd extends cmd {
 
 		$jsonrpc = $eqLogic->getJsonRpc();
 		if ($this->getLogicalId() == 'restart') {
-			if (!$jsonrpc->sendRequest('jeeNetwork::reboot')) {
+			if (!$jsonrpc->sendRequest('jeedom::reboot')) {
 				throw new Exception($jsonrpc->getError(), $jsonrpc->getErrorCode());
 			}
 		}
 
 		if ($this->getLogicalId() == 'halt') {
-			if (!$jsonrpc->sendRequest('jeeNetwork::halt')) {
+			if (!$jsonrpc->sendRequest('jeedom::halt')) {
 				throw new Exception($jsonrpc->getError(), $jsonrpc->getErrorCode());
 			}
 		}
@@ -424,7 +424,7 @@ class jeelinkCmd extends cmd {
 		}
 
 		if ($this->getLogicalId() == 'backup') {
-			if (!$jsonrpc->sendRequest('jeeNetwork::backup')) {
+			if (!$jsonrpc->sendRequest('jeedom::backup')) {
 				throw new Exception($jsonrpc->getError(), $jsonrpc->getErrorCode());
 			}
 		}
