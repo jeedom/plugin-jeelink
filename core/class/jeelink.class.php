@@ -63,7 +63,10 @@ class jeelink extends eqLogic {
 				$eqLogic->save();
 			}
 
-			foreach ($eqLogic_info['cmds'] as $cmd_info) {
+			foreach ($eqLogic_info['cmds'] as &$cmd_info) {
+				if (isset($cmd_info['configuration']) && isset($cmd_info['configuration']['calculValueOffset'])) {
+					unset($cmd_info['configuration']['calculValueOffset']);
+				}
 				$cmd = $eqLogic->getCmd(null, 'remote::' . $cmd_info['id'] . '::' . $_params['remote_apikey']);
 				if (!is_object($cmd)) {
 					$cmd = new jeelinkCmd();
