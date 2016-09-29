@@ -1,0 +1,10 @@
+== Jeelink
+
+=== Description
+Plugin servant à lier 2 Jeedoms
+
+include::configuration.asciidoc[]
+
+'''
+=== FAQ
+include::faq.asciidoc[]
