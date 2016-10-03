@@ -27,7 +27,7 @@ $masters = jeelink_master::all();
 	<div class="col-lg-2 col-md-3 col-sm-4 col-xs-4">
 		<div class="bs-sidebar">
 			<ul id="ul_eqLogic" class="nav nav-list bs-sidenav">
-				<a class="btn btn-default jeelinkMasterAction" style="width : 100%;margin-top : 5px;margin-bottom: 5px;" data-action="add"><i class="fa fa-plus-circle"></i> {{Ajouter un jeedom distant}}</a>
+				<a class="btn btn-default jeelinkMasterAction" style="width : 100%;margin-top : 5px;margin-bottom: 5px;" data-action="add"><i class="fa fa-plus-circle"></i> {{Ajouter un Jeedom cible}}</a>
 				<li class="filter" style="margin-bottom: 5px;"><input class="filter form-control input-sm" placeholder="{{Rechercher}}" style="width: 100%"/></li>
 				<?php
 foreach ($masters as $master) {
@@ -53,10 +53,10 @@ foreach ($masters as $master) {
 					<fieldset>
 						<legend>{{Général}}</legend>
 						<div class="form-group">
-							<label class="col-sm-3 control-label">{{Nom du jeedom distant}}</label>
+							<label class="col-sm-3 control-label">{{Nom du jeedom cible}}</label>
 							<div class="col-sm-3">
 								<input type="text" class="jeeLinkMasterAttr form-control" data-l1key="id" style="display : none;" />
-								<input type="text" class="jeeLinkMasterAttr form-control" data-l1key="name" placeholder="{{Nom du jeedom distant}}"/>
+								<input type="text" class="jeeLinkMasterAttr form-control" data-l1key="name" placeholder="{{Nom du jeedom cible}}"/>
 							</div>
 						</div>
 						<div class="form-group">
