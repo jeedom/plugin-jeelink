@@ -91,6 +91,6 @@
 }
 
 $('#bt_jeelinkMasterConfiguration').on('click',function(){
-    $('#md_modal').dialog({title: "{{Configuration des jeedoms distants}}"});
+    $('#md_modal').dialog({title: "{{Configuration des jeedoms cibles}}"});
     $('#md_modal').load('index.php?v=d&plugin=jeelink&modal=jeelink.master').dialog('open');
 });
