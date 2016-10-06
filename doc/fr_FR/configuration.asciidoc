@@ -1,37 +1,100 @@
+== Principe de fonctionnement
+
+Le Plugin _Jeedom Link_ permet la remontée d'équipement d'un Jeedom sur un autre.
+
+image::../images/jeelink1.png[]
+
+[TIP]
+Pour une bonne compréhension, il est important d'apréhender les termes suivants :
++ 
+*Jeedom Source* : serveur Jeedom sur lequel est présent les équipements à remonter sur le *Jeedom Cible*
++
+*Jeedom Cible* : serveur Jeedom qui recevra les équipements remontés par le(s) *Jeedom(s) Source(s)*
++
+Le *Jeedom Cible* centralisera ces équipements et ceux de tous les *Jeedom(s) Source(s)* configuré(s).
++
+*Affectation* : configuration effectuée côté du *Jeedom Source* pour inclure les équipements qui seront remontés sur le *Jeedom Cible*
+
+
 == Configuration du plugin
 
 Après installation il vous suffit d'activer le plugin, celui-ci ne nécessite aucune configuration.
 
-== Configuration des Jeedoms distants
+== Configuration des Jeedoms Cibles
 
-Une fois sur la page du plugin (en allant sur Gestion des plugins -> Communication -> Jeedom link), il vous suffit de cliquer sur "Configurer les Jeedoms distants". Une fenêtre va apparaître et vous pourrez à partir de celle-ci configurer ou ajouter des Jeedoms distants.
+A partir du *Jeedom Source*, une fois sur la page du plugin (en allant sur Gestion des plugins -> Communication -> Jeedom link), il vous suffit de cliquer sur "Configurer les Jeedoms Cibles".
++
+Une fenêtre va apparaître et vous pourrez à partir de celle-ci configurer ou ajouter des *Jeedom(s) Cible(s)*.
 
-Pour ajouter un Jeedom distant, il suffit de donner : 
+Pour ajouter un *Jeedom Cible*, il suffit de donner : 
 
 - son adresse (interne ou externe au choix) pour le joindre;
 - sa clef API;
-- indiquer si la communication est interne ou externe (c'est utilisé pour le retour d'informations, du Jeedom distant vers le Jeedom actuel).
+- indiquer si la communication est interne ou externe (c'est utilisé pour le retour d'informations, du *Jeedom Source* vers le *Jeedom Source*).
 
 [IMPORTANT]
-Il faut ABSOLUMENT que les configurations réseaux des 2 Jeedoms soient OK sinon le plugin ne fonctionnera pas.
+Il faut ABSOLUMENT que les configurations réseaux de tous les Jeedoms soient OK sinon le plugin ne fonctionnera pas.
 
 [IMPORTANT]
-Il faut que le plugin soit installé sur les 2 Jeedoms.
+Il faut que le plugin soit installé sur les tous les Jeedoms.
 
-Après avoir mis la configuration de votre Jeedom distant, il faut aller dans l'onglet équipement pour donner les équipements à transmettre au Jeedom distant. Toutes les commandes de l'équipement seront automatiquement créées et configurées sur le Jeedom distant.
+== Affectiation des équipements
+
+Après avoir effectué la configuration du *Jeedom Cible* sur votre *Jeedom Source*, il faut aller dans l'onglet _Affectation_ pour spécifier les équipements à transmettre au *Jeedom Cible*. Toutes les commandes de l'équipement seront automatiquement créées et configurées sur le *Jeedom Cible*.
 
 [TIP]
-Attention : les plugins ayant un widget spécifique ne l'auront pas sur le Jeedom distant (plugin camera, netatmo, network...).
+Attention : les plugins ayant un widget spécifique ne l'auront pas sur le *Jeedom Cible* (plugin camera, netatmo, network...).
 
 [IMPORTANT]
-La suppression de l'équipement sur la page de configuration des Jeedoms distants ne le supprime pas automatiquement sur le Jeedom distant, cela est volontaire et non un bug (c'est une sécurité).
+La suppression de l'équipement sur la page de configuration des *Jeedoms Cibles* ne le supprime pas automatiquement sur le *Jeedom Source*, cela est volontaire et non un bug (c'est une sécurité).
 
-== Les équipements Jeelink
+== Les équipements "Mes jeelinks"
 
-Les équipements Jeelink sont automatiquement créés lors de l'ajout d'un Jeedom distant, mais vous pouvez modifier leur configuration : 
+Sur le *Jeedom Cible*, 
+Le plugin "Jeedom Link" installé sur le *Jeedom Source* permettra la remontée des équipements sur le *Jeedom Cible* (Votre ancien Maître).
 
-- adresse du Jeedom source;
-- API key du Jeedom source;
-- ID de l'équipement source et des commandes.
+NOTE: Rappel, pour une meilleure lecture et compréhension de ce tutoriel : +
+   +
+   Les copies d'écran sur fond noir correspondent au *Jeedom Cible*. +
+   +
+   Les copies d'écran sur fond blanc correspondent au *Jeedom Source*. +
 
-Ces 3 paramètres vous permettent de changer le Jeedom source comme par exemple lors du remplacement d'un Jeedom sans perdre les données (historique par exemple). Pour cela, il vous suffit de mettre la nouvelle adresse et clef API du Jeedom source et de changer les identifiants de l'équipement et des commandes (vous les trouverez dans la configuration avancée de ceux-ci en cliquant sur la roue crantée).
+Sur le *Jeedom Source*, https://www.jeedom.com/doc/documentation/plugins/jeelink/fr_FR/jeelink[configurer] le plugin "Jeedom Link" en spécifiant :
+
+* Le nom du *Jeedom Cible*.
+* L'adresse IP ou le nom DNS du *Jeedom Cible*.
+* La clé API du *Jeedom Cible*.
+
+Et sauvegarder la configuration.
+
+image::../images/jeelink2.png[]
+
+Dans l'onglet __Affectation__, ajouter les équipements que vous désirez remonter vers le *Jeedom Cible*.
+
+image::../images/jeelink3.png[]
+
+Cliquer sur __Ajouter un équipement__
+Sélectionner l'objet et l'équipement à ajouter :
+
+image::../images/jeelink5.png[]
+
+Après avoir rafraîchit la page __Mes JeeLinks__ du *Jeedom Cible*, vous devez constater la création automatique de l'équipement :
+
+image::../images/jeelink4.png[]
+
+Comme tout équipement Jeedom, vous pouvez activer/désactiver et afficher ou non l'équipement, ses commandes,... ou changer la catégorie.
+Mais aussi 
+
+image::../images/jeelink6.png[]
+
+Dans l'onglet __Commandes__, vous accédez à tous les paramètres des commandes de l'équipement :
+
+image::../images/jeelink7.png[]
+
+=== Modification du Jeedom Source d'un JeeLink
+
+Les 3 paramètres suivants vous permettent de changer le Jeedom source comme par exemple lors du remplacement d'un Jeedom sans perdre les données (historique par exemple). Pour cela, il vous suffit de mettre la nouvelle adresse et clef API du Jeedom Source et de changer les identifiants de l'équipement et des commandes (vous les trouverez dans la configuration avancée de ceux-ci en cliquant sur la roue crantée).
+
+- adresse du Jeedom Source;
+- API key du Jeedom Source;
+- ID de l'équipement Source et des commandes.
