@@ -7,11 +7,10 @@ image::../images/jeelink1.png[]
 [TIP]
 Pour une bonne compréhension, il est important d'apréhender les termes suivants :
 + 
-*Jeedom Source* : serveur Jeedom sur lequel est présent les équipements à remonter sur le *Jeedom Cible*
+*Jeedom Source* : serveur Jeedom sur lequel est présent les équipements à remonter sur le *Jeedom Cible*+
 +
-*Jeedom Cible* : serveur Jeedom qui recevra les équipements remontés par le(s) *Jeedom(s) Source(s)*
-+
-Le *Jeedom Cible* centralisera ces équipements et ceux de tous les *Jeedom(s) Source(s)* configuré(s).
+*Jeedom Cible* : serveur Jeedom qui recevra les équipements remontés par le(s) *Jeedom(s) Source(s)*+
+Le *Jeedom Cible* centralisera ces équipements et ceux de tous les *Jeedom(s) Source(s)* configuré(s).+
 +
 *Affectation* : configuration effectuée côté du *Jeedom Source* pour inclure les équipements qui seront remontés sur le *Jeedom Cible*
 
