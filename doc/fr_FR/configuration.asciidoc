@@ -27,7 +27,7 @@ Après installation il vous suffit d'activer le plugin, celui-ci ne nécessite a
 == Configuration des Jeedoms Cibles
 
 A partir du *Jeedom Source*, une fois sur la page du plugin (en allant sur Gestion des plugins -> Communication -> Jeedom link), il vous suffit de cliquer sur "Configurer les Jeedoms Cibles".
-+
+
 Une fenêtre va apparaître et vous pourrez à partir de celle-ci configurer ou ajouter des *Jeedom(s) Cible(s)*.
 
 Pour ajouter un *Jeedom Cible*, il suffit de donner :
