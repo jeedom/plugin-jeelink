@@ -420,11 +420,16 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#_description">1.1. Description</a></li>
 </ul>
 </li>
-<li><a href="#_configuration_du_plugin">2. Configuration du plugin</a></li>
-<li><a href="#_configuration_des_jeedoms_distants">3. Configuration des Jeedoms distants</a></li>
-<li><a href="#_les_équipements_jeelink">4. Les équipements Jeelink</a>
+<li><a href="#_principe_de_fonctionnement">2. Principe de fonctionnement</a></li>
+<li><a href="#_configuration_du_plugin">3. Configuration du plugin</a></li>
+<li><a href="#_configuration_des_jeedoms_cibles">4. Configuration des Jeedoms Cibles</a></li>
+<li><a href="#_affectiation_des_équipements">5. Affectiation des équipements</a></li>
+<li><a href="#_les_équipements_mes_jeelinks">6. Les équipements "Mes jeelinks"</a>
 <ul class="sectlevel2">
-<li><a href="#_faq">4.1. FAQ</a></li>
+<li><a href="#_modification_du_jeedom_source_d_un_jeelink">6.1. Modification du Jeedom Source d&#8217;un JeeLink</a></li>
+<li><a href="#_migration_ancien_mode_esclave">6.2. Migration ancien mode Esclave</a></li>
+<li><a href="#_faq">6.3. FAQ</a></li>
+<li><a href="#_changelog">6.4. Changelog</a></li>
 </ul>
 </li>
 </ul>
@@ -443,61 +448,15 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div class="sect1">
-<h2 id="_configuration_du_plugin">2. Configuration du plugin</h2>
+<h2 id="_principe_de_fonctionnement">2. Principe de fonctionnement</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Après installation il vous suffit d&#8217;activer le plugin, celui-ci ne nécessite aucune configuration.</p>
+<p>Le Plugin <em>Jeedom Link</em> permet la remontée d&#8217;équipement d&#8217;un Jeedom sur un autre.</p>
 </div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/jeelink1.png" alt="jeelink1">
 </div>
-</div>
-<div class="sect1">
-<h2 id="_configuration_des_jeedoms_distants">3. Configuration des Jeedoms distants</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>Une fois sur la page du plugin (en allant sur Gestion des plugins &#8594; Communication &#8594; Jeedom link), il vous suffit de cliquer sur "Configurer les Jeedoms distants". Une fenêtre va apparaître et vous pourrez à partir de celle-ci configurer ou ajouter des Jeedoms distants.</p>
-</div>
-<div class="paragraph">
-<p>Pour ajouter un Jeedom distant, il suffit de donner :</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>son adresse (interne ou externe au choix) pour le joindre;</p>
-</li>
-<li>
-<p>sa clef API;</p>
-</li>
-<li>
-<p>indiquer si la communication est interne ou externe (c&#8217;est utilisé pour le retour d&#8217;informations, du Jeedom distant vers le Jeedom actuel).</p>
-</li>
-</ul>
-</div>
-<div class="admonitionblock important">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-important" title="Important"></i>
-</td>
-<td class="content">
-Il faut ABSOLUMENT que les configurations réseaux des 2 Jeedoms soient OK sinon le plugin ne fonctionnera pas.
-</td>
-</tr>
-</table>
-</div>
-<div class="admonitionblock important">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-important" title="Important"></i>
-</td>
-<td class="content">
-Il faut que le plugin soit installé sur les 2 Jeedoms.
-</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p>Après avoir mis la configuration de votre Jeedom distant, il faut aller dans l&#8217;onglet équipement pour donner les équipements à transmettre au Jeedom distant. Toutes les commandes de l&#8217;équipement seront automatiquement créées et configurées sur le Jeedom distant.</p>
 </div>
 <div class="admonitionblock tip">
 <table>
@@ -506,7 +465,86 @@ Il faut que le plugin soit installé sur les 2 Jeedoms.
 <i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-Attention : les plugins ayant un widget spécifique ne l&#8217;auront pas sur le Jeedom distant (plugin camera, netatmo, network&#8230;&#8203;).
+Pour une bonne compréhension, il est important d&#8217;apréhender les termes suivants :<br>
+<br>
+<strong>Jeedom Source</strong> : serveur Jeedom sur lequel est présent les équipements à remonter sur le <strong>Jeedom Cible</strong><br>
+<br>
+<strong>Jeedom Cible</strong> : serveur Jeedom qui recevra les équipements remontés par le(s) <strong>Jeedom(s) Source(s)</strong><br>
+Le <strong>Jeedom Cible</strong> centralisera ces équipements et ceux de tous les <strong>Jeedom(s) Source(s)</strong> configuré(s).<br>
+<br>
+<strong>Affectation</strong> : configuration effectuée côté du <strong>Jeedom Source</strong> pour inclure les équipements qui seront remontés sur le <strong>Jeedom Cible</strong>
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Pour une meilleure lecture et compréhension de ce tutoriel :<br>
+  <br>
+   Les copies d&#8217;écran sur fond noir correspondent au <strong>Jeedom Cible</strong>.<br>
+  <br>
+   Les copies d&#8217;écran sur fond blanc correspondent au <strong>Jeedom Source</strong>.<br>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_configuration_du_plugin">3. Configuration du plugin</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Après installation il vous suffit d&#8217;activer le plugin, celui-ci ne nécessite aucune configuration.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_configuration_des_jeedoms_cibles">4. Configuration des Jeedoms Cibles</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>A partir du <strong>Jeedom Source</strong>, une fois sur la page du plugin (en allant sur Gestion des plugins &#8594; Communication &#8594; Jeedom link), il vous suffit de cliquer sur "Configurer les Jeedoms Cibles".</p>
+</div>
+<div class="paragraph">
+<p>Une fenêtre va apparaître et vous pourrez à partir de celle-ci configurer ou ajouter des <strong>Jeedom(s) Cible(s)</strong>.</p>
+</div>
+<div class="paragraph">
+<p>Pour ajouter un <strong>Jeedom Cible</strong>, il suffit de donner :</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Le nom du <strong>Jeedom Cible</strong>.</p>
+</li>
+<li>
+<p>L&#8217;adresse IP ou le nom DNS du <strong>Jeedom Cible</strong>.</p>
+</li>
+<li>
+<p>La clé API du <strong>Jeedom Cible</strong>.</p>
+</li>
+<li>
+<p>indiquer si la communication est interne ou externe (c&#8217;est utilisé pour le retour d&#8217;informations, du <strong>Jeedom Source</strong> vers le <strong>Jeedom Source</strong>).
+Et sauvegarder la configuration.</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/jeelink2.png" alt="jeelink2">
+</div>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+Il faut ABSOLUMENT que les configurations réseaux de tous les Jeedoms soient OK sinon le plugin ne fonctionnera pas.
 </td>
 </tr>
 </table>
@@ -518,7 +556,7 @@ Attention : les plugins ayant un widget spécifique ne l&#8217;auront pas sur le
 <i class="fa icon-important" title="Important"></i>
 </td>
 <td class="content">
-La suppression de l&#8217;équipement sur la page de configuration des Jeedoms distants ne le supprime pas automatiquement sur le Jeedom distant, cela est volontaire et non un bug (c&#8217;est une sécurité).
+Il faut que le plugin soit installé sur les tous les Jeedoms.
 </td>
 </tr>
 </table>
@@ -526,31 +564,122 @@ La suppression de l&#8217;équipement sur la page de configuration des Jeedoms d
 </div>
 </div>
 <div class="sect1">
-<h2 id="_les_équipements_jeelink">4. Les équipements Jeelink</h2>
+<h2 id="_affectiation_des_équipements">5. Affectiation des équipements</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Les équipements Jeelink sont automatiquement créés lors de l&#8217;ajout d&#8217;un Jeedom distant, mais vous pouvez modifier leur configuration :</p>
+<p>Après avoir effectué la configuration du <strong>Jeedom Cible</strong> sur votre <strong>Jeedom Source</strong>, il faut aller dans l&#8217;onglet <em>Affectation</em> pour spécifier les équipements à transmettre au <strong>Jeedom Cible</strong>. Toutes les commandes de l&#8217;équipement seront automatiquement créées et configurées sur le <strong>Jeedom Cible</strong>.</p>
+</div>
+<div class="paragraph">
+<p>Dans l&#8217;onglet <em>Affectation</em>, ajouter les équipements que vous désirez remonter vers le <strong>Jeedom Cible</strong>.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/jeelink3.png" alt="jeelink3">
+</div>
+</div>
+<div class="paragraph">
+<p>Cliquer sur <em>Ajouter un équipement</em>
+Sélectionner l&#8217;objet et l&#8217;équipement à ajouter :</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/jeelink5.png" alt="jeelink5">
+</div>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+Attention : les plugins ayant un widget spécifique ne l&#8217;auront pas sur le <strong>Jeedom Cible</strong> (plugin camera, netatmo, network&#8230;&#8203;).
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+La suppression de l&#8217;équipement sur la page de configuration des <strong>Jeedoms Cibles</strong> ne le supprime pas automatiquement sur le <strong>Jeedom Source</strong>, cela est volontaire et non un bug (c&#8217;est une sécurité).
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_les_équipements_mes_jeelinks">6. Les équipements "Mes jeelinks"</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Après avoir rafraîchit la page <em>Mes JeeLinks</em> du <strong>Jeedom Cible</strong>, vous devez constater la création automatique de l&#8217;équipement :</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/jeelink4.png" alt="jeelink4">
+</div>
+</div>
+<div class="paragraph">
+<p>Comme tout équipement Jeedom, vous pouvez activer/désactiver et afficher ou non l&#8217;équipement, ses commandes,&#8230;&#8203; ou changer la catégorie.
+Mais aussi</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/jeelink6.png" alt="jeelink6">
+</div>
+</div>
+<div class="paragraph">
+<p>Dans l&#8217;onglet <em>Commandes</em>, vous accédez à tous les paramètres des commandes de l&#8217;équipement :</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/jeelink7.png" alt="jeelink7">
+</div>
+</div>
+<div class="sect2">
+<h3 id="_modification_du_jeedom_source_d_un_jeelink">6.1. Modification du Jeedom Source d&#8217;un JeeLink</h3>
+<div class="paragraph">
+<p>Les 3 paramètres suivants vous permettent de changer le Jeedom source comme par exemple lors du remplacement d&#8217;un Jeedom sans perdre les données (historique par exemple). Pour cela, il vous suffit de mettre la nouvelle adresse et clef API du Jeedom Source et de changer les identifiants de l&#8217;équipement et des commandes (vous les trouverez dans la configuration avancée de ceux-ci en cliquant sur la roue crantée).</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>adresse du Jeedom source;</p>
+<p>adresse du Jeedom Source;</p>
 </li>
 <li>
-<p>API key du Jeedom source;</p>
+<p>API key du Jeedom Source;</p>
 </li>
 <li>
-<p>ID de l&#8217;équipement source et des commandes.</p>
+<p>ID de l&#8217;équipement Source et des commandes.</p>
 </li>
 </ul>
 </div>
+</div>
+<div class="sect2">
+<h3 id="_migration_ancien_mode_esclave">6.2. Migration ancien mode Esclave</h3>
 <div class="paragraph">
-<p>Ces 3 paramètres vous permettent de changer le Jeedom source comme par exemple lors du remplacement d&#8217;un Jeedom sans perdre les données (historique par exemple). Pour cela, il vous suffit de mettre la nouvelle adresse et clef API du Jeedom source et de changer les identifiants de l&#8217;équipement et des commandes (vous les trouverez dans la configuration avancée de ceux-ci en cliquant sur la roue crantée).</p>
+<p>Un tutoriel est disponible, <a href="https://github.com/jeedom/doc-howto/blob/master/doc/fr_FR/jeelink.migration.asciidoc">ici</a> précisant la procédure à suivre pour effectuer la migration d&#8217;un Jeedom Esclave vers le nouveau mode de fonctionnement Jeedom Link.</p>
 </div>
 <hr>
+</div>
 <div class="sect2">
-<h3 id="_faq">4.1. FAQ</h3>
+<h3 id="_faq">6.3. FAQ</h3>
 <hr>
+</div>
+<div class="sect2">
+<h3 id="_changelog">6.4. Changelog</h3>
+<div class="paragraph">
+<p>2016-09-13 19:06:10
+Ajout du choix de la catégorie</p>
+</div>
+<div class="paragraph">
+<p>2016-09-11 09:25:27
+Correction d&#8217;un bug de double calcul d&#8217;offset d&#8217;une commande (sur le maître et l&#8217;esclave)</p>
+</div>
 </div>
 </div>
 </div>
