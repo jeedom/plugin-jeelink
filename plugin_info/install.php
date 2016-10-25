@@ -33,6 +33,9 @@ function jeelink_update() {
 }
 
 function jeelink_remove() {
+	foreach (jeelink_master::all() as $jeelink_master) {
+		$jeelink_master->removeListener();
+	}
 	DB::Prepare('DROP TABLE IF EXISTS `jeelink_master`', array(), DB::FETCH_TYPE_ROW);
 }
 
