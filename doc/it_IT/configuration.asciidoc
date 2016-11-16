@@ -1,11 +1,14 @@
 == Principe de fonctionnement
 
-Le Plugin _Jeedom Link_ permet la remontée d'équipement d'un Jeedom sur un autre.
+Le plugin _Jeedom Link_ (aussi appelé jeelink) permet la remontée d'un ou plusieurs équipement(s) d'un Jeedom sur un autre.
 
 image::../images/jeelink1.png[]
 
+[IMPORTANT]
+Il faut que le plugin soit installé sur les tous les Jeedoms, Source et Cible.
+
 [TIP]
-Pour une bonne compréhension, il est important d'apréhender les termes suivants : +
+Pour une bonne compréhension, il est important d'appréhender les quelques termes suivants : +
  + 
 *Jeedom Source* : serveur Jeedom sur lequel est présent les équipements à remonter sur le *Jeedom Cible* +
  +
@@ -22,7 +25,7 @@ NOTE: Pour une meilleure lecture et compréhension de ce tutoriel : +
 
 == Configuration du plugin
 
-Après installation il vous suffit d'activer le plugin, celui-ci ne nécessite aucune configuration.
+Après installation, il vous suffit d'activer le plugin. Celui-ci ne nécessite aucune configuration spécifique.
 
 == Configuration des Jeedoms Cibles
 
@@ -35,16 +38,13 @@ Pour ajouter un *Jeedom Cible*, il suffit de donner :
 * Le nom du *Jeedom Cible*.
 * L'adresse IP ou le nom DNS du *Jeedom Cible*.
 * La clé API du *Jeedom Cible*.
-* indiquer si la communication est interne ou externe (c'est utilisé pour le retour d'informations, du *Jeedom Source* vers le *Jeedom Source*).
+* Indiquer si la communication est interne ou externe (utilisé pour le retour d'informations, du *Jeedom Source* vers le *Jeedom Cible*).
 Et sauvegarder la configuration.
 
 image::../images/jeelink2.png[]
 
 [IMPORTANT]
-Il faut ABSOLUMENT que les configurations réseaux de tous les Jeedoms soient OK sinon le plugin ne fonctionnera pas.
-
-[IMPORTANT]
-Il faut que le plugin soit installé sur les tous les Jeedoms.
+Il faut *ABSOLUMENT* que les configurations réseaux de tous les Jeedoms (Source et Cible) soient OK sinon le plugin ne fonctionnera pas.
 
 == Affectiation des équipements
 
@@ -67,7 +67,7 @@ La suppression de l'équipement sur la page de configuration des *Jeedoms Cibles
 
 == Les équipements "Mes jeelinks"
 
-Après avoir rafraîchit la page __Mes JeeLinks__ du *Jeedom Cible*, vous devez constater la création automatique de l'équipement :
+Après avoir rafraîchi la page __Mes JeeLinks__ du *Jeedom Cible*, vous devez constater la création automatique de l'équipement :
 
 image::../images/jeelink4.png[]
 
@@ -82,7 +82,7 @@ image::../images/jeelink7.png[]
 
 === Modification du Jeedom Source d'un JeeLink
 
-Les 3 paramètres suivants vous permettent de changer le Jeedom source comme par exemple lors du remplacement d'un Jeedom sans perdre les données (historique par exemple). Pour cela, il vous suffit de mettre la nouvelle adresse et clef API du Jeedom Source et de changer les identifiants de l'équipement et des commandes (vous les trouverez dans la configuration avancée de ceux-ci en cliquant sur la roue crantée).
+Les 3 paramètres suivants vous permettent de changer le Jeedom Source, par exemple lors du remplacement d'un Jeedom sans perdre les données (historique par exemple). Pour cela, il vous suffit de mettre la nouvelle adresse et clef API du Jeedom Source et de changer les identifiants de l'équipement et des commandes (vous les trouverez dans la configuration avancée de ceux-ci en cliquant sur la roue crantée).
 
 * adresse du Jeedom Source;
 * API key du Jeedom Source;
