@@ -37,8 +37,8 @@
         "ID de l'équipement source": "ID Quellgerät ",
         "ID source": "ID Quelle",
         "Catégorie": "Kategorie",
-        "Ajouter un équipement cible": "Ajouter un équipement cible",
-        "Configurer les jeedoms cibles": "Configurer les jeedoms cibles"
+        "Ajouter un équipement cible": "Ziel-Gerät hinzufügen",
+        "Configurer les jeedoms cibles": "Jeedoms Ziel  konfigurieren"
     },
     "plugins\/jeelink\/desktop\/js\/jeelink.js": {
         "Icône": "Symbol",
@@ -56,7 +56,7 @@
         "Configuration des masters": "Master Konfiguration",
         "Configuration des jeedoms distants": "Jeedom Remote Konfiguration",
         "ID source": "ID Quelle",
-        "Configuration des jeedoms cibles": "Configuration des jeedoms cibles"
+        "Configuration des jeedoms cibles": "Jeedoms Ziel Konfiguration"
     },
     "plugins\/jeelink\/desktop\/modal\/jeelink.master.php": {
         "Ajouter un master": "Master hinzufügen",
@@ -80,22 +80,22 @@
         "Etês-vous sûr de vouloir supprimer ce jeedom distant ?": "Sind Sie sicher, dass Sie diesen Jeedom Remote löschen möchten?"
     },
     "plugins\/jeelink\/core\/class\/jeelink.class.php": {
-        "Controle": "Controle",
+        "Controle": "Kontrolle",
         "Status": "Status",
-        "Le remote ID ne peut etre vide": "Le remote ID ne peut etre vide",
-        "Moteur de tâche": "Moteur de tâche",
+        "Le remote ID ne peut etre vide": "Die Remote-ID darf nicht leer sein.",
+        "Moteur de tâche": "Task Engine",
         "Version": "Version",
         "Redémarrer": "Neu starten",
         "Arrêter": "Beenden",
         "Mettre à jour": "Updaten",
-        "Lancer un backup": "Lancer un backup",
+        "Lancer un backup": "Sicherung starten",
         "Status démon": "Daemon Status",
-        "Démarrer démon": "Démarrer démon",
-        "Arrêter démon": "Arrêter démon",
+        "Démarrer démon": "Dämon Starten",
+        "Arrêter démon": "Demon Stoppen",
         "Rafraichir": "Aktualisieren",
         "Démon": "Daemon",
         "Démarrer": "Start",
         "Statut": "Status",
-        "Joignable": "Joignable"
+        "Joignable": "Erreichbar"
     }
 }
