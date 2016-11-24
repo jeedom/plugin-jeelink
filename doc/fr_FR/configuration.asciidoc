@@ -90,4 +90,4 @@ Les 3 paramètres suivants vous permettent de changer le Jeedom Source, par exem
 
 === Migration ancien mode Esclave
 
-Un tutoriel est disponible, https://github.com/jeedom/doc-howto/blob/master/doc/fr_FR/jeelink.migration.asciidoc[ici] précisant la procédure à suivre pour effectuer la migration d'un Jeedom Esclave vers le nouveau mode de fonctionnement Jeedom Link.
+Un tutoriel est disponible, https://jeedom.github.io/documentation/howto/fr_FR/jeelink.migration.html[ici] précisant la procédure à suivre pour effectuer la migration d'un Jeedom Esclave vers le nouveau mode de fonctionnement Jeedom Link.
