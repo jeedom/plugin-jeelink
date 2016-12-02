@@ -37,7 +37,7 @@
         "ID de l'équipement source": "Source equipment ID",
         "ID source": "Source ID",
         "Catégorie": "Category",
-        "Ajouter un équipement cible": "Ajouter un équipement cible",
+        "Ajouter un équipement cible": "Add a target device",
         "Configurer les jeedoms cibles": "Configurer les jeedoms cibles"
     },
     "plugins\/jeelink\/desktop\/js\/jeelink.js": {
@@ -80,7 +80,7 @@
         "Etês-vous sûr de vouloir supprimer ce jeedom distant ?": "Do you really want to delete this remote Jeedom ?"
     },
     "plugins\/jeelink\/core\/class\/jeelink.class.php": {
-        "Controle": "Controle",
+        "Controle": "Control",
         "Status": "Status",
         "Le remote ID ne peut etre vide": "Le remote ID ne peut etre vide",
         "Moteur de tâche": "Moteur de tâche",
@@ -88,7 +88,7 @@
         "Redémarrer": "Restart",
         "Arrêter": "Stop",
         "Mettre à jour": "Update",
-        "Lancer un backup": "Lancer un backup",
+        "Lancer un backup": "Start a backup",
         "Status démon": "Daemon status",
         "Démarrer démon": "Démarrer démon",
         "Arrêter démon": "Arrêter démon",
@@ -96,6 +96,6 @@
         "Démon": "Daemon",
         "Démarrer": "Start",
         "Statut": "Status",
-        "Joignable": "Joignable"
+        "Joignable": "Reachable"
     }
 }
