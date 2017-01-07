@@ -23,7 +23,7 @@ NOTE: Pour une meilleure lecture et compréhension de ce tutoriel : +
    +
    Les copies d'écran sur fond blanc correspondent au *Jeedom Source*. +
 
-== Configuration du plugin
+== Plugin Konfiguration
 
 Après installation, il vous suffit d'activer le plugin. Celui-ci ne nécessite aucune configuration spécifique.
 
