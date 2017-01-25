@@ -10,10 +10,10 @@ Il faut que le plugin soit installé sur les tous les Jeedoms, Source et Cible.
 [TIP]
 Pour une bonne compréhension, il est important d'appréhender les quelques termes suivants : +
  + 
-*Jeedom Source* : serveur Jeedom sur lequel est présent les équipements à remonter sur le *Jeedom Cible* +
+*Jeedom Source* : serveur Jeedom sur lequel sont présents les équipements à remonter sur le *Jeedom Cible* +
  +
 *Jeedom Cible* : serveur Jeedom qui recevra les équipements remontés par le(s) *Jeedom(s) Source(s)* +
-Le *Jeedom Cible* centralisera ces équipements et ceux de tous les *Jeedom(s) Source(s)* configuré(s). +
+Le *Jeedom Cible* centralisera ces équipements et ceux de tous le(s) *Jeedom(s) Source(s)* configuré(s). +
  +
 *Affectation* : configuration effectuée côté du *Jeedom Source* pour inclure les équipements qui seront remontés sur le *Jeedom Cible*
 
@@ -38,7 +38,7 @@ Pour ajouter un *Jeedom Cible*, il suffit de donner :
 * Le nom du *Jeedom Cible*.
 * L'adresse IP ou le nom DNS du *Jeedom Cible*.
 * La clé API du *Jeedom Cible*.
-* Indiquer si la communication est interne ou externe (utilisé pour le retour d'informations, du *Jeedom Source* vers le *Jeedom Cible*).
+* Indiquer si la communication est interne ou externe (utilisée pour le retour d'informations, du *Jeedom Source* vers le *Jeedom Cible*).
 Et sauvegarder la configuration.
 
 image::../images/jeelink2.png[]
