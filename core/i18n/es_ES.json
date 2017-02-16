@@ -37,8 +37,8 @@
         "ID de l'équipement source": "ID del dispositivo origen",
         "ID source": "ID origen",
         "Catégorie": "Categoría",
-        "Ajouter un équipement cible": "Ajouter un équipement cible",
-        "Configurer les jeedoms cibles": "Configurer les jeedoms cibles"
+        "Ajouter un équipement cible": "Añadir un dispositivo de destino",
+        "Configurer les jeedoms cibles": "Configurar los jeedoms de destino"
     },
     "plugins\/jeelink\/desktop\/js\/jeelink.js": {
         "Icône": "Icono",
@@ -56,7 +56,7 @@
         "Configuration des masters": "Configuración de los maestros",
         "Configuration des jeedoms distants": "Configurar los jeedom remotos",
         "ID source": "ID origen",
-        "Configuration des jeedoms cibles": "Configuration des jeedoms cibles"
+        "Configuration des jeedoms cibles": "Configuración los jeedoms de destino"
     },
     "plugins\/jeelink\/desktop\/modal\/jeelink.master.php": {
         "Ajouter un master": "Añadir un maestro",
@@ -83,7 +83,7 @@
         "Controle": "Control",
         "Status": "Estado",
         "Le remote ID ne peut etre vide": "El campo de ID remoto, no puede estar vacío",
-        "Moteur de tâche": "Moteur de tâche",
+        "Moteur de tâche": "Motor de tareas",
         "Version": "Versión",
         "Redémarrer": "Reiniciar",
         "Arrêter": "Parar",
@@ -96,6 +96,6 @@
         "Démon": "Demonio",
         "Démarrer": "Iniciar",
         "Statut": "Estado",
-        "Joignable": "Joignable"
+        "Joignable": "Alcanzable"
     }
 }
