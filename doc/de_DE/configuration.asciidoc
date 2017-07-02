@@ -1,4 +1,4 @@
-== Principe de fonctionnement
+== Funktionsprinzip
 
 Le plugin _Jeedom Link_ (aussi appelé jeelink) permet la remontée d'un ou plusieurs équipement(s) d'un Jeedom sur un autre.
 
