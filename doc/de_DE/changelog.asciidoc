@@ -1,3 +1,5 @@
+Changelog détaillé : https://github.com/jeedom/plugin-jeelink/commits/stable
+
 2016-09-13 19:06:10
 Kategorie Auswahl hinzugefügt
 
