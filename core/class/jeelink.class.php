@@ -394,6 +394,9 @@ class jeelinkCmd extends cmd {
 			$url .= '&id=' . $this->getConfiguration('remote_id');
 			if (count($_options) > 0) {
 				foreach ($_options as $key => $value) {
+					if($key == 'apikey'){
+						continue;	
+					}
 					$url .= '&' . $key . '=' . urlencode($value);
 				}
 			}
