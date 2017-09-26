@@ -1,7 +1,7 @@
 {
 	"id" : "jeelink",
 	"name" : "Jeedom Link",
-	"description" : "Plugin permettant de liéer deux Jeedoms",
+	"description" : "Plugin permettant de lier plusieurs Jeedom",
 	"licence" : "AGPL",
 	"author" : "Loïc",
 	"require" : "2.3",
