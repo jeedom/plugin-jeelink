@@ -46,7 +46,7 @@ image::../images/jeelink2.png[]
 [IMPORTANT]
 Il faut *ABSOLUMENT* que les configurations réseaux de tous les Jeedoms (Source et Cible) soient OK sinon le plugin ne fonctionnera pas.
 
-== Affectiation des équipements
+== Affectation des équipements
 
 Après avoir effectué la configuration du *Jeedom Cible* sur votre *Jeedom Source*, il faut aller dans l'onglet _Affectation_ pour spécifier les équipements à transmettre au *Jeedom Cible*. Toutes les commandes de l'équipement seront automatiquement créées et configurées sur le *Jeedom Cible*.
 
