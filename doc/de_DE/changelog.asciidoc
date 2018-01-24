@@ -1,7 +1,0 @@
-Changelog détaillé : https://github.com/jeedom/plugin-jeelink/commits/stable
-
-2016-09-13 19:06:10
-Kategorie Auswahl hinzugefügt
-
-2016-09-11 09:25:27
-Bug behoben, doppelte Berechnung des Offsetverfahrens eines Befehls (auf dem Master und dem Slave)
