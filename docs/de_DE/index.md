@@ -4,7 +4,7 @@ Jeelink
 Description 
 -----------
 
-Plugin servant à lier 2 Jeedoms
+Plugin, der dient, 2 Jeedoms zu binden
 
 Principe de fonctionnement 
 ==========================

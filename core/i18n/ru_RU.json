@@ -44,8 +44,8 @@
         "Icône": "Иконка",
         "La valeur de la commande vaut par défaut la commande": "Значение запроса - это команда по умолчанию",
         "ID distant": "ID distant",
-        "Valeur retour d\\'état": "Valeur retour d\\'état",
-        "Durée avant retour d\\'état (min)": "Durée avant retour d\\'état (min)",
+        "Valeur retour d\\'état": "возвращаемое значение \\\\ состояние",
+        "Durée avant retour d\\'état (min)": "Время для возврата \\\\ состояния (мин)",
         "Afficher": "Отобразить",
         "Historiser": "История",
         "Inverser": "Обратный",
@@ -94,7 +94,7 @@
         "Arrêter démon": "Arrêter démon",
         "Rafraichir": "Обновить",
         "Démon": "Демон",
-        "Démarrer": "Démarrer",
+        "Démarrer": "начало",
         "Statut": "Статус",
         "Joignable": "Joignable"
     }

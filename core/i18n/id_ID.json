@@ -3,7 +3,7 @@
         "Plugin permettant de liéer deux Jeedoms": "Plugin permettant de liéer deux Jeedoms"
     },
     "plugins\/jeelink\/desktop\/php\/jeelink.php": {
-        "Ajouter un template": "Ajouter un template",
+        "Ajouter un template": "menambahkan template",
         "Rechercher": "Mencari",
         "Mes jeelinks": "Mes jeelinks",
         "Gestion": "Manajemen",
@@ -44,8 +44,8 @@
         "Icône": "Icon",
         "La valeur de la commande vaut par défaut la commande": "Nilai pesanan adalah perintah default",
         "ID distant": "ID distant",
-        "Valeur retour d\\'état": "Valeur retour d\\'état",
-        "Durée avant retour d\\'état (min)": "Durée avant retour d\\'état (min)",
+        "Valeur retour d\\'état": "nilai kembali \\\\ negara",
+        "Durée avant retour d\\'état (min)": "Waktu untuk kembali negara \\\\ (min)",
         "Afficher": "Memenitikan",
         "Historiser": "Historicize",
         "Inverser": "Membalikkan",
@@ -93,8 +93,8 @@
         "Démarrer démon": "Démarrer démon",
         "Arrêter démon": "Arrêter démon",
         "Rafraichir": "Rafraichir",
-        "Démon": "Démon",
-        "Démarrer": "Démarrer",
+        "Démon": "setan",
+        "Démarrer": "awal",
         "Statut": "Status",
         "Joignable": "Joignable"
     }

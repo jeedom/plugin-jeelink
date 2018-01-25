@@ -44,8 +44,8 @@
         "Icône": "Icona",
         "La valeur de la commande vaut par défaut la commande": "Il valore del comando predefinito al comando",
         "ID distant": "ID distant",
-        "Valeur retour d\\'état": "Valeur retour d\\'état",
-        "Durée avant retour d\\'état (min)": "Durée avant retour d\\'état (min)",
+        "Valeur retour d\\'état": "valore restituito \\\\ stato",
+        "Durée avant retour d\\'état (min)": "È ora di tornare \\\\ stato (min)",
         "Afficher": "Mostra",
         "Historiser": "Storicizza",
         "Inverser": "Inverti",
@@ -94,7 +94,7 @@
         "Arrêter démon": "Arrêter démon",
         "Rafraichir": "Ricarica",
         "Démon": "Demone",
-        "Démarrer": "Démarrer",
+        "Démarrer": "Avvio",
         "Statut": "Stato",
         "Joignable": "Joignable"
     }
