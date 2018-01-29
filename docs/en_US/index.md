@@ -32,7 +32,7 @@ ou plusieurs équipement(s) d’un Jeedom sur un autre.
 > Le **Jeedom Cible** centralisera ces équipements et ceux de tous le(s)
 > **Jeedom(s) Source(s)** configuré(s).\
 > \
-> **Affectation** : configuration effectuée côté du **Jeedom Source**
+> **Affectation**: configuration effectuée côté du**Jeedom Source**
 > pour inclure les équipements qui seront remontés sur le **Jeedom
 > Cible**
 
@@ -68,7 +68,7 @@ Pour ajouter un **Jeedom Cible**, il suffit de donner :
 -   La clé API du **Jeedom Cible**.
 
 -   Indiquer si la communication est interne ou externe (utilisée pour
-    le retour d’informations, du **Jeedom Source** vers le **Jeedom
+    le retour d’informations, du **Jeedom Source**vers le**Jeedom
     Cible**). Et sauvegarder la configuration.
 
 ![jeelink2](../images/jeelink2.png)
@@ -106,7 +106,7 @@ Cliquer sur *Ajouter un équipement* Sélectionner l’objet et l’équipement
 > **Important**
 >
 > La suppression de l’équipement sur la page de configuration des
-> **Jeedoms Cibles** ne le supprime pas automatiquement sur le **Jeedom
+> **Jeedoms Cibles**ne le supprime pas automatiquement sur le**Jeedom
 > Source**, cela est volontaire et non un bug (c’est une sécurité).
 
 Les équipements "Mes jeelinks" 
