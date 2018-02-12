@@ -44,7 +44,7 @@ ou plusieurs équipement(s) d’un Jeedom sur un autre.
 > \
 > Les copies d’écran sur fond blanc correspondent au **Jeedom Source**.\
 
-Configuration du plugin 
+configuración del plugin
 =======================
 
 Après installation, il vous suffit d’activer le plugin. Celui-ci ne
