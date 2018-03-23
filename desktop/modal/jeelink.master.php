@@ -60,7 +60,7 @@ foreach ($masters as $master) {
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-sm-3 control-label">{{Addresse}}</label>
+							<label class="col-sm-3 control-label">{{Adresse}}</label>
 							<div class="col-sm-3">
 								<input type="text" class="jeeLinkMasterAttr form-control" data-l1key="address" />
 							</div>
