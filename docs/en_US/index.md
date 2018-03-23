@@ -155,13 +155,6 @@ Esclave vers le nouveau mode de fonctionnement Jeedom Link.
 FAQ 
 ---
 
-Changelog 
----------
-
-Changelog détaillé :
-<https://github.com/jeedom/plugin-jeelink/commits/stable>
-
-2016-09-13 19:06:10 Ajout du choix de la catégorie
-
-2016-09-11 09:25:27 Correction d’un bug de double calcul d’offset d’une
-commande (sur le maître et l’esclave)
+>**Lors de la suppression d'équipement sur le jeedom source ceux-ci ne sont pas supprimé du jeedom cible**
+>
+>C'est normalement la synchronisation source/cible ne fait que de la création jamais de suppression
