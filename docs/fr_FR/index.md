@@ -154,7 +154,7 @@ précisant la procédure à suivre pour effectuer la migration d’un Jeedom
 Esclave vers le nouveau mode de fonctionnement Jeedom Link.
 
 FAQ 
----
+===
 
 >**Lors de la suppression d'équipement sur le jeedom source ceux-ci ne sont pas supprimé du jeedom cible**
 >
