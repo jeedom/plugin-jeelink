@@ -130,7 +130,7 @@ commandes de l’équipement :
 ![jeelink7](../images/jeelink7.png)
 
 Modification du Jeedom Source d’un JeeLink 
-------------------------------------------
+==========================================
 
 Les 3 paramètres suivants vous permettent de changer le Jeedom Source,
 par exemple lors du remplacement d’un Jeedom sans perdre les données
@@ -145,16 +145,16 @@ la configuration avancée de ceux-ci en cliquant sur la roue crantée).
 
 -   ID de l’équipement Source et des commandes.
 
-Migration ancien mode Esclave 
------------------------------
+Migration ancien mode Esclave
+=============================
 
 Un tutoriel est disponible,
 [ici](https://jeedom.github.io/documentation/howto/fr_FR/jeelink.migration.html)
 précisant la procédure à suivre pour effectuer la migration d’un Jeedom
 Esclave vers le nouveau mode de fonctionnement Jeedom Link.
 
-FAQ 
----
+FAQ
+===
 
 >**Lors de la suppression d'équipement sur le jeedom source ceux-ci ne sont pas supprimé du jeedom cible**
 >
