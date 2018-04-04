@@ -202,22 +202,30 @@ class jeelink extends eqLogic {
 
 		$cmd = $this->getCmd(null, 'ping');
 		if (is_object($cmd)) {
-			if ($jsonrpc->sendRequest('ping')) {
-				$cmd->event(1);
-			} else {
+			try{
+				if ($jsonrpc->sendRequest('ping')) {
+					$cmd->event(1);
+				} else {
+					$cmd->event(0);
+				}
+			} catch (Exception $e) {
 				$cmd->event(0);
 			}
 		}
 
 		$cmd = $this->getCmd(null, 'state');
 		if (is_object($cmd)) {
-			if ($jsonrpc->sendRequest('jeedom::isOk')) {
-				if ($jsonrpc->getResult()) {
-					$cmd->event(1);
+			try{
+				if ($jsonrpc->sendRequest('jeedom::isOk')) {
+					if ($jsonrpc->getResult()) {
+						$cmd->event(1);
+					} else {
+						$cmd->event(0);
+					}
 				} else {
 					$cmd->event(0);
 				}
-			} else {
+			} catch (Exception $e) {
 				$cmd->event(0);
 			}
 		}
@@ -232,14 +240,18 @@ class jeelink extends eqLogic {
 		foreach ($this->getConfiguration('deamons') as $info) {
 			$cmd = $this->getCmd(null, 'deamonState::' . $info['id']);
 			if (is_object($cmd)) {
-				if ($jsonrpc->sendRequest('plugin::deamonInfo', array('plugin_id' => $info['id']))) {
-					$result = $jsonrpc->getResult();
-					if ($result['state'] == 'ok') {
-						$cmd->event(1);
+				try{
+					if ($jsonrpc->sendRequest('plugin::deamonInfo', array('plugin_id' => $info['id']))) {
+						$result = $jsonrpc->getResult();
+						if ($result['state'] == 'ok') {
+							$cmd->event(1);
+						} else {
+							$cmd->event(0);
+						}
 					} else {
 						$cmd->event(0);
 					}
-				} else {
+				} catch (Exception $e) {
 					$cmd->event(0);
 				}
 			}
