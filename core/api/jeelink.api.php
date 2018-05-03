@@ -30,5 +30,10 @@ if ($jsonrpc->getMethod() == 'createEqLogic') {
 	$jsonrpc->makeSuccess();
 }
 
+if ($jsonrpc->getMethod() == 'eqLogicBattery') {
+	jeelink::receiveBatteryLevel($params);
+	$jsonrpc->makeSuccess();
+}
+
 throw new Exception(__('Aucune methode correspondante pour le plugin S.A.R.A.H : ' . $jsonrpc->getMethod(), __FILE__));
 ?>
