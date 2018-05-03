@@ -185,6 +185,19 @@ class jeelink extends eqLogic {
 			$eqLogic->updateSysInfo();
 		}
 	}
+	
+	public static function cronDaily(){
+		$jeelink_masters = jeelink_master::all();
+		if(is_array($jeelink_masters) && count($jeelink_masters) > 0){
+			foreach($jeelink_masters as $jeelink_master){
+				try{
+					$jeelink_master->sendBatteryToMaster();
+				}catch(Exception $e){
+					log::add('jeelink','error',__('Erreur sur l\'envoi du niveau de batterie',__FILE__).$e->getMessage());
+				}
+			}
+		}
+	}
 
 	/*     * *********************Méthodes d'instance************************* */
 
@@ -558,6 +571,33 @@ class jeelink_master {
 
 	public function remove() {
 		return DB::remove($this);
+	}
+	
+	public function sendBatteryToMaster(){
+		$toSend = array(
+			'eqLogics' => array(),
+		);
+		if (is_array($this->getConfiguration('eqLogics'))) {
+			foreach ($this->getConfiguration('eqLogics') as $eqLogic_info) {
+				$eqLogic = eqLogic::byId(str_replace('eqLogic', '', str_replace('#', '', $eqLogic_info['eqLogic'])));
+				if (!is_object($eqLogic)) {
+					continue;
+				}
+				if ($eqLogic->getStatus('battery', -2) == -2) {
+					continue;
+				}
+				$toSend['eqLogics'][$eqLogic->getId()] = $eqLogic->getStatus('battery', -2);
+			}
+		}
+		$params = array(
+			'apikey' => $this->getApikey(),
+			'plugin' => 'jeelink',
+		);
+		$jsonrpc = new jsonrpcClient($this->getAddress() . '/core/api/jeeApi.php', '', $params);
+		$jsonrpc->setNoSslCheck(true);
+		if (!$jsonrpc->sendRequest('eqLogicBattery', $toSend, 300)) {
+			throw new Exception($jsonrpc->getError(), $jsonrpc->getErrorCode());
+		}
 	}
 
 	public function sendEqlogicToMaster() {
