@@ -171,6 +171,16 @@ class jeelink extends eqLogic {
 
 		}
 	}
+	
+	public static function receiveBatteryLevel($_params) {
+		foreach ($_params['eqLogics'] as $eqLogic_info) {
+			$eqLogic = self::byLogicalId('remote::' . $eqLogic_info['id'] . '::' . $_params['remote_apikey'], 'jeelink');
+			if (!is_object($eqLogic)) {
+				continue;	
+			}
+			$eqLogic->batteryStatus($eqLogic_info['battery'],$eqLogic_info['datetime']);
+		}
+	}
 
 	public static function cron10($_eqLogic_id = null) {
 		if ($_eqLogic_id == null) {
