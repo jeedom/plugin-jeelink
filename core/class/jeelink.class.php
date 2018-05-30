@@ -33,7 +33,7 @@ class jeelink extends eqLogic {
 		if (!is_object($cmd)) {
 			return;
 		}
-		$cmd->event(init('remote_cmd_value'));
+		$cmd->event(urldecode(init('remote_cmd_value')));
 	}
 
 	public static function createEqLogicFromDef($_params) {
