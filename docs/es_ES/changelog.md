@@ -2,7 +2,7 @@
 
 # 04/04/2018
 
-- Correction de bugs
+- Corrección de errores
 
 # 22/03/2018
 
