@@ -561,13 +561,25 @@ class jeelink_master {
 				if (!is_object($eqLogic)) {
 					continue;
 				}
+				$listenner_number = 0;
 				$listener = new listener();
 				$listener->setClass(__CLASS__);
 				$listener->setFunction('sendEvent');
-				$listener->setOption(array('background' => 0, 'master_id' => intval($this->getId()), 'eqLogic_id' => intval($eqLogic->getId())));
+				$listener->setOption(array('background' => 0, 'master_id' => intval($this->getId()), 'eqLogic_id' => intval($eqLogic->getId()),'listenner_number' => $listenner_number));
 				$listener->emptyEvent();
+				$count = 0;
 				foreach ($eqLogic->getCmd('info') as $cmd) {
 					$listener->addEvent('#' . $cmd->getId() . '#');
+					$count++;
+					if($count > 15){
+						$listener->save();
+						$listenner_number++;
+						$listener = new listener();
+						$listener->setClass(__CLASS__);
+						$listener->setFunction('sendEvent');
+						$listener->setOption(array('background' => 0, 'master_id' => intval($this->getId()), 'eqLogic_id' => intval($eqLogic->getId()),'listenner_number' => $listenner_number));
+						$listener->emptyEvent();
+					}
 				}
 				$listener->save();
 			}
