@@ -28,6 +28,7 @@ function jeelink_install() {
 }
 
 function jeelink_update() {
+	jeedom::getApiKey('jeelink');
 	foreach (jeelink::byType('jeelink') as $jeelink) {
 		$jeelink->save();
 	}
