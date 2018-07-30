@@ -35,5 +35,5 @@ if ($jsonrpc->getMethod() == 'eqLogicBattery') {
 	$jsonrpc->makeSuccess();
 }
 
-throw new Exception(__('Aucune methode correspondante pour le plugin S.A.R.A.H : ' . $jsonrpc->getMethod(), __FILE__));
+throw new Exception(__('Aucune methode correspondante pour le plugin Jeelink : ' . $jsonrpc->getMethod(), __FILE__));
 ?>
