@@ -214,6 +214,7 @@ class jeelink extends eqLogic {
 	public function getJsonRpc() {
 		$params = array(
 			'apikey' => $this->getConfiguration('remote_apikey'),
+			'plugin' => 'jeelink'
 		);
 		$jsonrpc = new jsonrpcClient($this->getConfiguration('remote_address') . '/core/api/jeeApi.php', '', $params);
 		$jsonrpc->setNoSslCheck(true);
@@ -481,9 +482,7 @@ class jeelinkCmd extends cmd {
 				throw new Exception($jsonrpc->getError(), $jsonrpc->getErrorCode());
 			}
 		}
-
 		$eqLogic->updateSysInfo();
-
 	}
 
 	/*     * **********************Getteur Setteur*************************** */
