@@ -253,6 +253,17 @@ class jeelink extends eqLogic {
 				$cmd->event(0);
 			}
 		}
+		
+		$cmd = $this->getCmd(null, 'updateNb');
+		if (is_object($cmd)) {
+			try{
+				if ($jsonrpc->sendRequest('jeedom::nbNeedUpdate')) {
+					$cmd->event($jsonrpc->getResult());
+				}
+			} catch (Exception $e) {
+				$cmd->event(0);
+			}
+		}
 
 		$cmd = $this->getCmd(null, 'version');
 		if (is_object($cmd)) {
@@ -338,6 +349,20 @@ class jeelink extends eqLogic {
 		$cmd->setLogicalId('state');
 		$cmd->setType('info');
 		$cmd->setSubType('binary');
+		$cmd->save();
+		
+		$cmd = $this->getCmd(null, 'updateNb');
+		if (!is_object($cmd)) {
+			$cmd = new jeelinkCmd();
+			$cmd->setName(__('Nombre update', __FILE__));
+			$cmd->setTemplate('mobile', 'line');
+			$cmd->setTemplate('dashboard', 'line');
+			$cmd->setOrder(2);
+		}
+		$cmd->setEqLogic_id($this->getId());
+		$cmd->setLogicalId('updateNb');
+		$cmd->setType('info');
+		$cmd->setSubType('numeric');
 		$cmd->save();
 
 		$cmd = $this->getCmd(null, 'version');
