@@ -665,6 +665,7 @@ class jeelink_master {
 					continue;
 				}
 				$toSend['eqLogics'][$eqLogic->getId()] = utils::o2a($eqLogic);
+				$toSend['eqLogics'][$eqLogic->getId()]['configuration']['real_eqType'] = $eqLogic->getEqType_name();
 				$toSend['eqLogics'][$eqLogic->getId()]['object_name'] = '';
 				$object = $eqLogic->getObject();
 				if (is_object($object)) {
