@@ -1,3 +1,5 @@
+- Ajout du type d'équipement réel (pourra etre utiliser par l'application mobile)
+
 # 30/07/2018
 
 - Ajout d'une clef api dédié (sera a utiliser obligatoirement en jeedom 3.3)
