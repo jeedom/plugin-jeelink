@@ -675,6 +675,8 @@ class jeelink_master {
 				$toSend['eqLogics'][$eqLogic->getId()]['cmds'] = array();
 				foreach ($eqLogic->getCmd() as $cmd) {
 					$toSend['eqLogics'][$eqLogic->getId()]['cmds'][$cmd->getId()] = utils::o2a($cmd);
+					$toSend['eqLogics'][$eqLogic->getId()]['cmds'][$cmd->getId()]['configuration']['real_eqType'] = $cmd->getEqType_name();
+					$toSend['eqLogics'][$eqLogic->getId()]['cmds'][$cmd->getId()]['configuration']['real_logicalId'] = $cmd->getLogicalId();
 				}
 			}
 		}
