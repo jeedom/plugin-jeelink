@@ -1,7 +1,7 @@
 Jeelink 
 =======
 
-Description 
+Description
 -----------
 
 Plugin servant à lier 2 Jeedoms
