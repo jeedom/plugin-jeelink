@@ -4,7 +4,7 @@ Jeelink
 Description 
 -----------
 
-Plugin servant à lier 2 Jeedoms
+Plugin servant à lier 2 Jeedoms ou plus
 
 Principe de fonctionnement 
 ==========================
@@ -16,7 +16,7 @@ ou plusieurs équipement(s) d’un Jeedom sur un autre.
 
 > **Important**
 >
-> Il faut que le plugin soit installé sur les tous les Jeedoms, Source
+> Il faut que le plugin soit installé sur les tous les Jeedom, Source(s)
 > et Cible.
 
 > **Tip**
@@ -29,7 +29,7 @@ ou plusieurs équipement(s) d’un Jeedom sur un autre.
 > \
 > **Jeedom Cible** : serveur Jeedom qui recevra les équipements remontés
 > par le(s) **Jeedom(s) Source(s)**\
-> Le **Jeedom Cible** centralisera ces équipements et ceux de tous le(s)
+> Le **Jeedom Cible** centralisera ses équipements et ceux de tous le(s)
 > **Jeedom(s) Source(s)** configuré(s).\
 > \
 > **Affectation** : configuration effectuée côté du **Jeedom Source**
@@ -50,15 +50,15 @@ Configuration du plugin
 Après installation, il vous suffit d’activer le plugin. Celui-ci ne
 nécessite aucune configuration spécifique.
 
-Configuration des Jeedoms Cibles 
+Configuration des Jeedom Cibles 
 ================================
 
 A partir du **Jeedom Source**, une fois sur la page du plugin (en allant
 sur Gestion des plugins → Communication → Jeedom link), il vous suffit
-de cliquer sur "Configurer les Jeedoms Cibles".
+de cliquer sur "Configurer les Jeedom Cibles".
 
 Une fenêtre va apparaître et vous pourrez à partir de celle-ci
-configurer ou ajouter des **Jeedom(s) Cible(s)**.
+configurer ou ajouter des **Jeedom Cible(s)**.
 
 Pour ajouter un **Jeedom Cible**, il suffit de donner :
 
@@ -107,8 +107,8 @@ Cliquer sur *Ajouter un équipement* Sélectionner l’objet et l’équipement
 > **Important**
 >
 > La suppression de l’équipement sur la page de configuration des
-> **Jeedoms Cibles** ne le supprime pas automatiquement sur le **Jeedom
-> Source**, cela est volontaire et non un bug (c’est une sécurité).
+> **Jeedom Cibles** ne le supprime pas automatiquement sur le **Jeedom
+> Source**, ceci est volontaire et non un bug (c’est une sécurité).
 
 Les équipements "Mes jeelinks" 
 ==============================
@@ -149,13 +149,13 @@ Migration ancien mode Esclave
 =============================
 
 Un tutoriel est disponible,
-[ici](https://jeedom.github.io/documentation/howto/fr_FR/jeelink.migration.html)
+[ici](https://jeedom.github.io/documentation/howtoadvance/fr_FR/jeelink.migration)
 précisant la procédure à suivre pour effectuer la migration d’un Jeedom
 Esclave vers le nouveau mode de fonctionnement Jeedom Link.
 
 FAQ 
 ===
 
->**Lors de la suppression d'équipement sur le jeedom source ceux-ci ne sont pas supprimé du jeedom cible**
+>**Lors de la suppression d'équipements sur le Jeedom source ceux-ci ne sont pas supprimés du Jeedom cible**
 >
->C'est normalement la synchronisation source/cible ne fait que de la création jamais de suppression
+>C'est normal la synchronisation source/cible ne fait que de la création jamais de suppression
