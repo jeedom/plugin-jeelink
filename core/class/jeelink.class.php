@@ -214,6 +214,7 @@ class jeelink extends eqLogic {
 	public function getJsonRpc() {
 		$params = array(
 			'apikey' => $this->getConfiguration('remote_apikey'),
+			'plugin' => 'jeelink'
 		);
 		$jsonrpc = new jsonrpcClient($this->getConfiguration('remote_address') . '/core/api/jeeApi.php', '', $params);
 		$jsonrpc->setNoSslCheck(true);
@@ -247,6 +248,17 @@ class jeelink extends eqLogic {
 					}
 				} else {
 					$cmd->event(0);
+				}
+			} catch (Exception $e) {
+				$cmd->event(0);
+			}
+		}
+		
+		$cmd = $this->getCmd(null, 'updateNb');
+		if (is_object($cmd)) {
+			try{
+				if ($jsonrpc->sendRequest('jeedom::nbNeedUpdate')) {
+					$cmd->event($jsonrpc->getResult());
 				}
 			} catch (Exception $e) {
 				$cmd->event(0);
@@ -337,6 +349,20 @@ class jeelink extends eqLogic {
 		$cmd->setLogicalId('state');
 		$cmd->setType('info');
 		$cmd->setSubType('binary');
+		$cmd->save();
+		
+		$cmd = $this->getCmd(null, 'updateNb');
+		if (!is_object($cmd)) {
+			$cmd = new jeelinkCmd();
+			$cmd->setName(__('Nombre update', __FILE__));
+			$cmd->setTemplate('mobile', 'line');
+			$cmd->setTemplate('dashboard', 'line');
+			$cmd->setOrder(2);
+		}
+		$cmd->setEqLogic_id($this->getId());
+		$cmd->setLogicalId('updateNb');
+		$cmd->setType('info');
+		$cmd->setSubType('numeric');
 		$cmd->save();
 
 		$cmd = $this->getCmd(null, 'version');
@@ -481,9 +507,7 @@ class jeelinkCmd extends cmd {
 				throw new Exception($jsonrpc->getError(), $jsonrpc->getErrorCode());
 			}
 		}
-
 		$eqLogic->updateSysInfo();
-
 	}
 
 	/*     * **********************Getteur Setteur*************************** */
@@ -641,6 +665,7 @@ class jeelink_master {
 					continue;
 				}
 				$toSend['eqLogics'][$eqLogic->getId()] = utils::o2a($eqLogic);
+				$toSend['eqLogics'][$eqLogic->getId()]['configuration']['real_eqType'] = $eqLogic->getEqType_name();
 				$toSend['eqLogics'][$eqLogic->getId()]['object_name'] = '';
 				$object = $eqLogic->getObject();
 				if (is_object($object)) {

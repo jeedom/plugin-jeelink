@@ -4,7 +4,7 @@
 	"description" : "Plugin permettant de lier plusieurs Jeedom",
 	"licence" : "AGPL",
 	"author" : "Loïc",
-	"require" : "3.0",
+	"require" : "3.3",
         "category" : "communication",
         "changelog" : "https://jeedom.github.io/plugin-jeelink/#language#/changelog",
         "documentation" : "https://jeedom.github.io/plugin-jeelink/#language#/"
