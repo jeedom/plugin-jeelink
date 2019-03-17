@@ -1,14 +1,14 @@
 # 13/03/2019
 
-- Ajout du type d'équipement réel (pourra etre utiliser par l'application mobile)
+- Ajout du type d'équipement réel (pourra être utilisé par l'application mobile)
 
 # 30/07/2018
 
-- Ajout d'une clef api dédié (sera a utiliser obligatoirement en jeedom 3.3)
+- Ajout d'une clef api dédiée (sera à utiliser obligatoirement en Jeedom 3.3)
 
 # 05/07/2018
 
-- Ajout de l'envoi de batterie des esclaves au maitre toute les nuits
+- Ajout de l'envoi de batterie des esclaves au maitre toutes les nuits
 
 # 04/04/2018
 
