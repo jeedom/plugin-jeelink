@@ -28,7 +28,7 @@ foreach ($eqLogics as $eqLogic) {
   <div class="cursor" id="bt_jeelinkMasterConfiguration" style="text-align: center; background-color : #ffffff; height : 120px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;">
       <i class="fa fa-wrench" style="font-size : 6em;color:#767676;"></i>
     <br>
-	<span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;color:#767676">{{Jeedoms cibles}}</span>
+	<span class="text-cursor"  style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;color:#767676">{{Jeedoms cibles}}</span>
   </div>
 </div>
 <legend><i class="fa fa-table"></i> {{Mes jeelinks}}</legend>
