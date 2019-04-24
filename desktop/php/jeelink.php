@@ -8,44 +8,32 @@ $eqLogics = eqLogic::byType($plugin->getId());
 ?>
 
 <div class="row row-overflow">
-  <div class="col-lg-2 col-md-3 col-sm-4">
-    <div class="bs-sidebar">
-      <ul id="ul_eqLogic" class="nav nav-list bs-sidenav">
-        <li class="filter" style="margin-bottom: 5px;"><input class="filter form-control input-sm" placeholder="{{Rechercher}}" style="width: 100%"/></li>
-        <?php
-foreach ($eqLogics as $eqLogic) {
-	echo '<li class="cursor li_eqLogic" data-eqLogic_id="' . $eqLogic->getId() . '"><a>' . $eqLogic->getHumanName(true) . '</a></li>';
-}
-?>
-     </ul>
-   </div>
- </div>
-
- <div class="col-lg-10 col-md-9 col-sm-8 eqLogicThumbnailDisplay" style="border-left: solid 1px #EEE; padding-left: 25px;">
+ <div class="col-xs-12 eqLogicThumbnailDisplay">
   <legend>{{Mes jeelinks}}</legend>
   <legend><i class="fa fa-cog"></i>  {{Gestion}}</legend>
   <div class="eqLogicThumbnailContainer">
-  <div class="cursor" id="bt_jeelinkMasterConfiguration" style="text-align: center; background-color : #ffffff; height : 120px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;">
-      <i class="fa fa-wrench" style="font-size : 6em;color:#767676;"></i>
-    <br>
-	<span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;color:#767676">{{Jeedoms cibles}}</span>
-  </div>
+	  <div class="cursor logoSecondary" id="bt_jeelinkMasterConfiguration">
+	  	<i class="fa fa-wrench"></i>
+	    	<br>
+	    	<span>{{Jeedoms cibles}}</span>
+	  </div>
 </div>
 <legend><i class="fa fa-table"></i> {{Mes jeelinks}}</legend>
 <div class="eqLogicThumbnailContainer">
   <?php
 foreach ($eqLogics as $eqLogic) {
-	echo '<div class="eqLogicDisplayCard cursor" data-eqLogic_id="' . $eqLogic->getId() . '" style="text-align: center; background-color : #ffffff; height : 200px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >';
-	echo '<img src="' . $plugin->getPathImgIcon() . '" height="105" width="95" />';
+	$opacity = ($eqLogic->getIsEnable()) ? '' : 'disableCard';
+	echo '<div class="eqLogicDisplayCard cursor '.$opacity.'" data-eqLogic_id="' . $eqLogic->getId() . '">';
+	echo '<img src="' . $plugin->getPathImgIcon() . '" />';
 	echo "<br>";
-	echo '<span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;">' . $eqLogic->getHumanName(true, true) . '</span>';
+	echo '<span>' . $eqLogic->getHumanName(true, true) . '</span>';
 	echo '</div>';
 }
 ?>
 </div>
 </div>
 
-<div class="col-lg-10 col-md-9 col-sm-8 eqLogic" style="border-left: solid 1px #EEE; padding-left: 25px;display: none;">
+<div class="col-xs-12 eqLogic" style="display: none;">
 	<a class="btn btn-success eqLogicAction pull-right" data-action="save"><i class="fa fa-check-circle"></i> {{Sauvegarder}}</a>
   <a class="btn btn-danger eqLogicAction pull-right" data-action="remove"><i class="fa fa-minus-circle"></i> {{Supprimer}}</a>
   <a class="btn btn-default eqLogicAction pull-right" data-action="configure"><i class="fa fa-cogs"></i> {{Configuration avancée}}</a>
