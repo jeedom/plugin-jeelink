@@ -82,7 +82,13 @@ class jeelink extends eqLogic {
 				} else {
 					$cmd->setConfiguration('isRefreshCmd', 0);
 				}
-				$cmd->save();
+				try {
+					$cmd->save();
+				} catch (Exception $e) {
+					$cmd->setName($cmd->getName() . ' remote ' . rand(0, 9999));
+					$cmd->save();
+				}
+	
 				$map_id[$cmd_info['id']] = $cmd->getId();
 			}
 
