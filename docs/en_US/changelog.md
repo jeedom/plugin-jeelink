@@ -1,3 +1,7 @@
+# 14/05/2019
+
+- Amélioration de la gestion de commande avec le meme nom sur le meme équipements (erreur Duplicate entry....)
+
 # 13/03/2019
 
 - Ajout du type d'équipement réel (pourra etre utiliser par l'application mobile)
