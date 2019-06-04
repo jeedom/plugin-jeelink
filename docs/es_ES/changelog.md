@@ -1,3 +1,7 @@
+# 03/06/2019
+
+- Corrección de errores
+
 # 14/05/2019
 
 - Amélioration de la gestion de commande avec le meme nom sur le meme équipements (erreur Duplicate entry....)
