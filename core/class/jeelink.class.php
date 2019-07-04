@@ -263,7 +263,7 @@ class jeelink extends eqLogic {
 		$cmd = $this->getCmd(null, 'updateNb');
 		if (is_object($cmd)) {
 			try{
-				if ($jsonrpc->sendRequest('jeedom::nbNeedUpdate')) {
+				if ($jsonrpc->sendRequest('update::nbNeedUpdate')) {
 					$cmd->event($jsonrpc->getResult());
 				}
 			} catch (Exception $e) {

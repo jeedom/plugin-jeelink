@@ -1,3 +1,7 @@
+# 04/07/2019
+
+- Correction d'un bugs sur la remontée des mises à jour
+
 # 03/06/2019
 
 - Correction de bugs
