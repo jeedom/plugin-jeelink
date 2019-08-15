@@ -46,7 +46,7 @@ class jeelink extends eqLogic {
 				$eqLogic->setId('');
 				$eqLogic->setObject_id('');
 				if (isset($eqLogic_info['object_name']) && $eqLogic_info['object_name'] != '') {
-					$object = object::byName($eqLogic_info['object_name']);
+					$object = jeeObject::byName($eqLogic_info['object_name']);
 					if (is_object($object)) {
 						$eqLogic->setObject_id($object->getId());
 					}
