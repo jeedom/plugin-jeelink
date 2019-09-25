@@ -19,6 +19,7 @@ $eqLogics = eqLogic::byType($plugin->getId());
 	  </div>
 </div>
 <legend><i class="fa fa-table"></i> {{Mes jeelinks}}</legend>
+<input class="form-control" placeholder="{{Rechercher}}" id="in_searchEqlogic" />	 
 <div class="eqLogicThumbnailContainer">
   <?php
 foreach ($eqLogics as $eqLogic) {
