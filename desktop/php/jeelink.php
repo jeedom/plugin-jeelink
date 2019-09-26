@@ -9,7 +9,6 @@ $eqLogics = eqLogic::byType($plugin->getId());
 
 <div class="row row-overflow">
  <div class="col-xs-12 eqLogicThumbnailDisplay">
-  <legend>{{Mes jeelinks}}</legend>
   <legend><i class="fas fa-cog"></i> {{Gestion}}</legend>
   <div class="eqLogicThumbnailContainer">
 	  <div class="cursor logoSecondary" id="bt_jeelinkMasterConfiguration">
