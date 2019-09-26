@@ -10,7 +10,7 @@ $eqLogics = eqLogic::byType($plugin->getId());
 <div class="row row-overflow">
  <div class="col-xs-12 eqLogicThumbnailDisplay">
   <legend>{{Mes jeelinks}}</legend>
-  <legend><i class="fa fa-cog"></i>  {{Gestion}}</legend>
+  <legend><i class="fas fa-cog"></i> {{Gestion}}</legend>
   <div class="eqLogicThumbnailContainer">
 	  <div class="cursor logoSecondary" id="bt_jeelinkMasterConfiguration">
 	  	<i class="fa fa-wrench"></i>
@@ -18,7 +18,7 @@ $eqLogics = eqLogic::byType($plugin->getId());
 	    	<span>{{Jeedoms cibles}}</span>
 	  </div>
 </div>
-<legend><i class="fa fa-table"></i> {{Mes jeelinks}}</legend>
+<legend><i class="fas fa-table"></i> {{Mes jeelinks}}</legend>
 <input class="form-control" placeholder="{{Rechercher}}" id="in_searchEqlogic" />	 
 <div class="eqLogicThumbnailContainer">
   <?php
