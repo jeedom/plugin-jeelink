@@ -101,7 +101,7 @@ Cliquer sur *Ajouter un équipement* Sélectionner l’objet et l’équipement
 > **Tip**
 >
 > Attention : les plugins ayant un widget spécifique ne l’auront pas sur
-> le **Jeedom Cible** (plugin camera, netatmo, network…​).
+> le **Jeedom Cible** (plugin camera, network…​).
 
 > **Important**
 >
