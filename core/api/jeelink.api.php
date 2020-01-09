@@ -26,6 +26,7 @@ if (!is_object($jsonrpc)) {
 $params = $jsonrpc->getParams();
 
 if ($jsonrpc->getMethod() == 'createEqLogic') {
+	log::add('jeelink','debug','[createEqLogic] : '.json_encode($params));
 	jeelink::createEqLogicFromDef($params);
 	$jsonrpc->makeSuccess();
 }
