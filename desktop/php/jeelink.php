@@ -16,6 +16,11 @@ $eqLogics = eqLogic::byType($plugin->getId());
                 <br>
                 <span>{{Jeedoms cibles}}</span>
             </div>
+	    <div class="cursor eqLogicAction logoSecondary" data-action="gotoPluginConf">
+		<i class="fas fa-wrench"></i>
+		<br/>
+		<span class="text-cursor">{{Configuration}}</span>
+	    </div>
         </div>
         <legend><i class="fas fa-table"></i> {{Mes jeelinks}}</legend>
         <input class="form-control" placeholder="{{Rechercher}}" id="in_searchEqlogic" />
