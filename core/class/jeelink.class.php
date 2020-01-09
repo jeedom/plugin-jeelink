@@ -38,7 +38,7 @@ class jeelink extends eqLogic {
 
 	public static function createEqLogicFromDef($_params) {
 		foreach ($_params['eqLogics'] as $eqLogic_info) {
-			log::add('jeelink','debug','Check eqLogic : '. $eqLogic_info['id'] . '::' . $_params['remote_apikey'].' with name : '.$eqLogic['name']);
+			log::add('jeelink','debug','Check eqLogic : '. $eqLogic_info['id'] . '::' . $_params['remote_apikey'].' with name : '.$eqLogic_info['name']);
 			$map_id = array();
 			$eqLogic = self::byLogicalId('remote::' . $eqLogic_info['id'] . '::' . $_params['remote_apikey'], 'jeelink');
 			if (!is_object($eqLogic)) {
