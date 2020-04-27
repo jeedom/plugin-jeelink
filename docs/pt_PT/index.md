@@ -1,7 +1,7 @@
  
 =======
 
-Beschreibung 
+Descrição 
 -----------
 
 
@@ -14,37 +14,37 @@ Beschreibung
 
 ![jeelink1](../images/jeelink1.png)
 
-> **Wichtig**
+> ****
 >
 > 
 > .
 
-> **Spitze**
+> ****
 >
 > 
->  :\.
-> \.
+>  :
+> 
 > **** : 
->  ****\.
-> \.
+>  ****
+> 
 > **** : 
->  ****\.
-> Die **** 
+>  ****
+> O **** 
 > **** 
-> \.
+> 
 > **** :  ****
->  **Jeedom
+>  **
 > **
 
-> **Notiz**
+> ****
 >
->  :\.
-> \.
->  ****.\.
-> \.
->  ****.\.
+>  :
+> 
+>  ****.
+> 
+>  ****.
 
-Plugin Konfiguration 
+Configuração do plugin 
 =======================
 
 . 
@@ -69,25 +69,25 @@ Plugin Konfiguration
 -    ****.
 
 -   
-     ****  **Jeedom
+     ****  **
     **.
 
 ![jeelink2](../images/jeelink2.png)
 
-> **Wichtig**
+> ****
 >
-> Du musst **** 
+>  **** 
 > 
-> nicht.
+> .
 
  
 ===========================
 
  **** 
 ****, 
- ****. AlDie
+ ****. 
 
-Auf dem ****.
+ ****.
 
 
  ****.
@@ -99,21 +99,21 @@ Auf dem ****.
 
 ![jeelink5](../images/jeelink5.png)
 
-> **Spitze**
+> ****
 >
-> Achtung : 
-> Die **** .
+> Atenção : 
+> O **** .
 
-> **Wichtig**
+> ****
 >
 > 
-> ****  **Jeedom
-> QuelDie**, .
+> ****  **
+> Fonte**, .
 
 " 
 ==============================
 
- ****, Sie
+ ****, 
  :
 
 ![jeelink4](../images/jeelink4.png)
@@ -153,7 +153,7 @@ Auf dem ****.
 
 .
 
-Faq 
+ 
 ===
 
 >****

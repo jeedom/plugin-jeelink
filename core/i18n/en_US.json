@@ -1,90 +1,90 @@
 {
-    "desktop\/modal\/jeelink.master.php": {
+    "plugins\/jeelink\/desktop\/modal\/jeelink.master.php": {
         "401 - Accès non autorisé": "401 - Unauthorized access",
-        "Ajouter un Jeedom cible": "Add a target Jeedom",
+        "Ajouter un Jeedom cible": "",
         "Rechercher": "Search",
         "Sauvegarder": "Save",
         "Supprimer": "Delete",
         "Configuration": "Setup",
-        "Affectation": "Assignment",
-        "Nom du jeedom cible": "Name of the target jeedom",
+        "Affectation": "",
+        "Nom du jeedom cible": "",
         "Adresse": "Address",
         "Clef API": "API key",
-        "Mode d'accès": "Access mode",
+        "Mode d'accès": "",
         "Interne": "Internal",
         "Externe": "External",
-        "Ajouter un équipement": "Add device",
-        "Nom de l\\'équipement": "Name of equipment",
-        "Sauvegarde réussie": "Saved successfully",
-        "Etês-vous sûr de vouloir supprimer ce jeedom distant ?": "Do you really want to delete this remote Jeedom ?"
+        "Ajouter un équipement": "Add equipment",
+        "Nom de l\\'équipement": "",
+        "Sauvegarde réussie": "Successful backup",
+        "Etês-vous sûr de vouloir supprimer ce jeedom distant ?": ""
     },
-    "desktop\/js\/jeelink.js": {
-        "Icône": "Icon",
-        "La valeur de la commande vaut par défaut la commande": "The command default value equals the command",
-        "ID source": "Source ID",
-        "Valeur retour d\\'état": "Feedback value",
-        "Durée avant retour d\\'état (min)": "Duration before feedback (min)",
-        "Min": "Low",
-        "Max": "Max",
-        "Unité": "Unit",
-        "Afficher": "Display",
-        "Historiser": "Historize",
-        "Inverser": "Invert",
-        "Tester": "Test",
-        "Configuration des jeedoms cibles": "Target Jeedoms setup"
-    },
-    "desktop\/php\/jeelink.php": {
+    "plugins\/jeelink\/desktop\/php\/jeelink.php": {
         "401 - Accès non autorisé": "401 - Unauthorized access",
         "Gestion": "Management",
-        "Jeedoms cibles": "Target Jeedoms",
+        "Jeedoms cibles": "",
         "Configuration": "Setup",
-        "Mes jeelinks": "My Jeelinks",
+        "Mes jeelinks": "",
         "Rechercher": "Search",
         "Configuration avancée": "Advanced configuration",
         "Sauvegarder": "Save",
         "Supprimer": "Delete",
-        "Equipement": "Device",
+        "Equipement": "Equipment",
         "Commandes": "Commands",
-        "Nom de l'équipement Jeelink": "Jeelink device name",
+        "Nom de l'équipement Jeelink": "",
         "Objet parent": "Parent object",
         "Aucun": "None",
         "Catégorie": "Category",
         "Activer": "Activate",
         "Visible": "Visible",
-        "Addresse jeedom source": "Jeedom source address",
-        "Apikey jeedom source": "Jeedom Apikey source",
-        "ID de l'équipement source": "Source equipment ID",
+        "Addresse jeedom source": "",
+        "Apikey jeedom source": "",
+        "ID de l'équipement source": "",
         "Nom": "Name",
-        "Sous-Type": "Subtype",
-        "ID source": "Source ID",
+        "Sous-Type": "Sub-type",
+        "ID source": "",
         "Paramètres": "Settings",
-        "Options": "options"
+        "Options": "Options"
     },
-    "core\/ajax\/jeelink.ajax.php": {
+    "plugins\/jeelink\/desktop\/js\/jeelink.js": {
+        "Icône": "Icon",
+        "La valeur de la commande vaut par défaut la commande": "The value of the command defaults to the command",
+        "ID source": "",
+        "Valeur retour d\\'état": "Status return value",
+        "Durée avant retour d\\'état (min)": "Duration before return to status (min)",
+        "Min": "Min",
+        "Max": "Max",
+        "Unité": "Unit",
+        "Afficher": "Show",
+        "Historiser": "Historize",
+        "Inverser": "Invert",
+        "Tester": "Test",
+        "Configuration des jeedoms cibles": ""
+    },
+    "plugins\/jeelink\/core\/ajax\/jeelink.ajax.php": {
         "401 - Accès non autorisé": "401 - Unauthorized access",
-        "Jeelink inconnu : ": "Unknown Jeelink:",
+        "Jeelink inconnu : ": "",
         "Aucune méthode correspondante à : ": "No method corresponding to:"
     },
-    "core\/class\/jeelink.class.php": {
+    "plugins\/jeelink\/core\/class\/jeelink.class.php": {
         "Controle": "Control",
         "Démon": "Daemon",
         "Démarrer": "Start",
         "Arrêter": "Stop",
-        "Erreur sur l\\'envoi du niveau de batterie": "Error sending battery level",
-        "Le remote ID ne peut etre vide": "Remote ID cannot be empty",
-        "La remote addresse ne peut etre vide": "The remote address cannot be empty",
-        "La remote apikey ne peut etre vide": "The remote apikey cannot be empty",
+        "Erreur sur l\\'envoi du niveau de batterie": "",
+        "Le remote ID ne peut etre vide": "",
+        "La remote addresse ne peut etre vide": "",
+        "La remote apikey ne peut etre vide": "",
         "Rafraichir": "Refresh",
-        "Joignable": "Reachable",
+        "Joignable": "",
         "Statut": "Status",
-        "Nombre update": "Update number",
+        "Nombre update": "",
         "Version": "Version",
         "Redémarrer": "Restart",
         "Mettre à jour": "Update",
-        "Lancer un backup": "Start a backup"
+        "Lancer un backup": ""
     },
-    "core\/api\/jeelink.api.php": {
+    "plugins\/jeelink\/core\/api\/jeelink.api.php": {
         "JSONRPC object not defined": "JSONRPC object not defined",
-        "Aucune methode correspondante pour le plugin Jeelink : ' . $jsonrpc->getMethod()": "No corresponding method for the Jeelink plugin: &#39;. $ Jsonrpc-&gt; getMethod ()"
+        "Aucune methode correspondante pour le plugin Jeelink : ' . $jsonrpc->getMethod()": ""
     }
 }

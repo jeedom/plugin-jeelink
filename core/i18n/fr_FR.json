@@ -1,5 +1,5 @@
 {
-    "desktop\/modal\/jeelink.master.php": {
+    "plugins\/jeelink\/desktop\/modal\/jeelink.master.php": {
         "401 - Accès non autorisé": "401 - Accès non autorisé",
         "Ajouter un Jeedom cible": "Ajouter un Jeedom cible",
         "Rechercher": "Rechercher",
@@ -18,22 +18,7 @@
         "Sauvegarde réussie": "Sauvegarde réussie",
         "Etês-vous sûr de vouloir supprimer ce jeedom distant ?": "Etês-vous sûr de vouloir supprimer ce jeedom distant ?"
     },
-    "desktop\/js\/jeelink.js": {
-        "Icône": "Icône",
-        "La valeur de la commande vaut par défaut la commande": "La valeur de la commande vaut par défaut la commande",
-        "ID source": "ID source",
-        "Valeur retour d\\'état": "Valeur retour d\\'état",
-        "Durée avant retour d\\'état (min)": "Durée avant retour d\\'état (min)",
-        "Min": "Min",
-        "Max": "Max",
-        "Unité": "Unité",
-        "Afficher": "Afficher",
-        "Historiser": "Historiser",
-        "Inverser": "Inverser",
-        "Tester": "Tester",
-        "Configuration des jeedoms cibles": "Configuration des jeedoms cibles"
-    },
-    "desktop\/php\/jeelink.php": {
+    "plugins\/jeelink\/desktop\/php\/jeelink.php": {
         "401 - Accès non autorisé": "401 - Accès non autorisé",
         "Gestion": "Gestion",
         "Jeedoms cibles": "Jeedoms cibles",
@@ -60,12 +45,27 @@
         "Paramètres": "Paramètres",
         "Options": "Options"
     },
-    "core\/ajax\/jeelink.ajax.php": {
+    "plugins\/jeelink\/desktop\/js\/jeelink.js": {
+        "Icône": "Icône",
+        "La valeur de la commande vaut par défaut la commande": "La valeur de la commande vaut par défaut la commande",
+        "ID source": "ID source",
+        "Valeur retour d\\'état": "Valeur retour d\\'état",
+        "Durée avant retour d\\'état (min)": "Durée avant retour d\\'état (min)",
+        "Min": "Min",
+        "Max": "Max",
+        "Unité": "Unité",
+        "Afficher": "Afficher",
+        "Historiser": "Historiser",
+        "Inverser": "Inverser",
+        "Tester": "Tester",
+        "Configuration des jeedoms cibles": "Configuration des jeedoms cibles"
+    },
+    "plugins\/jeelink\/core\/ajax\/jeelink.ajax.php": {
         "401 - Accès non autorisé": "401 - Accès non autorisé",
         "Jeelink inconnu : ": "Jeelink inconnu : ",
         "Aucune méthode correspondante à : ": "Aucune méthode correspondante à : "
     },
-    "core\/class\/jeelink.class.php": {
+    "plugins\/jeelink\/core\/class\/jeelink.class.php": {
         "Controle": "Controle",
         "Démon": "Démon",
         "Démarrer": "Démarrer",
@@ -83,7 +83,7 @@
         "Mettre à jour": "Mettre à jour",
         "Lancer un backup": "Lancer un backup"
     },
-    "core\/api\/jeelink.api.php": {
+    "plugins\/jeelink\/core\/api\/jeelink.api.php": {
         "JSONRPC object not defined": "JSONRPC object not defined",
         "Aucune methode correspondante pour le plugin Jeelink : ' . $jsonrpc->getMethod()": "Aucune methode correspondante pour le plugin Jeelink : ' . $jsonrpc->getMethod()"
     }
