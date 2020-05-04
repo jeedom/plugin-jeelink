@@ -24,7 +24,7 @@ oder mehr Ausrüstung (en) von einem Jeedom zum anderen.
 > Für ein gutes Verständnis ist es wichtig, das zu verstehen
 > einige folgende Begriffe :\.
 > \.
-> **Jeedom Quelle** : Jeedom Server auf dem die
+> **Jeedom Source** : Jeedom Server auf dem die
 > Ausrüstung, die auf dem wieder zusammengebaut werden soll **Jeedom Ziel**\.
 > \.
 > **Jeedom Ziel** : Jeedom-Server, der die wieder zusammengebauten Geräte erhält
@@ -32,17 +32,17 @@ oder mehr Ausrüstung (en) von einem Jeedom zum anderen.
 > Die **Jeedom Ziel** Zentralisieren Sie diese Ausrüstung und die aller Personen.
 > **Jeedom (s) QuelDie (n)** konfiguriert (en). \.
 > \.
-> **Affectation** : Konfiguration durchgeführt am **Jeedom Quelle**
+> **Affectation** : Konfiguration durchgeführt am **Jeedom Source**
 > um die Ausrüstung einzuschließen, die auf dem wieder zusammengebaut wird **Jeedom
-> Ziel**
+> Cible**
 
 > **Note**
 >
-> Zum besseren Diesen und Verstehen dieses Tutorials :\.
+> Zum besseren Lesen und Verstehen dieses Tutorials :\.
 > \.
 > Die Screenshots auf schwarzem Hintergrund entsprechen dem **Jeedom Ziel**.\.
 > \.
-> Die Screenshots auf weißem Hintergrund entsprechen **Jeedom Quelle**.\.
+> Die Screenshots auf weißem Hintergrund entsprechen **Jeedom Source**.\.
 
 Plugin Konfiguration 
 =======================
@@ -53,7 +53,7 @@ erfordert keine spezifische Konfiguration.
 Konfiguration der Ziel-Jeedome 
 ================================
 
-Von **Jeedom Quelle**, einmal auf der Plugin-Seite (indem Sie gehen
+Von **Jeedom Source**, einmal auf der Plugin-Seite (indem Sie gehen
 auf Plugins Management → Kommunikation → Jeedom Link) brauchen Sie nur
 Klicken Sie auf "Ziel-Jeedoms konfigurieren"".
 
@@ -69,8 +69,8 @@ Hinzufügen eines **Jeedom Ziel**, gib einfach :
 -   Der API-Schlüssel von **Jeedom Ziel**.
 
 -   Geben Sie an, ob die Kommunikation intern oder extern ist (verwendet für
-    Feedback von **Jeedom Quelle** in Richtung **Jeedom
-    Ziel**). Und speichern Sie die Konfiguration.
+    Feedback von **Jeedom Source** in Richtung **Jeedom
+    Cible**). Und speichern Sie die Konfiguration.
 
 ![jeelink2](../images/jeelink2.png)
 
@@ -84,7 +84,7 @@ Ausrüstungszuordnung
 ===========================
 
 Nach der Konfiguration der **Jeedom Ziel** Auf deine
-**Jeedom Quelle**, Sie müssen zur Registerkarte * Zuordnung * gehen
+**Jeedom Source**, Sie müssen zur Registerkarte * Zuordnung * gehen
 Geben Sie das Gerät an, an das gesendet werden soll **Jeedom Ziel**. Alle
 Ausrüstungsaufträge werden automatisch erstellt und konfiguriert
 Auf dem **Jeedom Ziel**.
@@ -108,12 +108,12 @@ hinzufügen :
 >
 > Das Löschen des Gerätes auf der Konfigurationsseite des
 > **Ziel Jeedoms** löscht es nicht automatisch auf dem **Jeedom
-> Quelle**, Dies ist freiwillig und kein Fehler (es ist Sicherheit).
+> Source**, Dies ist freiwillig und kein Fehler (es ist Sicherheit).
 
 "Meine Jeelinks" Ausrüstung" 
 ==============================
 
-Nach dem Aktualisieren der Seite * My JeeLinks * von **Jeedom Ziel**, Sie
+Nach dem Aktualisieren der Seite * My JeeLinks * von **Jeedom Ziel**, vous
 muss die automatische Erstellung der Ausrüstung beachten :
 
 ![jeelink4](../images/jeelink4.png)

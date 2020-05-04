@@ -34,7 +34,7 @@ or more equipment (s) from one Jeedom to another.
 > \
 > **Affectation** : configuration performed on the **Jeedom Source**
 > to include the equipment that will be reassembled on the **Jeedom
-> Target**
+> Cible**
 
 > **Note**
 >
@@ -70,7 +70,7 @@ To add a **Jeedom Target**, just give :
 
 -   Indicate whether the communication is internal or external (used for
     feedback, from **Jeedom Source** to the **Jeedom
-    Target**). And save the configuration.
+    Cible**). And save the configuration.
 
 ![jeelink2](../images/jeelink2.png)
 
@@ -113,7 +113,7 @@ to add :
 "My jeelinks" equipment" 
 ==============================
 
-After refreshing the page * My JeeLinks * of **Jeedom Target**, You
+After refreshing the page * My JeeLinks * of **Jeedom Target**, vous
 must note the automatic creation of the equipment :
 
 ![jeelink4](../images/jeelink4.png)

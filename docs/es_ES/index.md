@@ -34,11 +34,11 @@ o más equipos de un Jeedom a otro.
 > \
 > **Affectation** : configuración realizada en el **Fuente de la libertad**
 > para incluir el equipo que se volverá a montar en el **Jeedom
-> Target**
+> Cible**
 
 > **Note**
 >
-> Para una mejor Elctura y comprensión de este tutorial :\
+> Para una mejor lectura y comprensión de este tutorial :\
 > \
 > Las capturas de pantalla en un fondo negro corresponden a la **Jeedom Target**.\
 > \
@@ -70,7 +70,7 @@ Para agregar un **Jeedom Target**, solo dame :
 
 -   Indique si la comunicación es interna o externa (utilizada para
     comentarios, de **Fuente de la libertad** hacia **Jeedom
-    Target**) Y guarda la configuración.
+    Cible**) Y guarda la configuración.
 
 ![jeelink2](../images/jeelink2.png)
 
@@ -108,12 +108,12 @@ para agregar :
 >
 > La eliminación del equipo en la página de configuración del
 > **Jeedoms objetivo** no lo elimina automáticamente en el **Jeedom
-> Fuente**, esto es voluntario y no es un error (es seguridad).
+> Source**, esto es voluntario y no es un error (es seguridad).
 
 Equipo "Mis jeelinks"" 
 ==============================
 
-Después de actualizar la página * My JeeLinks * de **Jeedom Target**, Vosotras
+Después de actualizar la página * My JeeLinks * de **Jeedom Target**, vous
 debe tener en cuenta la creación automática del equipo :
 
 ![jeelink4](../images/jeelink4.png)

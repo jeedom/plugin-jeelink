@@ -16,7 +16,7 @@ ou mais equipamentos de um Jeedom para outro.
 
 > **Important**
 >
-> O plugin deve ser instalado em todos os Jeedoms, Fonte
+> O plugin deve ser instalado em todos os Jeedoms, Source
 > e Alvo.
 
 > **Tip**
@@ -34,11 +34,11 @@ ou mais equipamentos de um Jeedom para outro.
 > \
 > **Affectation** : configuração realizada no **Fonte Jeedom**
 > incluir o equipamento que será remontado no **Jeedom
-> Target**
+> Cible**
 
 > **Note**
 >
-> Para uma melhor Oitura e compreensão deste tutorial :\
+> Para uma melhor leitura e compreensão deste tutorial :\
 > \
 > As capturas de tela em um fundo preto correspondem à **Jeedom Target**.\
 > \
@@ -70,7 +70,7 @@ Para adicionar um **Jeedom Target**, apenas dê :
 
 -   Indique se a comunicação é interna ou externa (usada para
     feedback, de **Fonte Jeedom** para **Jeedom
-    Target**) E salve a configuração.
+    Cible**) E salve a configuração.
 
 ![jeelink2](../images/jeelink2.png)
 
@@ -108,12 +108,12 @@ adicionar :
 >
 > A exclusão do equipamento na página de configuração do
 > **Target Jeedoms** não o exclui automaticamente no **Jeedom
-> Fonte**, isso é voluntário e não é um bug (é segurança).
+> Source**, isso é voluntário e não é um bug (é segurança).
 
 Equipamento "Meus jeelinks"" 
 ==============================
 
-Após atualizar a página * My JeeLinks * de **Jeedom Target**, você
+Após atualizar a página * My JeeLinks * de **Jeedom Target**, vous
 deve-se observar a criação automática do equipamento :
 
 ![jeelink4](../images/jeelink4.png)
