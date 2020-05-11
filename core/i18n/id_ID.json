@@ -49,7 +49,7 @@
         "Icône": "Icon",
         "La valeur de la commande vaut par défaut la commande": "",
         "ID source": "",
-        "Valeur retour d\\'état": "Nilai kondisi kembali ",
+        "Valeur retour d\\'état": "Nilai kondisi kembali",
         "Durée avant retour d\\'état (min)": "Waktu untuk kembali kondisi (min)",
         "Min": "",
         "Max": "",
@@ -63,7 +63,7 @@
     "plugins\/jeelink\/core\/ajax\/jeelink.ajax.php": {
         "401 - Accès non autorisé": "401 - Akses tidak sah",
         "Jeelink inconnu : ": "",
-        "Aucune méthode correspondante à : ": "Aucune methode correspondante à : "
+        "Aucune méthode correspondante à : ": "Aucune methode correspondante à :"
     },
     "plugins\/jeelink\/core\/class\/jeelink.class.php": {
         "Controle": "",

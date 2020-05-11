@@ -63,7 +63,7 @@
     "plugins\/jeelink\/core\/ajax\/jeelink.ajax.php": {
         "401 - Accès non autorisé": "401 - Acesso não autorizado",
         "Jeelink inconnu : ": "Jeelink desconhecido:",
-        "Aucune méthode correspondante à : ": "Aucune methode correspondante à : "
+        "Aucune méthode correspondante à : ": "Aucune methode correspondante à :"
     },
     "plugins\/jeelink\/core\/class\/jeelink.class.php": {
         "Controle": "Controlar",

@@ -6,10 +6,10 @@ Description
 
 Plugin used to link 2 Jeedoms
 
-PrincipThe of operation 
+Principle of operation 
 ==========================
 
-The * Jeedom Link * plugin (also called jeelink) allows the ascent of a
+The plugin *Jeedom Link* (also called jeelink) allows the ascent of a
 or more equipment (s) from one Jeedom to another.
 
 ![jeelink1](../images/jeelink1.png)
@@ -28,15 +28,15 @@ or more equipment (s) from one Jeedom to another.
 > equipment to be reassembled on the **Jeedom Target**\
 > \
 > **Jeedom Target** : Jeedom server which will receive the reassembled equipment
-> by the (s) **Jeedom (s) Source (s)**\
+> by the (s) **Jeedom(s) Source(s)**\
 > The **Jeedom Target** centralize this equipment and that of everyone (s)
-> **Jeedom (s) Source (s)** configured (s). \
+> **Jeedom(s) Source(s)** configured (s). \
 > \
-> **Affectation** : configuration performed on the **Jeedom Source**
+> **Assignment** : configuration performed on the **Jeedom Source**
 > to include the equipment that will be reassembled on the **Jeedom
-> Cible**
+> Target**
 
-> **Note**
+> **NOTE**
 >
 > For a better reading and understanding of this tutorial :\
 > \
@@ -58,7 +58,7 @@ on Plugins management → Communication → Jeedom link), you just need
 click on "Configure Target Jeedoms".
 
 A window will appear and you can from it
-configure or add **Jeedom (s) Target (s)**.
+configure or add **Jeedom(s) Cible(s)**.
 
 To add a **Jeedom Target**, just give :
 
@@ -70,13 +70,13 @@ To add a **Jeedom Target**, just give :
 
 -   Indicate whether the communication is internal or external (used for
     feedback, from **Jeedom Source** to the **Jeedom
-    Cible**). And save the configuration.
+    Target**). And save the configuration.
 
 ![jeelink2](../images/jeelink2.png)
 
 > **Important**
 >
-> It is necessary **ABSOLUMENT** that the network configurations of all
+> It is necessary **ABSOLUTELY** that the network configurations of all
 > Jeedoms (Source and Target) are OK otherwise the plugin will not work
 > not.
 
@@ -84,17 +84,17 @@ Equipment allocation
 ===========================
 
 After performing the configuration of the **Jeedom Target** On your
-**Jeedom Source**, you have to go to the * Assignment * tab to
+**Jeedom Source**, you have to go to the tab *Assignment* pour
 specify the equipment to be transmitted to **Jeedom Target**. All the
 equipment orders will be automatically created and configured
 On the **Jeedom Target**.
 
-In the * Assignment * tab, add the equipment you want
+In the tab *Assignment*, add the equipment you want
 go up to the **Jeedom Target**.
 
 ![jeelink3](../images/jeelink3.png)
 
-Click on * Add equipment * Select object and equipment
+Click on *Add equipment* Select object and equipment
 to add :
 
 ![jeelink5](../images/jeelink5.png)
@@ -107,13 +107,13 @@ to add :
 > **Important**
 >
 > The deletion of the equipment on the configuration page of the
-> **Target Jeedoms** does not automatically delete it on the **Jeedom
+> **Jeedoms Cibles** does not automatically delete it on the **Jeedom
 > Source**, this is voluntary and not a bug (it is security).
 
 "My jeelinks" equipment" 
 ==============================
 
-After refreshing the page * My JeeLinks * of **Jeedom Target**, vous
+After refreshing the page *My jeelinks* from **Jeedom Target**, vous
 must note the automatic creation of the equipment :
 
 ![jeelink4](../images/jeelink4.png)
@@ -124,7 +124,7 @@ aussi
 
 ![jeelink6](../images/jeelink6.png)
 
-In the * Orders * tab, you access all the parameters of the
+In the tab *Commands*, you access all the parameters of the
 equipment controls :
 
 ![jeelink7](../images/jeelink7.png)
@@ -133,7 +133,7 @@ Modifying the Jeedom Source of a JeeLink
 ==========================================
 
 The following 3 parameters allow you to change the Jeedom Source,
-for exampThe when replacing a Jeedom without losing data
+for example when replacing a Jeedom without losing data
 (history for example). To do this, simply put the
 new address and API key of Jeedom Source and change the
 equipment and control identifiers (you will find them in
@@ -149,7 +149,7 @@ Old Slave Mode Migration
 =============================
 
 A tutorial is available,
-[here](https://jeedom.github.io/documentation/howto/fr_FR/jeelink.migration.html)
+[here](https://jeedom.github.io/documentation/howto/en_US/jeelink.migration.html)
 specifying the procedure to follow to migrate a Jeedom
 Slave to the new Jeedom Link operating mode.
 
@@ -158,4 +158,4 @@ FAQ
 
 >**When deleting equipment on the source jeedom these are not deleted from the target jeedom**
 >
->This is normally the source / target synchronization only creates creation, never deletion.
+>This is normally the source / target synchronization only creates creation, never deletion

@@ -1,6 +1,6 @@
 # 07/04/2019
 
-- Corrección de un error en la actualización de la actualización.
+- Corrección de un error en la actualización de la actualización
 
 # 06/03/2019
 
@@ -28,4 +28,4 @@
 
 # 22/03/2018
 
-- Corrección de errores en la interfaz.
+- Corrección de errores en la interfaz
