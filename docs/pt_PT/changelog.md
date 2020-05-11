@@ -1,3 +1,7 @@
+>**IMPORTANTE**
+>
+>Como lembrete, se não houver informações sobre a atualização, isso significa que se trata apenas da atualização da documentação, tradução ou texto
+
 # 07/04/2019
 
 - Correção de um bug na atualização de atualização
