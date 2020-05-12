@@ -27,7 +27,7 @@ $masters = jeelink_master::all();
 	<div class="col-lg-2 col-md-3 col-sm-4 col-xs-4">
 		<div class="bs-sidebar">
 			<ul id="ul_eqLogic" class="nav nav-list bs-sidenav">
-				<a class="btn btn-default jeelinkMasterAction" style="width : 100%;margin-top : 5px;margin-bottom: 5px;" data-action="add"><i class="fa fa-plus-circle"></i> {{Ajouter un Jeedom cible}}</a>
+				<a class="btn btn-default jeelinkMasterAction" style="width : 100%;margin-top : 5px;margin-bottom: 5px;" data-action="add"><i class="fas fa-plus-circle"></i> {{Ajouter un Jeedom cible}}</a>
 				<li class="filter" style="margin-bottom: 5px;"><input class="filter form-control input-sm" placeholder="{{Rechercher}}" style="width: 100%"/></li>
 				<?php
 foreach ($masters as $master) {
@@ -39,41 +39,45 @@ foreach ($masters as $master) {
 	</div>
 
 	<div class="col-lg-10 col-md-9 col-sm-8 col-xs-8 jeelinkMaster" style="border-left: solid 1px #EEE; padding-left: 25px;display:none;">
-		<a class="btn btn-success jeelinkMasterAction pull-right" data-action="save"><i class="fa fa-check-circle"></i> {{Sauvegarder}}</a>
-		<a class="btn btn-danger jeelinkMasterAction pull-right" data-action="remove"><i class="fa fa-minus-circle"></i> {{Supprimer}}</a>
+        <div class="input-group pull-right" style="display:inline-flex">
+			<span class="input-group-btn">
+                <a class="btn btn-sm btn-success jeelinkMasterAction eqLogicAction" data-action="save"><i class="fas fa-check-circle"></i> {{Sauvegarder}}</a>
+                <a class="btn btn-danger jeelinkMasterAction btn-sm eqLogicAction roundedRight" data-action="remove"><i class="fas fa-minus-circle"></i> {{Supprimer}}</a>
+            </span>
+        </div>
 
 		<ul class="nav nav-tabs" role="tablist">
-			<li role="presentation" class="active"><a href="#jeelinkMasterConfigtab" aria-controls="home" role="tab" data-toggle="tab"><i class="fa fa-tachometer"></i> {{Configuration}}</a></li>
-			<li role="presentation"><a href="#jeelinkMasterAffecttab" aria-controls="profile" role="tab" data-toggle="tab"><i class="fa fa-list-alt"></i> {{Affectation}}</a></li>
+			<li role="presentation" class="active"><a href="#jeelinkMasterConfigtab" aria-controls="home" role="tab" data-toggle="tab"><i class="fas fa-tachometer-alt"></i> {{Configuration}}</a></li>
+			<li role="presentation"><a href="#jeelinkMasterAffecttab" aria-controls="profile" role="tab" data-toggle="tab"><i class="fas fa-list-alt"></i> {{Affectation}}</a></li>
 		</ul>
 
 		<div class="tab-content" style="height:calc(100% - 50px);overflow:auto;overflow-x: hidden;">
 			<div role="tabpanel" class="tab-pane active" id="jeelinkMasterConfigtab">
+                <br/>
 				<form class="form-horizontal">
 					<fieldset>
-						<legend>{{Général}}</legend>
 						<div class="form-group">
-							<label class="col-sm-3 control-label">{{Nom du jeedom cible}}</label>
-							<div class="col-sm-3">
+							<label class="col-sm-2 control-label">{{Nom du jeedom cible}}</label>
+							<div class="col-sm-4">
 								<input type="text" class="jeeLinkMasterAttr form-control" data-l1key="id" style="display : none;" />
 								<input type="text" class="jeeLinkMasterAttr form-control" data-l1key="name" placeholder="{{Nom du jeedom cible}}"/>
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-sm-3 control-label">{{Adresse}}</label>
-							<div class="col-sm-3">
+							<label class="col-sm-2 control-label">{{Adresse}}</label>
+							<div class="col-sm-4">
 								<input type="text" class="jeeLinkMasterAttr form-control" data-l1key="address" />
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-sm-3 control-label">{{Clef API}}</label>
-							<div class="col-sm-3">
+							<label class="col-sm-2 control-label">{{Clef API}}</label>
+							<div class="col-sm-4">
 								<input type="text" class="jeeLinkMasterAttr form-control" data-l1key="apikey" />
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-sm-3 control-label">{{Mode d'accès}}</label>
-							<div class="col-sm-3">
+							<label class="col-sm-2 control-label">{{Mode d'accès}}</label>
+							<div class="col-sm-4">
 								<select class="jeeLinkMasterAttr form-control" data-l1key="configuration" data-l2key="network::access" >
 									<option value="internal">{{Interne}}</option>
 									<option value="external">{{Externe}}</option>
@@ -84,7 +88,8 @@ foreach ($masters as $master) {
 				</form>
 			</div>
 			<div role="tabpanel" class="tab-pane" id="jeelinkMasterAffecttab">
-				<a class="btn btn-success btn-sm pull-right" id="bt_jeelinkMasterAddEqLogic"><i class="fa fa-plus-circle"></i> {{Ajouter un équipement}}</a><br>
+                <a class="btn btn-default btn-sm pull-right" id="bt_jeelinkMasterAddEqLogic" style="margin-top:5px;"><i class="fas fa-plus-circle"></i> {{Ajouter un équipement}}</a>
+                <br/><br/>
 				<form class="form-horizontal">
 					<fieldset>
 						<div id="div_jeelinkMasterEqLogicList"></div>
@@ -112,15 +117,15 @@ foreach ($masters as $master) {
 		}
 		var div = '<div class="jeelinkMasterEqLogic">';
 		div += '<div class="form-group">';
-		div += '<label class="col-sm-1 control-label">{{Equipement}}</label>';
+		div += '<label class="col-sm-2 control-label">{{Nom de l\'équipement}}</label>';
 		div += '<div class="col-sm-5 has-success">';
 		div += '<div class="input-group">';
 		div += '<span class="input-group-btn">';
-		div += '<a class="btn btn-default bt_removeJeelinkMasterEqLogic btn-sm"><i class="fa fa-minus-circle"></i></a>';
+		div += '<a class="btn btn-default bt_removeJeelinkMasterEqLogic btn-sm"><i class="fas fa-minus-circle"></i></a>';
 		div += '</span>';
 		div += '<input class="jeelinkMasterEqLogicAttr form-control input-sm" data-l1key="eqLogic" />';
 		div += '<span class="input-group-btn">';
-		div += '<a class="btn btn-sm listEqLogic btn-success"><i class="fa fa-list-alt"></i></a>';
+		div += '<a class="btn btn-default listEqLogic roundedRight"><i class="fas fa-list-alt"></i></a>';
 		div += '</span>';
 		div += '</div>';
 		div += '</div>';

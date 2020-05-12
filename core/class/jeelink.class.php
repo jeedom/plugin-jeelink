@@ -38,9 +38,11 @@ class jeelink extends eqLogic {
 
 	public static function createEqLogicFromDef($_params) {
 		foreach ($_params['eqLogics'] as $eqLogic_info) {
+			log::add('jeelink','debug','Check eqLogic : '. $eqLogic_info['id'] . '::' . $_params['remote_apikey'].' with name : '.$eqLogic_info['name']);
 			$map_id = array();
 			$eqLogic = self::byLogicalId('remote::' . $eqLogic_info['id'] . '::' . $_params['remote_apikey'], 'jeelink');
 			if (!is_object($eqLogic)) {
+				log::add('jeelink','debug','EqLogic not exist create it');
 				$eqLogic = new jeelink();
 				utils::a2o($eqLogic, $eqLogic_info);
 				$eqLogic->setId('');
@@ -48,6 +50,7 @@ class jeelink extends eqLogic {
 				if (isset($eqLogic_info['object_name']) && $eqLogic_info['object_name'] != '') {
 					$object = jeeObject::byName($eqLogic_info['object_name']);
 					if (is_object($object)) {
+						log::add('jeelink','debug','Find match object affect it to eqLogic');
 						$eqLogic->setObject_id($object->getId());
 					}
 				}
@@ -62,7 +65,7 @@ class jeelink extends eqLogic {
 				$eqLogic->setName($eqLogic->getName() . ' remote ' . rand(0, 9999));
 				$eqLogic->save();
 			}
-
+   			log::add('jeelink','debug','EqLogic save, create cmd');
 			foreach ($eqLogic_info['cmds'] as &$cmd_info) {
 				if (isset($cmd_info['configuration']) && isset($cmd_info['configuration']['calculValueOffset'])) {
 					unset($cmd_info['configuration']['calculValueOffset']);
