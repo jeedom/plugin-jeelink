@@ -273,6 +273,17 @@ class jeelink extends eqLogic {
 				$cmd->event(0);
 			}
 		}
+		
+		$cmd = $this->getCmd(null, 'messageNb');
+		if (is_object($cmd)) {
+			try{
+				if ($jsonrpc->sendRequest('message::all')) {
+					$cmd->event(count($jsonrpc->getResult()));
+				}
+			} catch (Exception $e) {
+				$cmd->event(0);
+			}
+		}
 
 		$cmd = $this->getCmd(null, 'version');
 		if (is_object($cmd)) {
@@ -373,6 +384,21 @@ class jeelink extends eqLogic {
 		$cmd->setType('info');
 		$cmd->setSubType('numeric');
 		$cmd->save();
+		
+		$cmd = $this->getCmd(null, 'messageNb');
+		if (!is_object($cmd)) {
+			$cmd = new jeelinkCmd();
+			$cmd->setName(__('Nombre de message', __FILE__));
+			$cmd->setTemplate('mobile', 'line');
+			$cmd->setTemplate('dashboard', 'line');
+			$cmd->setOrder(2);
+		}
+		$cmd->setEqLogic_id($this->getId());
+		$cmd->setLogicalId('messageNb');
+		$cmd->setType('info');
+		$cmd->setSubType('numeric');
+		$cmd->save();
+		
 
 		$cmd = $this->getCmd(null, 'version');
 		if (!is_object($cmd)) {
