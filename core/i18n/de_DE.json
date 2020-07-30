@@ -87,5 +87,8 @@
     "plugins\/jeelink\/core\/api\/jeelink.api.php": {
         "JSONRPC object not defined": "JSONRPC-Objekt nicht definiert",
         "Aucune methode correspondante pour le plugin Jeelink : ' . $jsonrpc->getMethod()": "Keine entsprechende Methode für das Jeelink-Plugin: '. $ jsonrpc-> getMethod ()"
+    },
+    "info.json": {
+        "Plugin permettant de lier plusieurs Jeedom": "Plugin zum Verknüpfen mehrerer Jeedom"
     }
 }
