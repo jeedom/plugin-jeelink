@@ -23,6 +23,10 @@ class jeelink extends eqLogic {
 	/*     * *************************Attributs****************************** */
 
 	/*     * ***********************Methode static*************************** */
+	
+	public static function deadCmd(){
+		return array();
+	}
 
 	public static function event() {
 		$cmds = cmd::byLogicalId('remote::' . init('remote_cmd_id') . '::' . init('remote_apikey'), 'info');
