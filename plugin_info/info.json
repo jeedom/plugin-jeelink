@@ -6,7 +6,12 @@
         "en_US": "Plugin allowing to link several Jeedom",
         "es_ES": "Plugin que permite vincular varios Jeedom",
         "de_DE": "Plugin zum Verknüpfen mehrerer Jeedom",
-        "pt_PT": "Plugin que permite vincular vários Jeedom"
+        "pt_PT": "Plugin que permite vincular vários Jeedom",
+        "ru_RU": "Plugin permettant de lier plusieurs Jeedom",
+        "id_ID": "Plugin permettant de lier plusieurs Jeedom",
+        "it_IT": "Plugin permettant de lier plusieurs Jeedom",
+        "ja_JP": "Plugin permettant de lier plusieurs Jeedom",
+        "tr": "Plugin permettant de lier plusieurs Jeedom"
     },
     "licence": "AGPL",
     "author": "Loïc",
@@ -19,7 +24,12 @@
         "en_US",
         "es_ES",
         "de_DE",
-        "pt_PT"
+        "ru_RU",
+        "id_ID",
+        "it_IT",
+        "ja_JP",
+        "pt_PT",
+        "tr"
     ],
     "compatibility": [
         "miniplus",
