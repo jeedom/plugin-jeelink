@@ -4,6 +4,9 @@
 >
 >Como recordatorio si no hay información sobre la actualización, significa que solo se refiere a la actualización de documentación, traducción o texto
 
+# 10/09/2021
+
+- Corrección para la compatibilidad con Jeedom 4.2
 - Adición de la información del número de mensaje en el objeto de libertad
 
 # 07/04/2019

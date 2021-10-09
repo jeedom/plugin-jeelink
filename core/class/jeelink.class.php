@@ -666,10 +666,7 @@ class jeelink_master {
 		if (is_array($this->getConfiguration('eqLogics'))) {
 			foreach ($this->getConfiguration('eqLogics') as $eqLogic_info) {
 				$eqLogic = eqLogic::byId(str_replace('eqLogic', '', str_replace('#', '', $eqLogic_info['eqLogic'])));
-				if (!is_object($eqLogic)) {
-					continue;
-				}
-				if ($eqLogic->getStatus('battery', -2) == -2) {
+				if (!is_object($eqLogic) || $eqLogic->getStatus('battery', -2) == -2) {
 					continue;
 				}
 				$toSend['eqLogics'][$eqLogic->getId()] = array(
