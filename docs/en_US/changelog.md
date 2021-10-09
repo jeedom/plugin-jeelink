@@ -4,6 +4,9 @@
 >
 >As a reminder if there is no information on the update, it means that it only concerns the updating of documentation, translation or text
 
+# 09/10/2021
+
+- Correction for Jeedom 4.2 support
 - Addition of the message number information in the target jeedom
 
 # 07/04/2019

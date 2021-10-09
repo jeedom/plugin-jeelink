@@ -4,6 +4,9 @@
 >
 >Zur Erinnerung: Wenn keine Informationen zum Update vorhanden sind, bedeutet dies, dass es sich nur um die Aktualisierung von Dokumentation, Übersetzung oder Text handelt
 
+# 09.10.2021
+
+- Korrektur für Jeedom 4.2-Unterstützung
 - Hinzufügen der Nachrichtennummerninformationen zum Ziel-Jeedom
 
 # 2019.04.07

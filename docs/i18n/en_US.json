@@ -2,6 +2,8 @@
     "changelog.md": {
         "Changelog Jeedom Link": "Changelog Jeedom Link",
         "Pour rappel s'il n'y a pas d'information sur la mise à jour, c'est que celle-ci concerne uniquement de la mise à jour de documentation, de traduction ou de texte": "As a reminder if there is no information on the update, it means that it only concerns the updating of documentation, translation or text",
+        "09\/10\/2021": "09\/10\/2021",
+        "Correction pour le suport de Jeedom 4.2": "Correction for Jeedom 4.2 support",
         "Ajout de l'information du nombre de message dans le jeedom cible": "Addition of the message number information in the target jeedom",
         "04\/07\/2019": "07\/04\/2019",
         "Correction d'un bugs sur la remontée des mises à jour": "Correction of a bug on the update update",
