@@ -85,8 +85,7 @@
         "Lancer un backup": "Lancer un backup"
     },
     "plugins\/jeelink\/core\/api\/jeelink.api.php": {
-        "JSONRPC object not defined": "JSONRPC object not defined",
-        "Aucune methode correspondante pour le plugin Jeelink : ' . $jsonrpc->getMethod()": "Aucune methode correspondante pour le plugin Jeelink : ' . $jsonrpc->getMethod()"
+        "JSONRPC object not defined": "JSONRPC object not defined"
     },
     "info.json": {
         "Plugin permettant de lier plusieurs Jeedom": "Plugin permettant de lier plusieurs Jeedom"
