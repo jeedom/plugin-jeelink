@@ -35,6 +35,4 @@ if ($jsonrpc->getMethod() == 'eqLogicBattery') {
 	jeelink::receiveBatteryLevel($params);
 	$jsonrpc->makeSuccess();
 }
-
-throw new Exception(__('Aucune methode correspondante pour le plugin Jeelink : ' . $jsonrpc->getMethod(), __FILE__),-35486);
 ?>
