@@ -78,6 +78,7 @@
         "Joignable": "Acessível",
         "Statut": "Estado",
         "Nombre update": "Atualizar número",
+        "Nombre de message": "Número de mensagens",
         "Version": "Versão",
         "Redémarrer": "Restart",
         "Mettre à jour": "Atualizar",
@@ -86,5 +87,8 @@
     "plugins\/jeelink\/core\/api\/jeelink.api.php": {
         "JSONRPC object not defined": "Objeto JSONRPC não definido",
         "Aucune methode correspondante pour le plugin Jeelink : ' . $jsonrpc->getMethod()": "Nenhum método correspondente para o plugin Jeelink: '. $ jsonrpc-> getMethod ()"
+    },
+    "info.json": {
+        "Plugin permettant de lier plusieurs Jeedom": "Plugin que permite vincular vários Jeedom"
     }
 }

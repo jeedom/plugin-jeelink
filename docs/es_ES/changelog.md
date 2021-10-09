@@ -4,6 +4,8 @@
 >
 >Como recordatorio si no hay información sobre la actualización, significa que solo se refiere a la actualización de documentación, traducción o texto
 
+- Adición de la información del número de mensaje en el objeto de libertad
+
 # 07/04/2019
 
 - Corrección de un error en la actualización de la actualización
@@ -14,7 +16,7 @@
 
 # 14/05/2019
 
-- Gestión de pedidos mejorada con el mismo nombre en el mismo equipo (error de entrada duplicada ...)
+- Gestión de pedidos mejorada con el mismo nombre en el mismo equipo (error de entrada duplicada....)
 
 # 13/03/2019
 

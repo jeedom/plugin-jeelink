@@ -23,6 +23,10 @@ class jeelink extends eqLogic {
 	/*     * *************************Attributs****************************** */
 
 	/*     * ***********************Methode static*************************** */
+	
+	public static function deadCmd(){
+		return array();
+	}
 
 	public static function event() {
 		$cmds = cmd::byLogicalId('remote::' . init('remote_cmd_id') . '::' . init('remote_apikey'), 'info');
@@ -273,6 +277,17 @@ class jeelink extends eqLogic {
 				$cmd->event(0);
 			}
 		}
+		
+		$cmd = $this->getCmd(null, 'messageNb');
+		if (is_object($cmd)) {
+			try{
+				if ($jsonrpc->sendRequest('message::all')) {
+					$cmd->event(count($jsonrpc->getResult()));
+				}
+			} catch (Exception $e) {
+				$cmd->event(0);
+			}
+		}
 
 		$cmd = $this->getCmd(null, 'version');
 		if (is_object($cmd)) {
@@ -373,6 +388,21 @@ class jeelink extends eqLogic {
 		$cmd->setType('info');
 		$cmd->setSubType('numeric');
 		$cmd->save();
+		
+		$cmd = $this->getCmd(null, 'messageNb');
+		if (!is_object($cmd)) {
+			$cmd = new jeelinkCmd();
+			$cmd->setName(__('Nombre de message', __FILE__));
+			$cmd->setTemplate('mobile', 'line');
+			$cmd->setTemplate('dashboard', 'line');
+			$cmd->setOrder(2);
+		}
+		$cmd->setEqLogic_id($this->getId());
+		$cmd->setLogicalId('messageNb');
+		$cmd->setType('info');
+		$cmd->setSubType('numeric');
+		$cmd->save();
+		
 
 		$cmd = $this->getCmd(null, 'version');
 		if (!is_object($cmd)) {
@@ -684,6 +714,8 @@ class jeelink_master {
 				$toSend['eqLogics'][$eqLogic->getId()]['cmds'] = array();
 				foreach ($eqLogic->getCmd() as $cmd) {
 					$toSend['eqLogics'][$eqLogic->getId()]['cmds'][$cmd->getId()] = utils::o2a($cmd);
+					$toSend['eqLogics'][$eqLogic->getId()]['cmds'][$cmd->getId()]['configuration']['real_eqType'] = $cmd->getEqType_name();
+					$toSend['eqLogics'][$eqLogic->getId()]['cmds'][$cmd->getId()]['configuration']['real_logicalId'] = $cmd->getLogicalId();
 				}
 			}
 		}
