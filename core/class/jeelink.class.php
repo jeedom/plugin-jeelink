@@ -490,7 +490,7 @@ class jeelinkCmd extends cmd {
 	public function execute($_options = array()) {
 		$eqLogic = $this->getEqLogic();
 		if ($eqLogic->getConfiguration('remote_id') != 'core') {
-			$url = $eqLogic->getConfiguration('remote_address') . '/core/api/jeeApi.php?type=cmd&apikey=' . $eqLogic->getConfiguration('remote_apikey');
+			$url = $eqLogic->getConfiguration('remote_address') . '/core/api/jeeApi.php?plugin=jeelink&type=cmd&apikey=' . $eqLogic->getConfiguration('remote_apikey');
 			$url .= '&id=' . $this->getConfiguration('remote_id');
 			if (count($_options) > 0) {
 				foreach ($_options as $key => $value) {
@@ -590,7 +590,8 @@ class jeelink_master {
 
 	public function apiCallCmdEvent($_cmd_id, $_value) {
 		$url = $this->getAddress() . '/core/api/jeeApi.php?apikey=' . $this->getApikey();
-		$url .= '&type=jeelink';
+		$url .= '&plugin=jeelink';
+		$url .= '&type=event';
 		$url .= '&remote_cmd_id=' . $_cmd_id;
 		$url .= '&remote_cmd_value=' . urlencode($_value);
 		$url .= '&remote_apikey=' . config::byKey('api');
