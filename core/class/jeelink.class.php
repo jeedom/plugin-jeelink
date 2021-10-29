@@ -662,7 +662,7 @@ class jeelink_master {
 	public function sendBatteryToMaster(){
 		$toSend = array(
 			'eqLogics' => array(),
-			'remote_apikey' => config::byKey('api'),
+			'remote_apikey' => jeedom::getApiKey('jeelink'),
 		);
 		if (is_array($this->getConfiguration('eqLogics'))) {
 			foreach ($this->getConfiguration('eqLogics') as $eqLogic_info) {
@@ -692,7 +692,7 @@ class jeelink_master {
 		$toSend = array(
 			'eqLogics' => array(),
 			'address' => network::getNetworkAccess($this->getConfiguration('network::access')),
-			'remote_apikey' => config::byKey('api'),
+			'remote_apikey' => jeedom::getApiKey('jeelink'),
 			'name' => config::byKey('name', 'core', 'Jeedom'),
 		);
 		if (is_array($this->getConfiguration('eqLogics'))) {
