@@ -594,7 +594,7 @@ class jeelink_master {
 		$url .= '&type=event';
 		$url .= '&remote_cmd_id=' . $_cmd_id;
 		$url .= '&remote_cmd_value=' . urlencode($_value);
-		$url .= '&remote_apikey=' . config::byKey('api');
+		$url .= '&remote_apikey=' . jeedom::getApiKey('jeelink');
 		$request_http = new com_http($url);
 		$request_http->exec(60);
 	}
