@@ -35,4 +35,7 @@ if ($jsonrpc->getMethod() == 'eqLogicBattery') {
 	jeelink::receiveBatteryLevel($params);
 	$jsonrpc->makeSuccess();
 }
+if ($jsonrpc->getMethod() == 'ping') {
+			$jsonrpc->makeSuccess('pong');
+}
 ?>
