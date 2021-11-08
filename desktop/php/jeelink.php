@@ -134,7 +134,7 @@ $eqLogics = eqLogic::byType($plugin->getId());
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-3 control-label">{{Apikey Jeedom source}}
+                                <label class="col-sm-3 control-label">{{Apikey Jeedom Link source}}
                                     <sup><i class="fas fa-question-circle tooltips" title="{{Clé API Jeedom Link du Jeedom source }}"></i></sup>
                                 </label>
                                 <div class="col-sm-7">
