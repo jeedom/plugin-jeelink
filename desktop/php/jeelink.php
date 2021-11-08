@@ -135,7 +135,7 @@ $eqLogics = eqLogic::byType($plugin->getId());
                             </div>
                             <div class="form-group">
                                 <label class="col-sm-3 control-label">{{Apikey Jeedom source}}
-                                    <sup><i class="fas fa-question-circle tooltips" title="{{Clé API du Jeedom source }}"></i></sup>
+                                    <sup><i class="fas fa-question-circle tooltips" title="{{Clé API Jeedom Link du Jeedom source }}"></i></sup>
                                 </label>
                                 <div class="col-sm-7">
                                     <input type="text" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="remote_apikey" />
