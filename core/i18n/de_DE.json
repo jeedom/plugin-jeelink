@@ -47,7 +47,7 @@
         "Adresse Jeedom source": "Quelle Jeedom-Adresse",
         "Renseignez l'adresse du Jeedom source ": "Geben Sie die Adresse des Quell-Jeedoms ein",
         "Apikey Jeedom source": "Apikey Jeedom Quelle",
-        "Clé API du Jeedom source ": "Quelle Jeedom API-Schlüssel",
+        "Clé API Jeedom Link du Jeedom source ": "Jeedom Link API-Schlüssel aus der Quelle Jeedom",
         "ID de l'équipement source": "ID der Quellausrüstung",
         "Informations": "Information",
         "Nom": "Name",
