@@ -46,7 +46,7 @@
         "Paramètres spécifiques": "Parámetros específicos",
         "Adresse Jeedom source": "Dirección de Source Jeedom",
         "Renseignez l'adresse du Jeedom source ": "Ingrese la dirección de la fuente Jeedom",
-        "Apikey Jeedom source": "Fuente apikey jeedom",
+        "Apikey Jeedom Link source": "Fuente de enlace de Apikey Jeedom",
         "Clé API Jeedom Link du Jeedom source ": "Clave de API de Jeedom Link de la fuente Jeedom",
         "ID de l'équipement source": "ID del equipo fuente",
         "Informations": "Información",
