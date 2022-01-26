@@ -35,4 +35,3 @@ if ($jsonrpc->getMethod() == 'eqLogicBattery') {
 	jeelink::receiveBatteryLevel($params);
 	$jsonrpc->makeSuccess();
 }
-?>

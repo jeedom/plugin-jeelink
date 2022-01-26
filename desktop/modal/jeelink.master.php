@@ -22,9 +22,9 @@ if (!isConnect('admin')) {
 
 $masters = jeelink_master::all();
 ?>
-<div id='div_jeelinkMasterAlert' style="display: none;"></div>
+<div id='div_jeelinkMasterAlert' style="display:none;"></div>
 <div class="row row-overflow">
-	<div class="col-lg-2 col-md-3 col-sm-4 col-xs-4">
+	<div class="col-lg-2 col-md-3">
 		<div class="bs-sidebar">
 			<ul id="ul_eqLogic" class="nav nav-list bs-sidenav">
 				<a class="btn btn-default jeelinkMasterAction" style="width : 100%;margin-top : 5px;margin-bottom: 5px;" data-action="add"><i class="fas fa-plus-circle"></i> {{Ajouter un Jeedom cible}}</a>
@@ -38,10 +38,9 @@ $masters = jeelink_master::all();
 		</div>
 	</div>
 
-	<div class="col-lg-10 col-md-9 col-sm-8 col-xs-8 jeelinkMaster" style="border-left: solid 1px #EEE; padding-left: 25px;display:none;">
+	<div class="col-lg-10 col-md-9 jeelinkMaster" style="display:none;">
 		<div class="input-group pull-right" style="display:inline-flex">
 			<span class="input-group-btn">
-				<!-- Les balises <a></a> sont volontairement fermées à la ligne suivante pour éviter les espaces entre les boutons. Ne pas modifier -->
 				<a class="btn btn-sm btn-success jeelinkMasterAction eqLogicAction roundedLeft" data-action="save"><i class="fas fa-check-circle"></i> {{Sauvegarder}}
 				</a><a class="btn btn-danger jeelinkMasterAction btn-sm eqLogicAction roundedRight" data-action="remove"><i class="fas fa-minus-circle"></i> {{Supprimer}}</a>
 			</span>
@@ -52,37 +51,40 @@ $masters = jeelink_master::all();
 			<li role="presentation"><a href="#jeelinkMasterAffecttab" aria-controls="profile" role="tab" data-toggle="tab"><i class="fas fa-list-alt"></i> {{Affectation}}</a></li>
 		</ul>
 
-		<div class="tab-content" style="height:calc(100% - 50px);overflow:auto;overflow-x: hidden;">
+		<div class="tab-content">
 			<div role="tabpanel" class="tab-pane active" id="jeelinkMasterConfigtab">
-				<br />
+				<br>
 				<form class="form-horizontal">
 					<fieldset>
+						<legend><i class="fas fa-wrench"></i> {{Paramètres généraux}}</legend>
 						<div class="form-group">
-							<label class="col-sm-2 control-label">{{Nom du jeedom cible}}</label>
-							<div class="col-sm-4">
-								<input type="text" class="jeeLinkMasterAttr form-control" data-l1key="id" style="display : none;" />
-								<input type="text" class="jeeLinkMasterAttr form-control" data-l1key="name" placeholder="{{Nom du jeedom cible}}" />
+							<label class="col-md-2 control-label">{{Nom du Jeedom cible}}</label>
+							<div class="col-md-5">
+								<input type="text" class="jeeLinkMasterAttr form-control" data-l1key="id" style="display:none;">
+								<input type="text" class="jeeLinkMasterAttr form-control" data-l1key="name" placeholder="{{Nom du Jeedom cible}}">
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-sm-2 control-label">{{Adresse}}
-								<sup><i class="fas fa-question-circle tooltips" title="{{Indiquer l'adresse' du Jeedom cible}}"></i></sup>
+							<label class="col-md-2 control-label">{{Adresse}}
+								<sup><i class="fas fa-question-circle tooltips" title="{{Indiquer l'adresse du Jeedom cible}}"></i></sup>
 							</label>
-							<div class="col-sm-4">
-								<input type="text" class="jeeLinkMasterAttr form-control" data-l1key="address" placeholder="{{Adresse du Jeedom cible}}" />
+							<div class="col-md-5">
+								<input type="text" class="jeeLinkMasterAttr form-control" data-l1key="address" placeholder="{{Adresse du Jeedom cible}}">
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-sm-2 control-label">{{Clé API Jeedom Link}}
+							<label class="col-md-2 control-label">{{Clé API Jeedom Link}}
 								<sup><i class="fas fa-question-circle tooltips" title="{{Indiquer la clé API Jeedom Link du Jeedom cible}}"></i></sup>
 							</label>
-							<div class="col-sm-4">
-								<input type="text" class="jeeLinkMasterAttr form-control" data-l1key="apikey" placeholder="{{Clé API Jeedom Link du Jeedom cible}}" />
+							<div class="col-md-5">
+								<input type="text" class="jeeLinkMasterAttr form-control" data-l1key="apikey" placeholder="{{Clé API Jeedom Link du Jeedom cible}}">
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-sm-2 control-label">{{Mode d'accès}}</label>
-							<div class="col-sm-4">
+							<label class="col-md-2 control-label">{{Mode d'accès}}
+								<sup><i class="fas fa-question-circle tooltips" title="{{Renseigner le type d'accès : interne (réseau local) ou externe (accès distant)}}"></i></sup>
+							</label>
+							<div class="col-md-5">
 								<select class="jeeLinkMasterAttr form-control" data-l1key="configuration" data-l2key="network::access">
 									<option value="internal">{{Interne}}</option>
 									<option value="external">{{Externe}}</option>
@@ -94,17 +96,18 @@ $masters = jeelink_master::all();
 			</div>
 			<div role="tabpanel" class="tab-pane" id="jeelinkMasterAffecttab">
 				<a class="btn btn-default btn-sm pull-right" id="bt_jeelinkMasterAddEqLogic" style="margin-top:5px;"><i class="fas fa-plus-circle"></i> {{Ajouter un équipement}}</a>
-				<br /><br />
+				<br>
 				<form class="form-horizontal">
 					<fieldset>
+						<legend><i class="fas fa-check-double"></i> {{Equipements sélectionnés}}</legend>
 						<div id="div_jeelinkMasterEqLogicList"></div>
 					</fieldset>
 				</form>
 			</div>
+			<hr>
 		</div>
 	</div>
 </div>
-
 
 <script>
 	$('.jeelinkMasterAction[data-action=add]').on('click', function() {
@@ -122,13 +125,13 @@ $masters = jeelink_master::all();
 		}
 		var div = '<div class="jeelinkMasterEqLogic">';
 		div += '<div class="form-group">';
-		div += '<label class="col-sm-2 control-label">{{Nom de l\'équipement}}</label>';
-		div += '<div class="col-sm-5 has-success">';
+		div += '<label class="col-md-2 control-label">{{Nom de l\'équipement}}</label>';
+		div += '<div class="col-md-5 has-success">';
 		div += '<div class="input-group">';
 		div += '<span class="input-group-btn">';
 		div += '<a class="btn btn-default bt_removeJeelinkMasterEqLogic roundedLeft"><i class="fas fa-minus-circle"></i></a>';
 		div += '</span>';
-		div += '<input class="jeelinkMasterEqLogicAttr form-control" data-l1key="eqLogic" />';
+		div += '<input class="jeelinkMasterEqLogicAttr form-control" data-l1key="eqLogic">';
 		div += '<span class="input-group-btn">';
 		div += '<a class="btn btn-default listEqLogic roundedRight"><i class="fas fa-list-alt"></i></a>';
 		div += '</span>';
@@ -141,7 +144,7 @@ $masters = jeelink_master::all();
 
 	$('#div_jeelinkMasterEqLogicList').on('click', '.listEqLogic', function() {
 		var el = $(this);
-		jeedom.eqLogic.getSelectModal({
+		Jeedom.eqLogic.getSelectModal({
 			cmd: {
 				type: 'info'
 			}
@@ -231,7 +234,7 @@ $masters = jeelink_master::all();
 	});
 
 	$('.jeelinkMasterAction[data-action=remove]').on('click', function() {
-		bootbox.confirm('{{Etês-vous sûr de vouloir supprimer ce jeedom distant ?}}', function(result) {
+		bootbox.confirm('{{Etes-vous sûr de vouloir supprimer ce Jeedom cible}} ?', function(result) {
 			if (result) {
 				$.ajax({
 					type: "POST",

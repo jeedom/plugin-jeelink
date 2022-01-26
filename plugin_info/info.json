@@ -2,7 +2,7 @@
     "id": "jeelink",
     "name": "Jeedom Link",
     "description": {
-        "fr_FR": "Plugin permettant de lier plusieurs Jeedom",
+        "fr_FR": "Ce plugin va vous permettre de lier plusieurs installations Jeedom afin de remonter les équipements d'un ou plusieurs \"Jeedoms sources\" vers un ou plusieurs \"Jeedoms cibles\".",
         "en_US": "Plugin allowing to link several Jeedom",
         "es_ES": "Plugin que permite vincular varios Jeedom",
         "de_DE": "Plugin zum Verknüpfen mehrerer Jeedom",
@@ -34,6 +34,7 @@
     "compatibility": [
         "miniplus",
         "smart",
+        "atlas",
         "rpi",
         "docker",
         "diy",
