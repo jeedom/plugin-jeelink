@@ -144,7 +144,7 @@ $masters = jeelink_master::all();
 
 	$('#div_jeelinkMasterEqLogicList').on('click', '.listEqLogic', function() {
 		var el = $(this);
-		Jeedom.eqLogic.getSelectModal({
+		jeedom.eqLogic.getSelectModal({
 			cmd: {
 				type: 'info'
 			}
