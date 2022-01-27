@@ -7,29 +7,34 @@
         "Supprimer": "удаление",
         "Configuration": "Конфигурация",
         "Affectation": "Affectation",
-        "Nom du jeedom cible": "Nom du jeedom cible",
+        "Paramètres généraux": "Paramètres généraux",
+        "Nom du Jeedom cible": "Nom du jeedom cible",
         "Adresse": "Adresse",
-        "Indiquer l'adresse' du Jeedom cible": "Indiquer l'adresse' du Jeedom cible",
+        "Indiquer l'adresse du Jeedom cible": "Indiquer l'adresse du Jeedom cible",
         "Adresse du Jeedom cible": "Adresse du Jeedom cible",
         "Clé API Jeedom Link": "Clé API Jeedom Link",
         "Indiquer la clé API Jeedom Link du Jeedom cible": "Indiquer la clé API Jeedom Link du Jeedom cible",
         "Clé API Jeedom Link du Jeedom cible": "Clé API Jeedom Link du Jeedom cible",
         "Mode d'accès": "Mode d'accès",
+        "Renseigner le type d'accès : interne (réseau local) ou externe (accès distant)": "Renseigner le type d'accès : interne (réseau local) ou externe (accès distant)",
         "Interne": "Interne",
         "Externe": "Externe",
         "Ajouter un équipement": "Ajouter un équipement",
+        "Equipements sélectionnés": "Equipements sélectionnés",
         "Nom de l\\'équipement": "Nom de l\\'équipement",
         "Sauvegarde réussie": "Удачная резервная копия",
-        "Etês-vous sûr de vouloir supprimer ce jeedom distant ?": "Etês-vous sûr de vouloir supprimer ce jeedom distant ?"
+        "Etes-vous sûr de vouloir supprimer ce Jeedom cible": "Etes-vous sûr de vouloir supprimer ce Jeedom cible"
     },
     "plugins\/jeelink\/desktop\/php\/jeelink.php": {
         "401 - Accès non autorisé": "401 - Несанкционированный доступ",
         "Gestion": "Управление",
         "Jeedoms cibles": "Jeedoms cibles",
         "Configuration": "Конфигурация",
-        "Mes jeelinks": "Mes jeelinks",
-        "Aucun équipement Template n\\'est paramétré, cliquer sur \"Ajouter\" pour commencer": "Aucun équipement Template n\\'est paramétré, cliquer sur \"Ajouter\" pour commencer",
+        "Mes Jeelinks": "Mes jeelinks",
+        "Aucun équipement Jeelink trouvé": "Aucun équipement Jeelink trouvé",
         "Rechercher": "поиск",
+        "Equipement visible": "Equipement visible",
+        "Equipement non visible": "Equipement non visible",
         "Configuration avancée": "Расширенные настройки",
         "Sauvegarder": "Сохранить",
         "Supprimer": "удаление",
@@ -45,30 +50,34 @@
         "Visible": "Видимый",
         "Paramètres spécifiques": "Paramètres spécifiques",
         "Adresse Jeedom source": "Adresse Jeedom source",
-        "Renseignez l'adresse du Jeedom source ": "Renseignez l'adresse du Jeedom source",
-        "Apikey Jeedom Link source": "Apikey Jeedom Link source",
-        "Clé API Jeedom Link du Jeedom source ": "Clé API Jeedom Link du Jeedom source",
+        "Adresse du Jeedom source": "Adresse du Jeedom source",
+        "Clé API Jeedom Link source": "Clé API Jeedom Link source",
+        "Clé API Jeedom Link du Jeedom source": "Clé API Jeedom Link du Jeedom source",
         "ID de l'équipement source": "ID de l'équipement source",
         "Informations": "Informations",
+        "Description": "Description",
         "Nom": "Имя",
-        "Sous-Type": "Под-Тип",
+        "Type": "Type",
         "ID source": "ID source",
-        "Paramètres": "настройки"
+        "Paramètres": "настройки",
+        "Actions": "Actions"
     },
     "plugins\/jeelink\/desktop\/js\/jeelink.js": {
-        "Icône": "Иконка",
-        "La valeur de la commande vaut par défaut la commande": "La valeur de la commande vaut par défaut la commande",
+        "Nom": "Nom",
+        "Choisir une icône": "Choisir une icône",
+        "Commande info liée": "Commande info liée",
+        "Aucune": "Aucune",
         "ID source": "ID source",
         "Valeur retour d\\'état": "Состояние обратной связи",
         "Durée avant retour d\\'état (min)": "Время обратной связи (мин)",
-        "Min": "Мин",
-        "Max": "Макс",
-        "Unité": "Устройство",
         "Afficher": "дисплей",
         "Historiser": "История",
         "Inverser": "Обратный",
+        "Min": "Мин",
+        "Max": "Макс",
+        "Unité": "Устройство",
         "Tester": "Тест",
-        "Configuration des jeedoms cibles": "Configuration des jeedoms cibles"
+        "Configuration des Jeedoms cibles": "Configuration des jeedoms cibles"
     },
     "plugins\/jeelink\/core\/ajax\/jeelink.ajax.php": {
         "401 - Accès non autorisé": "401 - Несанкционированный доступ",
@@ -98,6 +107,6 @@
         "JSONRPC object not defined": "JSONRPC object not defined"
     },
     "info.json": {
-        "Plugin permettant de lier plusieurs Jeedom": "Plugin permettant de lier plusieurs Jeedom"
+        "Ce plugin va vous permettre de lier plusieurs installations Jeedom afin de remonter les équipements d'un ou plusieurs \"Jeedoms sources\" vers un ou plusieurs \"Jeedoms cibles\".": "Ce plugin va vous permettre de lier plusieurs installations Jeedom afin de remonter les équipements d'un ou plusieurs \"Jeedoms sources\" vers un ou plusieurs \"Jeedoms cibles\""
     }
 }
