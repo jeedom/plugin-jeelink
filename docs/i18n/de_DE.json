@@ -61,7 +61,7 @@
         "serveur Jeedom qui recevra et centralisera les équipements remontés par un ou plusieurs": "Jeedom-Server, der die von einem oder mehreren bereitgestellten Geräte empfängt und zentralisiert",
         "configuration effectuée au niveau du": "Konfiguration auf der Ebene der vorgenommen",
         "pour sélectionner les équipements à remonter au": "um die Ausrüstung auszuwählen, die in die hochgeladen werden soll",
-        "Pour une meilleure lecture et compréhension de cete documentation, Les captures d'écran sur fond blanc correspondent au": "Zum besseren Lesen und Verständnis dieser Dokumentation entsprechen die Screenshots auf weißem Hintergrund der",
+        "Pour une meilleure lecture et compréhension de cette documentation, Les captures d'écran sur fond blanc correspondent au": "Zum besseren Lesen und Verständnis dieser Dokumentation entsprechen die Screenshots auf weißem Hintergrund der",
         "et celles avec un fond noir au": "und solche mit schwarzem Hintergrund",
         "Configuration du plugin": "Plugin Konfiguration",
         "Ce plugin ne nécessite pas de configuration particulière et doit simplement être activé après l'installation": "Dieses Plugin erfordert keine spezielle Konfiguration und muss nach der Installation einfach aktiviert werden",

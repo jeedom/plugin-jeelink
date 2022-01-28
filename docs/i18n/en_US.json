@@ -61,7 +61,7 @@
         "serveur Jeedom qui recevra et centralisera les équipements remontés par un ou plusieurs": "Jeedom server which will receive and centralize the equipment brought up by one or more",
         "configuration effectuée au niveau du": "configuration made at the level of the",
         "pour sélectionner les équipements à remonter au": "to select the equipment to be uploaded to the",
-        "Pour une meilleure lecture et compréhension de cete documentation, Les captures d'écran sur fond blanc correspondent au": "For a better reading and understanding of this documentation, the screenshots on a white background correspond to the",
+        "Pour une meilleure lecture et compréhension de cette documentation, Les captures d'écran sur fond blanc correspondent au": "For a better reading and understanding of this documentation, the screenshots on a white background correspond to the",
         "et celles avec un fond noir au": "and those with a black background",
         "Configuration du plugin": "Plugin configuration",
         "Ce plugin ne nécessite pas de configuration particulière et doit simplement être activé après l'installation": "This plugin does not require any special configuration and simply needs to be activated after installation",
