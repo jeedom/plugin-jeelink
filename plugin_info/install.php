@@ -1,5 +1,4 @@
 <?php
-
 /* This file is part of Jeedom.
  *
  * Jeedom is free software: you can redistribute it and/or modify
@@ -40,5 +39,3 @@ function jeelink_remove() {
 	}
 	DB::Prepare('DROP TABLE IF EXISTS `jeelink_master`', array(), DB::FETCH_TYPE_ROW);
 }
-
-?>
