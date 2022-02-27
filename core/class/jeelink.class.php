@@ -216,7 +216,7 @@ class jeelink extends eqLogic {
 				try{
 					$jeelink_master->sendBatteryToMaster();
 				}catch(Exception $e){
-					log::add('jeelink','error',$jeelink_master->getHumanName().' '__('Erreur sur l\'envoi du niveau de batterie : ',__FILE__).$e->getMessage());
+					log::add('jeelink','error',$jeelink_master->getName().' '__('Erreur sur l\'envoi du niveau de batterie : ',__FILE__).$e->getMessage());
 				}
 			}
 		}
