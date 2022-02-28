@@ -89,7 +89,7 @@
         "Démon": "Daemon",
         "Démarrer": "Start",
         "Arrêter": "Stop",
-        "Erreur sur l\\'envoi du niveau de batterie": "Error sending battery level",
+        "Erreur sur l\\'envoi du niveau de batterie : ": "Error sending battery level:",
         "Le remote ID ne peut etre vide": "The remote ID cannot be empty",
         "La remote addresse ne peut etre vide": "The remote address cannot be empty",
         "La remote apikey ne peut etre vide": "The remote apikey cannot be empty",

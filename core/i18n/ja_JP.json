@@ -89,7 +89,7 @@
         "Démon": "悪魔",
         "Démarrer": "スタート",
         "Arrêter": "ストップ",
-        "Erreur sur l\\'envoi du niveau de batterie": "Erreur sur l\\'envoi du niveau de batterie",
+        "Erreur sur l\\'envoi du niveau de batterie : ": "Erreur sur l\\'envoi du niveau de batterie :",
         "Le remote ID ne peut etre vide": "Le remote ID ne peut etre vide",
         "La remote addresse ne peut etre vide": "La remote addresse ne peut etre vide",
         "La remote apikey ne peut etre vide": "La remote apikey ne peut etre vide",

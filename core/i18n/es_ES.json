@@ -89,7 +89,7 @@
         "Démon": "Demonio",
         "Démarrer": "Comienzo",
         "Arrêter": "Detener",
-        "Erreur sur l\\'envoi du niveau de batterie": "Error al enviar el nivel de batería",
+        "Erreur sur l\\'envoi du niveau de batterie : ": "Error al enviar nivel de batería:",
         "Le remote ID ne peut etre vide": "La ID remota no puede estar vacía",
         "La remote addresse ne peut etre vide": "La dirección remota no puede estar vacía",
         "La remote apikey ne peut etre vide": "La apikey remota no puede estar vacía",
