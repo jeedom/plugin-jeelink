@@ -23,8 +23,8 @@ class jeelink extends eqLogic {
 	/*     * *************************Attributs****************************** */
 
 	/*     * ***********************Methode static*************************** */
-	
-	public static function deadCmd(){
+
+	public static function deadCmd() {
 		return array();
 	}
 
@@ -42,11 +42,11 @@ class jeelink extends eqLogic {
 
 	public static function createEqLogicFromDef($_params) {
 		foreach ($_params['eqLogics'] as $eqLogic_info) {
-			log::add('jeelink','debug','Check eqLogic : '. $eqLogic_info['id'] . '::' . $_params['remote_apikey'].' with name : '.$eqLogic_info['name']);
+			log::add('jeelink', 'debug', 'Check eqLogic : ' . $eqLogic_info['id'] . '::' . $_params['remote_apikey'] . ' with name : ' . $eqLogic_info['name']);
 			$map_id = array();
 			$eqLogic = self::byLogicalId('remote::' . $eqLogic_info['id'] . '::' . $_params['remote_apikey'], 'jeelink');
 			if (!is_object($eqLogic)) {
-				log::add('jeelink','debug','EqLogic not exist create it');
+				log::add('jeelink', 'debug', 'EqLogic not exist create it');
 				$eqLogic = new jeelink();
 				utils::a2o($eqLogic, $eqLogic_info);
 				$eqLogic->setId('');
@@ -54,7 +54,7 @@ class jeelink extends eqLogic {
 				if (isset($eqLogic_info['object_name']) && $eqLogic_info['object_name'] != '') {
 					$object = jeeObject::byName($eqLogic_info['object_name']);
 					if (is_object($object)) {
-						log::add('jeelink','debug','Find match object affect it to eqLogic');
+						log::add('jeelink', 'debug', 'Find match object affect it to eqLogic');
 						$eqLogic->setObject_id($object->getId());
 					}
 				}
@@ -69,7 +69,7 @@ class jeelink extends eqLogic {
 				$eqLogic->setName($eqLogic->getName() . ' remote ' . rand(0, 9999));
 				$eqLogic->save();
 			}
-   			log::add('jeelink','debug','EqLogic save, create cmd');
+			log::add('jeelink', 'debug', 'EqLogic save, create cmd');
 			foreach ($eqLogic_info['cmds'] as &$cmd_info) {
 				if (isset($cmd_info['configuration']) && isset($cmd_info['configuration']['calculValueOffset'])) {
 					unset($cmd_info['configuration']['calculValueOffset']);
@@ -95,7 +95,7 @@ class jeelink extends eqLogic {
 					$cmd->setName($cmd->getName() . ' remote ' . rand(0, 9999));
 					$cmd->save();
 				}
-	
+
 				$map_id[$cmd_info['id']] = $cmd->getId();
 			}
 
@@ -181,17 +181,16 @@ class jeelink extends eqLogic {
 		try {
 			$eqLogic->updateSysInfo();
 		} catch (Exception $e) {
-
 		}
 	}
-	
+
 	public static function receiveBatteryLevel($_params) {
 		foreach ($_params['eqLogics'] as $eqLogic_info) {
 			$eqLogic = self::byLogicalId('remote::' . $eqLogic_info['id'] . '::' . $_params['remote_apikey'], 'jeelink');
 			if (!is_object($eqLogic)) {
-				continue;	
+				continue;
 			}
-			$eqLogic->batteryStatus($eqLogic_info['battery'],$eqLogic_info['datetime']);
+			$eqLogic->batteryStatus($eqLogic_info['battery'], $eqLogic_info['datetime']);
 		}
 	}
 
@@ -208,15 +207,15 @@ class jeelink extends eqLogic {
 			$eqLogic->updateSysInfo();
 		}
 	}
-	
-	public static function cronDaily(){
+
+	public static function cronDaily() {
 		$jeelink_masters = jeelink_master::all();
-		if(is_array($jeelink_masters) && count($jeelink_masters) > 0){
-			foreach($jeelink_masters as $jeelink_master){
-				try{
+		if (is_array($jeelink_masters) && count($jeelink_masters) > 0) {
+			foreach ($jeelink_masters as $jeelink_master) {
+				try {
 					$jeelink_master->sendBatteryToMaster();
-				}catch(Exception $e){
-					log::add('jeelink','error',$jeelink_master->getName().' '__('Erreur sur l\'envoi du niveau de batterie : ',__FILE__).$e->getMessage());
+				} catch (Exception $e) {
+					log::add('jeelink', 'error', $jeelink_master->getName() . ' ' . __('Erreur sur l\'envoi du niveau de batterie : ', __FILE__) . $e->getMessage());
 				}
 			}
 		}
@@ -239,7 +238,7 @@ class jeelink extends eqLogic {
 
 		$cmd = $this->getCmd(null, 'ping');
 		if (is_object($cmd)) {
-			try{
+			try {
 				if ($jsonrpc->sendRequest('ping')) {
 					$cmd->event(1);
 				} else {
@@ -252,7 +251,7 @@ class jeelink extends eqLogic {
 
 		$cmd = $this->getCmd(null, 'state');
 		if (is_object($cmd)) {
-			try{
+			try {
 				if ($jsonrpc->sendRequest('jeedom::isOk')) {
 					if ($jsonrpc->getResult()) {
 						$cmd->event(1);
@@ -266,10 +265,10 @@ class jeelink extends eqLogic {
 				$cmd->event(0);
 			}
 		}
-		
+
 		$cmd = $this->getCmd(null, 'updateNb');
 		if (is_object($cmd)) {
-			try{
+			try {
 				if ($jsonrpc->sendRequest('update::nbNeedUpdate')) {
 					$cmd->event($jsonrpc->getResult());
 				}
@@ -277,10 +276,10 @@ class jeelink extends eqLogic {
 				$cmd->event(0);
 			}
 		}
-		
+
 		$cmd = $this->getCmd(null, 'messageNb');
 		if (is_object($cmd)) {
-			try{
+			try {
 				if ($jsonrpc->sendRequest('message::all')) {
 					$cmd->event(count($jsonrpc->getResult()));
 				}
@@ -299,7 +298,7 @@ class jeelink extends eqLogic {
 		foreach ($this->getConfiguration('deamons') as $info) {
 			$cmd = $this->getCmd(null, 'deamonState::' . $info['id']);
 			if (is_object($cmd)) {
-				try{
+				try {
 					if ($jsonrpc->sendRequest('plugin::deamonInfo', array('plugin_id' => $info['id']))) {
 						$result = $jsonrpc->getResult();
 						if ($result['state'] == 'ok') {
@@ -374,7 +373,7 @@ class jeelink extends eqLogic {
 		$cmd->setType('info');
 		$cmd->setSubType('binary');
 		$cmd->save();
-		
+
 		$cmd = $this->getCmd(null, 'updateNb');
 		if (!is_object($cmd)) {
 			$cmd = new jeelinkCmd();
@@ -388,7 +387,7 @@ class jeelink extends eqLogic {
 		$cmd->setType('info');
 		$cmd->setSubType('numeric');
 		$cmd->save();
-		
+
 		$cmd = $this->getCmd(null, 'messageNb');
 		if (!is_object($cmd)) {
 			$cmd = new jeelinkCmd();
@@ -402,7 +401,7 @@ class jeelink extends eqLogic {
 		$cmd->setType('info');
 		$cmd->setSubType('numeric');
 		$cmd->save();
-		
+
 
 		$cmd = $this->getCmd(null, 'version');
 		if (!is_object($cmd)) {
@@ -494,8 +493,8 @@ class jeelinkCmd extends cmd {
 			$url .= '&id=' . $this->getConfiguration('remote_id');
 			if (count($_options) > 0) {
 				foreach ($_options as $key => $value) {
-					if(in_array($key,array('apikey','id'))){
-						continue;	
+					if (in_array($key, array('apikey', 'id'))) {
+						continue;
 					}
 					$url .= '&' . $key . '=' . urlencode($value);
 				}
@@ -629,19 +628,19 @@ class jeelink_master {
 				$listener = new listener();
 				$listener->setClass(__CLASS__);
 				$listener->setFunction('sendEvent');
-				$listener->setOption(array('background' => 0, 'master_id' => intval($this->getId()), 'eqLogic_id' => intval($eqLogic->getId()),'listenner_number' => $listenner_number));
+				$listener->setOption(array('background' => 0, 'master_id' => intval($this->getId()), 'eqLogic_id' => intval($eqLogic->getId()), 'listenner_number' => $listenner_number));
 				$listener->emptyEvent();
 				$count = 0;
 				foreach ($eqLogic->getCmd('info') as $cmd) {
 					$listener->addEvent('#' . $cmd->getId() . '#');
 					$count++;
-					if($count > 15){
+					if ($count > 15) {
 						$listener->save();
 						$listenner_number++;
 						$listener = new listener();
 						$listener->setClass(__CLASS__);
 						$listener->setFunction('sendEvent');
-						$listener->setOption(array('background' => 0, 'master_id' => intval($this->getId()), 'eqLogic_id' => intval($eqLogic->getId()),'listenner_number' => $listenner_number));
+						$listener->setOption(array('background' => 0, 'master_id' => intval($this->getId()), 'eqLogic_id' => intval($eqLogic->getId()), 'listenner_number' => $listenner_number));
 						$listener->emptyEvent();
 					}
 				}
@@ -658,8 +657,8 @@ class jeelink_master {
 	public function remove() {
 		return DB::remove($this);
 	}
-	
-	public function sendBatteryToMaster(){
+
+	public function sendBatteryToMaster() {
 		$toSend = array(
 			'eqLogics' => array(),
 			'remote_apikey' => jeedom::getApiKey('jeelink'),
@@ -672,7 +671,7 @@ class jeelink_master {
 				}
 				$toSend['eqLogics'][$eqLogic->getId()] = array(
 					'battery' => $eqLogic->getStatus('battery', -2),
-					'datetime' => $eqLogic->getStatus('batteryDatetime',date('Y-m-d H:i:s')),
+					'datetime' => $eqLogic->getStatus('batteryDatetime', date('Y-m-d H:i:s')),
 					'id' => $eqLogic->getId()
 				);
 			}
@@ -744,7 +743,6 @@ class jeelink_master {
 				}
 			}
 		}
-
 	}
 
 	/*     * **********************Getteur Setteur*************************** */
@@ -788,7 +786,4 @@ class jeelink_master {
 	public function setConfiguration($_key, $_value) {
 		$this->configuration = utils::setJsonAttr($this->configuration, $_key, $_value);
 	}
-
 }
-
-?>
