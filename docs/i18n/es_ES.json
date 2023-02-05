@@ -65,6 +65,7 @@
         "et celles avec un fond noir au": "y los que tienen fondo negro",
         "Configuration du plugin": "Configuración del plugin",
         "Ce plugin ne nécessite pas de configuration particulière et doit simplement être activé après l'installation": "Este complemento no requiere ninguna configuración especial y simplemente debe activarse después de la instalación",
+        "Attention la désactivation du plugin entraine la suppression des jeedoms cibles du plugin sans aucun moyen de les récuperer (hormis restorer un backup": "Tenga en cuenta que la desactivación del complemento conduce a la eliminación de los problemas de destino del complemento sin ningún medio para recuperarlos (excepto restaurar una copia de seguridad",
         "source & cible": "origen Destino",
         "Les configurations réseaux de l'ensemble des Jeedoms": "Las configuraciones de red de todos los Jeedoms",
         "doivent IMPERATIVEMENT être OK sinon le plugin ne fonctionnera pas": "DEBE estar bien, de lo contrario el complemento no funcionará",
