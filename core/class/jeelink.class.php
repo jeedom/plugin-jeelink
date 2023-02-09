@@ -110,9 +110,6 @@ class jeelink extends eqLogic {
 				if (!is_object($cmd)) {
 					continue;
 				}
-				if ($cmd->getValue() != '') {
-					continue;
-				}
 				$cmd->setValue($map_id[$cmd_info['value']]);
 				$cmd->save();
 			}
