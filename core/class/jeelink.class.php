@@ -518,10 +518,11 @@ class jeelinkCmd extends cmd {
 				$request_http->exec(60);
 			}catch(Exception $e){
 				if( $eqLogic->getConfiguration('remote_address_secondary') != ''){
+				  	log::add('jeelink','debug',__('Erreur de l\'execution de la commande, essai par le lien secondaire',__FILE__));
 					$base_url = $eqLogic->getConfiguration('remote_address_secondary') . '/core/api/jeeApi.php?plugin=jeelink&type=cmd&apikey=' . $eqLogic->getConfiguration('remote_apikey')
+					$request_http = new com_http($base_url.$url);
+					$request_http->exec(60);
 				}
-				$request_http = new com_http($base_url.$url);
-				$request_http->exec(60);
 			}
 			
 			return;
