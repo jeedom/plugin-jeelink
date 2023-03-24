@@ -81,7 +81,18 @@ $masters = jeelink_master::all();
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-md-2 control-label">{{Mode d'accès}}
+							<label class="col-md-2 control-label">{{Mode d'accès principal}}
+								<sup><i class="fas fa-question-circle tooltips" title="{{Renseigner le type d'accès : interne (réseau local) ou externe (accès distant)}}"></i></sup>
+							</label>
+							<div class="col-md-5">
+								<select class="jeeLinkMasterAttr form-control" data-l1key="configuration" data-l2key="network::access_main">
+									<option value="internal">{{Interne}}</option>
+									<option value="external">{{Externe}}</option>
+								</select>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-md-2 control-label">{{Mode d'accès secondaire}}
 								<sup><i class="fas fa-question-circle tooltips" title="{{Renseigner le type d'accès : interne (réseau local) ou externe (accès distant)}}"></i></sup>
 							</label>
 							<div class="col-md-5">
