@@ -486,8 +486,12 @@ class jeelinkCmd extends cmd {
 	public function execute($_options = array()) {
 		$eqLogic = $this->getEqLogic();
 		if ($eqLogic->getConfiguration('remote_id') != 'core') {
-			$url = $eqLogic->getConfiguration('remote_address') . '/core/api/jeeApi.php?plugin=jeelink&type=cmd&apikey=' . $eqLogic->getConfiguration('remote_apikey');
-			$url .= '&id=' . $this->getConfiguration('remote_id');
+		        if( $eqLogic->getConfiguration('remote_address_internal') != ''){
+				$base_url = $eqLogic->getConfiguration('remote_address_internal') . '/core/api/jeeApi.php?plugin=jeelink&type=cmd&apikey=' . $eqLogic->getConfiguration('remote_apikey')
+			}else{
+			   	$base_url = $eqLogic->getConfiguration('remote_address') . '/core/api/jeeApi.php?plugin=jeelink&type=cmd&apikey=' . $eqLogic->getConfiguration('remote_apikey')
+			}
+			$url = '&id=' . $this->getConfiguration('remote_id');
 			if (count($_options) > 0) {
 				foreach ($_options as $key => $value) {
 					if (in_array($key, array('apikey', 'id'))) {
@@ -496,8 +500,18 @@ class jeelinkCmd extends cmd {
 					$url .= '&' . $key . '=' . urlencode($value);
 				}
 			}
-			$request_http = new com_http($url);
-			$request_http->exec(60);
+			
+			try{
+				$request_http = new com_http($base_url.$url);
+				$request_http->exec(60);
+			}catch(Exception $e){
+				if( $eqLogic->getConfiguration('remote_address_internal') != ''){
+					$base_url = $eqLogic->getConfiguration('remote_address') . '/core/api/jeeApi.php?plugin=jeelink&type=cmd&apikey=' . $eqLogic->getConfiguration('remote_apikey')
+				}
+				$request_http = new com_http($base_url.$url);
+				$request_http->exec(60);
+			}
+			
 			return;
 		}
 
