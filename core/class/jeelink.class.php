@@ -60,7 +60,13 @@ class jeelink extends eqLogic {
 				}
 			}
 			$eqLogic->setConfiguration('remote_id', $eqLogic_info['id']);
-			$eqLogic->setConfiguration('remote_address', $_params['address']);
+			if(isset($_params['address'])){
+				$eqLogic->setConfiguration('remote_address', $_params['address']);
+			}else{
+				$eqLogic->setConfiguration('remote_address', $_params['address_primary']);
+			}
+			$eqLogic->setConfiguration('remote_address_primary', $_params['address_primary']);
+			$eqLogic->setConfiguration('remote_address_secondary', $_params['address_secondary']);
 			$eqLogic->setConfiguration('remote_apikey', $_params['remote_apikey']);
 			$eqLogic->setEqType_name('jeelink');
 			try {
@@ -121,7 +127,13 @@ class jeelink extends eqLogic {
 			$eqLogic->setIsEnable(1);
 		}
 		$eqLogic->setConfiguration('remote_id', 'core');
-		$eqLogic->setConfiguration('remote_address', $_params['address']);
+		if(isset($_params['address'])){
+			$eqLogic->setConfiguration('remote_address', $_params['address']);
+		}else{
+			$eqLogic->setConfiguration('remote_address', $_params['address_primary']);
+		}
+		$eqLogic->setConfiguration('remote_address_primary', $_params['address_primary']);
+		$eqLogic->setConfiguration('remote_address_secondary', $_params['address_secondary']);
 		$eqLogic->setConfiguration('remote_apikey', $_params['remote_apikey']);
 		$eqLogic->setConfiguration('deamons', $_params['deamons']);
 		$eqLogic->setEqType_name('jeelink');
@@ -486,8 +498,8 @@ class jeelinkCmd extends cmd {
 	public function execute($_options = array()) {
 		$eqLogic = $this->getEqLogic();
 		if ($eqLogic->getConfiguration('remote_id') != 'core') {
-		        if( $eqLogic->getConfiguration('remote_address_internal') != ''){
-				$base_url = $eqLogic->getConfiguration('remote_address_internal') . '/core/api/jeeApi.php?plugin=jeelink&type=cmd&apikey=' . $eqLogic->getConfiguration('remote_apikey')
+		        if( $eqLogic->getConfiguration('remote_address_primary') != ''){
+				$base_url = $eqLogic->getConfiguration('remote_address_primary') . '/core/api/jeeApi.php?plugin=jeelink&type=cmd&apikey=' . $eqLogic->getConfiguration('remote_apikey')
 			}else{
 			   	$base_url = $eqLogic->getConfiguration('remote_address') . '/core/api/jeeApi.php?plugin=jeelink&type=cmd&apikey=' . $eqLogic->getConfiguration('remote_apikey')
 			}
@@ -505,8 +517,8 @@ class jeelinkCmd extends cmd {
 				$request_http = new com_http($base_url.$url);
 				$request_http->exec(60);
 			}catch(Exception $e){
-				if( $eqLogic->getConfiguration('remote_address_internal') != ''){
-					$base_url = $eqLogic->getConfiguration('remote_address') . '/core/api/jeeApi.php?plugin=jeelink&type=cmd&apikey=' . $eqLogic->getConfiguration('remote_apikey')
+				if( $eqLogic->getConfiguration('remote_address_secondary') != ''){
+					$base_url = $eqLogic->getConfiguration('remote_address_secondary') . '/core/api/jeeApi.php?plugin=jeelink&type=cmd&apikey=' . $eqLogic->getConfiguration('remote_apikey')
 				}
 				$request_http = new com_http($base_url.$url);
 				$request_http->exec(60);
@@ -701,7 +713,9 @@ class jeelink_master {
 	public function sendEqlogicToMaster() {
 		$toSend = array(
 			'eqLogics' => array(),
-			'address' => network::getNetworkAccess($this->getConfiguration('network::access')),
+			'address_primary' => network::getNetworkAccess($this->getConfiguration('network::access_primary')),
+			'address_secondary' => network::getNetworkAccess($this->getConfiguration('network::access_secondary')),
+			'address' => network::getNetworkAccess($this->getConfiguration('network::access_primary',$this->getConfiguration('network::access_secondary',$this->getConfiguration('network::access')))),
 			'remote_apikey' => jeedom::getApiKey('jeelink'),
 			'name' => config::byKey('name', 'core', 'Jeedom'),
 		);
