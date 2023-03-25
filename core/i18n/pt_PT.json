@@ -15,10 +15,11 @@
         "Clé API Jeedom Link": "Chave da API Jeedom Link",
         "Indiquer la clé API Jeedom Link du Jeedom cible": "Indique a chave da API do Jeedom Link do Jeedom de destino",
         "Clé API Jeedom Link du Jeedom cible": "Chave de API do Jeedom Link do Jeedom de destino",
-        "Mode d'accès": "Modo de acesso",
+        "Mode d'accès principal": "Modo de acesso principal",
         "Renseigner le type d'accès : interne (réseau local) ou externe (accès distant)": "Digite o tipo de acesso: interno (rede local) ou externo (acesso remoto)",
         "Interne": "Interno",
         "Externe": "Externo",
+        "Mode d'accès secondaire": "Modo de acesso secundário",
         "Ajouter un équipement": "Adicionar equipamento",
         "Equipements sélectionnés": "Equipamento selecionado",
         "Nom de l\\'équipement": "Nome do equipamento",
@@ -101,7 +102,8 @@
         "Version": "Versão",
         "Redémarrer": "Restart",
         "Mettre à jour": "Atualizar",
-        "Lancer un backup": "Iniciar um backup"
+        "Lancer un backup": "Iniciar um backup",
+        "Erreur de l\\'execution de la commande, essai par le lien secondaire": "Erro ao executar o comando, tente usar o link secundário"
     },
     "plugins\/jeelink\/core\/api\/jeelink.api.php": {
         "JSONRPC object not defined": "Objeto JSONRPC não definido"
