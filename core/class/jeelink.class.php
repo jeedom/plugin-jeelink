@@ -499,9 +499,9 @@ class jeelinkCmd extends cmd {
 		$eqLogic = $this->getEqLogic();
 		if ($eqLogic->getConfiguration('remote_id') != 'core') {
 		        if( $eqLogic->getConfiguration('remote_address_primary') != ''){
-				$base_url = $eqLogic->getConfiguration('remote_address_primary') . '/core/api/jeeApi.php?plugin=jeelink&type=cmd&apikey=' . $eqLogic->getConfiguration('remote_apikey')
+				$base_url = $eqLogic->getConfiguration('remote_address_primary') . '/core/api/jeeApi.php?plugin=jeelink&type=cmd&apikey=' . $eqLogic->getConfiguration('remote_apikey');
 			}else{
-			   	$base_url = $eqLogic->getConfiguration('remote_address') . '/core/api/jeeApi.php?plugin=jeelink&type=cmd&apikey=' . $eqLogic->getConfiguration('remote_apikey')
+			   	$base_url = $eqLogic->getConfiguration('remote_address') . '/core/api/jeeApi.php?plugin=jeelink&type=cmd&apikey=' . $eqLogic->getConfiguration('remote_apikey');
 			}
 			$url = '&id=' . $this->getConfiguration('remote_id');
 			if (count($_options) > 0) {
@@ -519,7 +519,7 @@ class jeelinkCmd extends cmd {
 			}catch(Exception $e){
 				if( $eqLogic->getConfiguration('remote_address_secondary') != ''){
 				  	log::add('jeelink','debug',__('Erreur de l\'execution de la commande, essai par le lien secondaire',__FILE__));
-					$base_url = $eqLogic->getConfiguration('remote_address_secondary') . '/core/api/jeeApi.php?plugin=jeelink&type=cmd&apikey=' . $eqLogic->getConfiguration('remote_apikey')
+					$base_url = $eqLogic->getConfiguration('remote_address_secondary') . '/core/api/jeeApi.php?plugin=jeelink&type=cmd&apikey=' . $eqLogic->getConfiguration('remote_apikey');
 					$request_http = new com_http($base_url.$url);
 					$request_http->exec(60);
 				}
