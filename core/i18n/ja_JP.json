@@ -82,6 +82,7 @@
     },
     "plugins\/jeelink\/core\/ajax\/jeelink.ajax.php": {
         "401 - Accès non autorisé": "401-不正アクセス",
+        "Le nom du Jeedom cible ne peut etre vide": "Le nom du Jeedom cible ne peut etre vide",
         "Jeelink inconnu : ": "Jeelink inconnu :",
         "Aucune méthode correspondante à : ": "以下に対応するメソッドはありません："
     },
