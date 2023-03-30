@@ -143,54 +143,53 @@ class jeelink extends eqLogic {
 			$eqLogic->setName($eqLogic->getName() . ' remote ' . rand(0, 9999));
 			$eqLogic->save();
 		}
-		$i = 0;
-		foreach ($_params['deamons'] as $info) {
-			$cmd = $eqLogic->getCmd(null, 'deamonState::' . $info['id']);
-			if (!is_object($cmd)) {
-				$cmd = new jeelinkCmd();
-				$cmd->setName(__('Démon', __FILE__) . ' ' . $info['name']);
-				$cmd->setTemplate('mobile', 'line');
-				$cmd->setTemplate('dashboard', 'line');
-				$cmd->setOrder(100 + $i);
-			}
-			$cmd->setConfiguration('remote_plugin_id', $info['id']);
-			$cmd->setEqLogic_id($eqLogic->getId());
-			$cmd->setLogicalId('deamonState::' . $info['id']);
-			$cmd->setType('info');
-			$cmd->setSubType('binary');
-			$cmd->save();
+		if(isset($_params['deamons']) && count($_params['deamons']) > 0){
+			$i = 0;
+			foreach ($_params['deamons'] as $info) {
+				$cmd = $eqLogic->getCmd(null, 'deamonState::' . $info['id']);
+				if (!is_object($cmd)) {
+					$cmd = new jeelinkCmd();
+					$cmd->setName(__('Démon', __FILE__) . ' ' . $info['name']);
+					$cmd->setTemplate('mobile', 'line');
+					$cmd->setTemplate('dashboard', 'line');
+					$cmd->setOrder(100 + $i);
+				}
+				$cmd->setConfiguration('remote_plugin_id', $info['id']);
+				$cmd->setEqLogic_id($eqLogic->getId());
+				$cmd->setLogicalId('deamonState::' . $info['id']);
+				$cmd->setType('info');
+				$cmd->setSubType('binary');
+				$cmd->save();
 
-			$cmd = $eqLogic->getCmd(null, 'deamonStart::' . $info['id']);
-			if (!is_object($cmd)) {
-				$cmd = new jeelinkCmd();
-				$cmd->setName(__('Démarrer', __FILE__) . ' ' . $info['name']);
-				$cmd->setOrder(101 + $i);
-			}
-			$cmd->setConfiguration('remote_plugin_id', $info['id']);
-			$cmd->setEqLogic_id($eqLogic->getId());
-			$cmd->setLogicalId('deamonStart::' . $info['id']);
-			$cmd->setType('action');
-			$cmd->setSubType('other');
-			$cmd->save();
+				$cmd = $eqLogic->getCmd(null, 'deamonStart::' . $info['id']);
+				if (!is_object($cmd)) {
+					$cmd = new jeelinkCmd();
+					$cmd->setName(__('Démarrer', __FILE__) . ' ' . $info['name']);
+					$cmd->setOrder(101 + $i);
+				}
+				$cmd->setConfiguration('remote_plugin_id', $info['id']);
+				$cmd->setEqLogic_id($eqLogic->getId());
+				$cmd->setLogicalId('deamonStart::' . $info['id']);
+				$cmd->setType('action');
+				$cmd->setSubType('other');
+				$cmd->save();
 
-			$cmd = $eqLogic->getCmd(null, 'deamonStop::' . $info['id']);
-			if (!is_object($cmd)) {
-				$cmd = new jeelinkCmd();
-				$cmd->setName(__('Arrêter', __FILE__) . ' ' . $info['name']);
-				$cmd->setOrder(102 + $i);
+				$cmd = $eqLogic->getCmd(null, 'deamonStop::' . $info['id']);
+				if (!is_object($cmd)) {
+					$cmd = new jeelinkCmd();
+					$cmd->setName(__('Arrêter', __FILE__) . ' ' . $info['name']);
+					$cmd->setOrder(102 + $i);
+				}
+				$cmd->setConfiguration('remote_plugin_id', $info['id']);
+				$cmd->setEqLogic_id($eqLogic->getId());
+				$cmd->setLogicalId('deamonStop::' . $info['id']);
+				$cmd->setType('action');
+				$cmd->setSubType('other');
+				$cmd->save();
+				$i += 10;
 			}
-			$cmd->setConfiguration('remote_plugin_id', $info['id']);
-			$cmd->setEqLogic_id($eqLogic->getId());
-			$cmd->setLogicalId('deamonStop::' . $info['id']);
-			$cmd->setType('action');
-			$cmd->setSubType('other');
-			$cmd->save();
-			$i += 10;
 		}
-		try {
-			$eqLogic->updateSysInfo();
-		} catch (Exception $e) {
-		}
+		
 	}
 
 	public static function receiveBatteryLevel($_params) {
@@ -707,11 +706,18 @@ class jeelink_master {
 		$jsonrpc = new jsonrpcClient($this->getAddress() . '/core/api/jeeApi.php', '', $params);
 		$jsonrpc->setNoSslCheck(true);
 		if (!$jsonrpc->sendRequest('eqLogicBattery', $toSend, 300)) {
-			throw new Exception($jsonrpc->getError(), $jsonrpc->getErrorCode());
+			sleep(1);
+			if (!$jsonrpc->sendRequest('eqLogicBattery', $toSend, 300)) {
+				throw new Exception($jsonrpc->getError(), $jsonrpc->getErrorCode());
+			}
 		}
 	}
 
 	public function sendEqlogicToMaster() {
+		$params = array(
+			'apikey' => $this->getApikey(),
+			'plugin' => 'jeelink',
+		);
 		$toSend = array(
 			'eqLogics' => array(),
 			'address_primary' => network::getNetworkAccess($this->getConfiguration('network::access_primary')),
@@ -720,28 +726,6 @@ class jeelink_master {
 			'remote_apikey' => jeedom::getApiKey('jeelink'),
 			'name' => config::byKey('name', 'core', 'Jeedom'),
 		);
-		if (is_array($this->getConfiguration('eqLogics'))) {
-			foreach ($this->getConfiguration('eqLogics') as $eqLogic_info) {
-				$eqLogic = eqLogic::byId(str_replace('eqLogic', '', str_replace('#', '', $eqLogic_info['eqLogic'])));
-				if (!is_object($eqLogic)) {
-					continue;
-				}
-				$toSend['eqLogics'][$eqLogic->getId()] = utils::o2a($eqLogic);
-				$toSend['eqLogics'][$eqLogic->getId()]['configuration']['real_eqType'] = $eqLogic->getEqType_name();
-				$toSend['eqLogics'][$eqLogic->getId()]['object_name'] = '';
-				$object = $eqLogic->getObject();
-				if (is_object($object)) {
-					$toSend['eqLogics'][$eqLogic->getId()]['object_name'] = $object->getName();
-				}
-				unset($toSend['eqLogics'][$eqLogic->getId()]['html']);
-				$toSend['eqLogics'][$eqLogic->getId()]['cmds'] = array();
-				foreach ($eqLogic->getCmd() as $cmd) {
-					$toSend['eqLogics'][$eqLogic->getId()]['cmds'][$cmd->getId()] = utils::o2a($cmd);
-					$toSend['eqLogics'][$eqLogic->getId()]['cmds'][$cmd->getId()]['configuration']['real_eqType'] = $cmd->getEqType_name();
-					$toSend['eqLogics'][$eqLogic->getId()]['cmds'][$cmd->getId()]['configuration']['real_logicalId'] = $cmd->getLogicalId();
-				}
-			}
-		}
 		$toSend['deamons'] = array();
 		foreach (plugin::listPlugin(true) as $plugin) {
 			if ($plugin->getHasOwnDeamon() != 1) {
@@ -749,15 +733,67 @@ class jeelink_master {
 			}
 			$toSend['deamons'][] = array('id' => $plugin->getId(), 'name' => $plugin->getName());
 		}
-		$params = array(
-			'apikey' => $this->getApikey(),
-			'plugin' => 'jeelink',
-		);
 		$jsonrpc = new jsonrpcClient($this->getAddress() . '/core/api/jeeApi.php', '', $params);
 		$jsonrpc->setNoSslCheck(true);
 		if (!$jsonrpc->sendRequest('createEqLogic', $toSend, 300)) {
 			throw new Exception($jsonrpc->getError(), $jsonrpc->getErrorCode());
 		}
+		unset($toSend['deamons']);
+		if (is_array($this->getConfiguration('eqLogics'))) {
+			$i=0;
+			foreach ($this->getConfiguration('eqLogics') as $eqLogic_info) {
+				$eqLogic = eqLogic::byId(str_replace('eqLogic', '', str_replace('#', '', $eqLogic_info['eqLogic'])));
+				if (!is_object($eqLogic)) {
+					continue;
+				}
+				$i++;
+				$toSend['eqLogics'][$eqLogic->getId()] = utils::o2a($eqLogic);
+				$toSend['eqLogics'][$eqLogic->getId()]['configuration']['real_eqType'] = $eqLogic->getEqType_name();
+				unset($toSend['eqLogics'][$eqLogic->getId()]['object_id']);
+				$toSend['eqLogics'][$eqLogic->getId()]['object_name'] = '';
+				$object = $eqLogic->getObject();
+				if (is_object($object)) {
+					$toSend['eqLogics'][$eqLogic->getId()]['object_name'] = $object->getName();
+				}
+				unset($toSend['eqLogics'][$eqLogic->getId()]['html']);
+				unset($toSend['eqLogics'][$eqLogic->getId()]['cache']);
+				$toSend['eqLogics'][$eqLogic->getId()]['cmds'] = array();
+				foreach ($eqLogic->getCmd() as $cmd) {
+					$toSend['eqLogics'][$eqLogic->getId()]['cmds'][$cmd->getId()] = utils::o2a($cmd);
+					$toSend['eqLogics'][$eqLogic->getId()]['cmds'][$cmd->getId()]['configuration']['real_eqType'] = $cmd->getEqType_name();
+					$toSend['eqLogics'][$eqLogic->getId()]['cmds'][$cmd->getId()]['configuration']['real_logicalId'] = $cmd->getLogicalId();
+				}
+				if($i>9){
+					$jsonrpc = new jsonrpcClient($this->getAddress() . '/core/api/jeeApi.php', '', $params);
+					$jsonrpc->setNoSslCheck(true);
+					if (!$jsonrpc->sendRequest('createEqLogic', $toSend, 300)) {
+						sleep(1);
+						if (!$jsonrpc->sendRequest('createEqLogic', $toSend, 300)) {
+							sleep(1);
+							if (!$jsonrpc->sendRequest('createEqLogic', $toSend, 300)) {
+								throw new Exception($jsonrpc->getError(), $jsonrpc->getErrorCode());
+							}
+						}
+					}
+					$toSend['eqLogics'] = array();
+					$i=0;
+				}
+			}
+			$jsonrpc = new jsonrpcClient($this->getAddress() . '/core/api/jeeApi.php', '', $params);
+			$jsonrpc->setNoSslCheck(true);
+			if (!$jsonrpc->sendRequest('createEqLogic', $toSend, 300)) {
+				sleep(1);
+				if (!$jsonrpc->sendRequest('createEqLogic', $toSend, 300)) {
+					sleep(1);
+					if (!$jsonrpc->sendRequest('createEqLogic', $toSend, 300)) {
+						throw new Exception($jsonrpc->getError(), $jsonrpc->getErrorCode());
+					}
+				}
+			}
+		}
+		
+		
+		
 		if (is_array($this->getConfiguration('eqLogics'))) {
 			foreach ($this->getConfiguration('eqLogics') as $eqLogic_info) {
 				$eqLogic = eqLogic::byId(str_replace('eqLogic', '', str_replace('#', '', $eqLogic_info['eqLogic'])));
