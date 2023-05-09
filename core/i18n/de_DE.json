@@ -61,6 +61,7 @@
         "Type": "Typ",
         "ID source": "Quell-ID",
         "Paramètres": "Einstellungen",
+        "Valeur": "Wert",
         "Actions": "Anteile"
     },
     "plugins\/jeelink\/desktop\/js\/jeelink.js": {

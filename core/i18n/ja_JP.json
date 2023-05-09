@@ -61,6 +61,7 @@
         "Type": "Type",
         "ID source": "ID source",
         "Paramètres": "設定",
+        "Valeur": "Valeur",
         "Actions": "Actions"
     },
     "plugins\/jeelink\/desktop\/js\/jeelink.js": {

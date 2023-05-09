@@ -61,6 +61,7 @@
         "Type": "Escribe",
         "ID source": "ID de fuente",
         "Paramètres": "Configuraciones",
+        "Valeur": "Valor",
         "Actions": "Comparte"
     },
     "plugins\/jeelink\/desktop\/js\/jeelink.js": {
