@@ -326,13 +326,13 @@ class jeelink extends eqLogic {
 
 	public function preSave() {
 		if ($this->getConfiguration('remote_id') == '') {
-			throw new Exception(__('Le remote ID ne peut etre vide', __FILE__));
+			throw new Exception(__('Le remote ID ne peut être vide', __FILE__));
 		}
 		if ($this->getConfiguration('remote_address') == '') {
-			throw new Exception(__('La remote addresse ne peut etre vide', __FILE__));
+			throw new Exception(__('La remote adresse ne peut être vide', __FILE__));
 		}
 		if ($this->getConfiguration('remote_apikey') == '') {
-			throw new Exception(__('La remote apikey ne peut etre vide', __FILE__));
+			throw new Exception(__('La remote apikey ne peut être vide', __FILE__));
 		}
 		$this->setLogicalId('remote::' . $this->getConfiguration('remote_id') . '::' . $this->getConfiguration('remote_apikey'));
 	}
@@ -487,7 +487,7 @@ class jeelinkCmd extends cmd {
 	public function preSave() {
 		$eqLogic = $this->getEqLogic();
 		if ($eqLogic->getConfiguration('remote_id') != 'core' && $this->getConfiguration('remote_id') == '') {
-			throw new Exception(__('Le remote ID ne peut etre vide', __FILE__));
+			throw new Exception(__('Le remote ID ne peut être vide', __FILE__));
 		}
 		if ($eqLogic->getConfiguration('remote_id') != 'core') {
 			$this->setLogicalId('remote::' . $this->getConfiguration('remote_id') . '::' . $eqLogic->getConfiguration('remote_apikey'));
@@ -517,7 +517,7 @@ class jeelinkCmd extends cmd {
 				$request_http->exec(60);
 			}catch(Exception $e){
 				if( $eqLogic->getConfiguration('remote_address_secondary') != ''){
-				  	log::add('jeelink','debug',__('Erreur de l\'execution de la commande, essai par le lien secondaire',__FILE__));
+				  	log::add('jeelink','debug',__('Erreur de l\'exécution de la commande, essai par le lien secondaire',__FILE__));
 					$base_url = $eqLogic->getConfiguration('remote_address_secondary') . '/core/api/jeeApi.php?plugin=jeelink&type=cmd&apikey=' . $eqLogic->getConfiguration('remote_apikey');
 					$request_http = new com_http($base_url.$url);
 					$request_http->exec(60);
