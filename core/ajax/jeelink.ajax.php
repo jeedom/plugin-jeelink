@@ -27,7 +27,7 @@ try {
 	if (init('action') == 'save_jeelinkMaster') {
 		$jeelinkMasterSave = jeedom::fromHumanReadable(json_decode(init('jeelink_master'), true));
 		$jeelink_master = jeelink_master::byId($jeelinkMasterSave['id']);
-		if ($jeelinkMasterSave["name"] == '') throw new Exception(__('Le nom du Jeedom cible ne peut etre vide', __FILE__));
+		if ($jeelinkMasterSave["name"] == '') throw new Exception(__('Le nom du Jeedom cible ne peut être vide', __FILE__));
 		if (!is_object($jeelink_master)) {
 			$jeelink_master = new jeelink_master();
 		}
