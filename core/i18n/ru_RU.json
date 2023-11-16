@@ -83,7 +83,7 @@
     },
     "plugins\/jeelink\/core\/ajax\/jeelink.ajax.php": {
         "401 - Accès non autorisé": "401 - Несанкционированный доступ",
-        "Le nom du Jeedom cible ne peut etre vide": "Le nom du Jeedom cible ne peut etre vide",
+        "Le nom du Jeedom cible ne peut être vide": "Le nom du Jeedom cible ne peut etre vide",
         "Jeelink inconnu : ": "Jeelink inconnu :",
         "Aucune méthode correspondante à : ": "Aucune methode correspondante à :"
     },
@@ -93,9 +93,9 @@
         "Démarrer": "Démarrer",
         "Arrêter": "Стоп",
         "Erreur sur l\\'envoi du niveau de batterie : ": "Erreur sur l\\'envoi du niveau de batterie :",
-        "Le remote ID ne peut etre vide": "Le remote ID ne peut etre vide",
-        "La remote addresse ne peut etre vide": "La remote addresse ne peut etre vide",
-        "La remote apikey ne peut etre vide": "La remote apikey ne peut etre vide",
+        "Le remote ID ne peut être vide": "Le remote ID ne peut etre vide",
+        "La remote adresse ne peut être vide": "La remote adresse ne peut être vide",
+        "La remote apikey ne peut être vide": "La remote apikey ne peut etre vide",
         "Rafraichir": "Обновить",
         "Joignable": "Joignable",
         "Statut": "статус",
@@ -105,7 +105,7 @@
         "Redémarrer": "Перезагрузить",
         "Mettre à jour": "Обновление",
         "Lancer un backup": "Lancer un backup",
-        "Erreur de l\\'execution de la commande, essai par le lien secondaire": "Erreur de l\\'execution de la commande, essai par le lien secondaire"
+        "Erreur de l\\'exécution de la commande, essai par le lien secondaire": "Erreur de l\\'execution de la commande, essai par le lien secondaire"
     },
     "plugins\/jeelink\/core\/api\/jeelink.api.php": {
         "JSONRPC object not defined": "JSONRPC object not defined"
