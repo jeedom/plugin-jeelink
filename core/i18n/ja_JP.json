@@ -61,6 +61,7 @@
         "Type": "Type",
         "ID source": "ID source",
         "Paramètres": "設定",
+        "Valeur": "Valeur",
         "Actions": "Actions"
     },
     "plugins\/jeelink\/desktop\/js\/jeelink.js": {
@@ -82,7 +83,7 @@
     },
     "plugins\/jeelink\/core\/ajax\/jeelink.ajax.php": {
         "401 - Accès non autorisé": "401-不正アクセス",
-        "Le nom du Jeedom cible ne peut etre vide": "Le nom du Jeedom cible ne peut etre vide",
+        "Le nom du Jeedom cible ne peut être vide": "Le nom du Jeedom cible ne peut etre vide",
         "Jeelink inconnu : ": "Jeelink inconnu :",
         "Aucune méthode correspondante à : ": "以下に対応するメソッドはありません："
     },
@@ -92,9 +93,9 @@
         "Démarrer": "スタート",
         "Arrêter": "ストップ",
         "Erreur sur l\\'envoi du niveau de batterie : ": "Erreur sur l\\'envoi du niveau de batterie :",
-        "Le remote ID ne peut etre vide": "Le remote ID ne peut etre vide",
-        "La remote addresse ne peut etre vide": "La remote addresse ne peut etre vide",
-        "La remote apikey ne peut etre vide": "La remote apikey ne peut etre vide",
+        "Le remote ID ne peut être vide": "Le remote ID ne peut etre vide",
+        "La remote adresse ne peut être vide": "La remote adresse ne peut être vide",
+        "La remote apikey ne peut être vide": "La remote apikey ne peut etre vide",
         "Rafraichir": "クール",
         "Joignable": "Joignable",
         "Statut": "ステータス",
@@ -104,7 +105,7 @@
         "Redémarrer": "再起動",
         "Mettre à jour": "更新する",
         "Lancer un backup": "Lancer un backup",
-        "Erreur de l\\'execution de la commande, essai par le lien secondaire": "Erreur de l\\'execution de la commande, essai par le lien secondaire"
+        "Erreur de l\\'exécution de la commande, essai par le lien secondaire": "Erreur de l\\'execution de la commande, essai par le lien secondaire"
     },
     "plugins\/jeelink\/core\/api\/jeelink.api.php": {
         "JSONRPC object not defined": "JSONRPC object not defined"

@@ -61,6 +61,7 @@
         "Type": "Typ",
         "ID source": "Quell-ID",
         "Paramètres": "Einstellungen",
+        "Valeur": "Wert",
         "Actions": "Anteile"
     },
     "plugins\/jeelink\/desktop\/js\/jeelink.js": {
@@ -82,7 +83,7 @@
     },
     "plugins\/jeelink\/core\/ajax\/jeelink.ajax.php": {
         "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
-        "Le nom du Jeedom cible ne peut etre vide": "Der Name des Ziel-Jeedom darf nicht leer sein",
+        "Le nom du Jeedom cible ne peut être vide": "Der Name des Ziel-Jeedom darf nicht leer sein",
         "Jeelink inconnu : ": "Unbekannter Jeelink:",
         "Aucune méthode correspondante à : ": "Keine Methode entsprechend:"
     },
@@ -92,9 +93,9 @@
         "Démarrer": "Start",
         "Arrêter": "Beenden",
         "Erreur sur l\\'envoi du niveau de batterie : ": "Fehler beim Senden des Akkustands:",
-        "Le remote ID ne peut etre vide": "Die Remote-ID darf nicht leer sein",
-        "La remote addresse ne peut etre vide": "Die Remote-Adresse darf nicht leer sein",
-        "La remote apikey ne peut etre vide": "Das Remote-Apikey kann nicht leer sein",
+        "Le remote ID ne peut être vide": "Die Remote-ID darf nicht leer sein",
+        "La remote adresse ne peut être vide": "Die Remote-Adresse darf nicht leer sein",
+        "La remote apikey ne peut être vide": "Das Remote-Apikey kann nicht leer sein",
         "Rafraichir": "Aktualisieren",
         "Joignable": "Erreichbar",
         "Statut": "Status",
@@ -104,7 +105,7 @@
         "Redémarrer": "Neu starten",
         "Mettre à jour": "Update",
         "Lancer un backup": "Starten Sie ein Backup",
-        "Erreur de l\\'execution de la commande, essai par le lien secondaire": "Fehler beim Ausführen des Befehls, versuchen Sie es mit dem sekundären Link"
+        "Erreur de l\\'exécution de la commande, essai par le lien secondaire": "Fehler beim Ausführen des Befehls, versuchen Sie es mit dem sekundären Link"
     },
     "plugins\/jeelink\/core\/api\/jeelink.api.php": {
         "JSONRPC object not defined": "JSONRPC-Objekt nicht definiert"

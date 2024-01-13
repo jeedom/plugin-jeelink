@@ -61,6 +61,7 @@
         "Type": "Type",
         "ID source": "ID source",
         "Paramètres": "Ayarlar ( Séçenekler )",
+        "Valeur": "Valeur",
         "Actions": "Actions"
     },
     "plugins\/jeelink\/desktop\/js\/jeelink.js": {
@@ -82,7 +83,7 @@
     },
     "plugins\/jeelink\/core\/ajax\/jeelink.ajax.php": {
         "401 - Accès non autorisé": "401 - Yetkisiz erişim",
-        "Le nom du Jeedom cible ne peut etre vide": "Le nom du Jeedom cible ne peut etre vide",
+        "Le nom du Jeedom cible ne peut être vide": "Le nom du Jeedom cible ne peut etre vide",
         "Jeelink inconnu : ": "Jeelink inconnu :",
         "Aucune méthode correspondante à : ": "Aşağıdakilere karşılık gelen bir yöntem yok:"
     },
@@ -92,9 +93,9 @@
         "Démarrer": "Başlangıç",
         "Arrêter": "Durdur",
         "Erreur sur l\\'envoi du niveau de batterie : ": "Erreur sur l\\'envoi du niveau de batterie :",
-        "Le remote ID ne peut etre vide": "Le remote ID ne peut etre vide",
-        "La remote addresse ne peut etre vide": "La remote addresse ne peut etre vide",
-        "La remote apikey ne peut etre vide": "La remote apikey ne peut etre vide",
+        "Le remote ID ne peut être vide": "Le remote ID ne peut etre vide",
+        "La remote adresse ne peut être vide": "La remote adresse ne peut être vide",
+        "La remote apikey ne peut être vide": "La remote apikey ne peut etre vide",
         "Rafraichir": "Yenile",
         "Joignable": "Joignable",
         "Statut": "Statü",
@@ -104,7 +105,7 @@
         "Redémarrer": "Tekrar başlat",
         "Mettre à jour": "Güncelle",
         "Lancer un backup": "Lancer un backup",
-        "Erreur de l\\'execution de la commande, essai par le lien secondaire": "Erreur de l\\'execution de la commande, essai par le lien secondaire"
+        "Erreur de l\\'exécution de la commande, essai par le lien secondaire": "Erreur de l\\'execution de la commande, essai par le lien secondaire"
     },
     "plugins\/jeelink\/core\/api\/jeelink.api.php": {
         "JSONRPC object not defined": "JSONRPC object not defined"

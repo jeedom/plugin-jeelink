@@ -61,6 +61,7 @@
         "Type": "Modelo",
         "ID source": "ID de origem",
         "Paramètres": "Configurações",
+        "Valeur": "Valor",
         "Actions": "Ações"
     },
     "plugins\/jeelink\/desktop\/js\/jeelink.js": {
@@ -82,7 +83,7 @@
     },
     "plugins\/jeelink\/core\/ajax\/jeelink.ajax.php": {
         "401 - Accès non autorisé": "401 - Acesso não autorizado",
-        "Le nom du Jeedom cible ne peut etre vide": "O nome do Jeedom alvo não pode estar vazio",
+        "Le nom du Jeedom cible ne peut être vide": "O nome do Jeedom alvo não pode estar vazio",
         "Jeelink inconnu : ": "Jeelink desconhecido:",
         "Aucune méthode correspondante à : ": "Aucune methode correspondante à :"
     },
@@ -92,9 +93,9 @@
         "Démarrer": "Começo",
         "Arrêter": "Parar",
         "Erreur sur l\\'envoi du niveau de batterie : ": "Erro ao enviar o nível da bateria:",
-        "Le remote ID ne peut etre vide": "O ID remoto não pode estar vazio",
-        "La remote addresse ne peut etre vide": "O endereço remoto não pode estar vazio",
-        "La remote apikey ne peut etre vide": "O apikey remoto não pode estar vazio",
+        "Le remote ID ne peut être vide": "O ID remoto não pode estar vazio",
+        "La remote adresse ne peut être vide": "O endereço remoto não pode estar vazio",
+        "La remote apikey ne peut être vide": "O apikey remoto não pode estar vazio",
         "Rafraichir": "Legal",
         "Joignable": "Acessível",
         "Statut": "Estado",
@@ -104,7 +105,7 @@
         "Redémarrer": "Restart",
         "Mettre à jour": "Atualizar",
         "Lancer un backup": "Iniciar um backup",
-        "Erreur de l\\'execution de la commande, essai par le lien secondaire": "Erro ao executar o comando, tente usar o link secundário"
+        "Erreur de l\\'exécution de la commande, essai par le lien secondaire": "Erro ao executar o comando, tente usar o link secundário"
     },
     "plugins\/jeelink\/core\/api\/jeelink.api.php": {
         "JSONRPC object not defined": "Objeto JSONRPC não definido"
