@@ -8,6 +8,7 @@
 
 - Correction d'une alarte Javascript
 - Amélioration de la synchronisation des commandes liées
+- Préparation core v4.4
 
 # 26/01/2022
 
