@@ -2,8 +2,10 @@
     "changelog.md": {
         "Changelog Jeedom Link": "Registro de cambios Jeedom Link",
         "Pour rappel s'il n'y a pas d'information sur la mise à jour, c'est que celle-ci concerne uniquement de la mise à jour de documentation, de traduction ou de texte": "Como recordatorio si no hay información sobre la actualización, significa que solo se refiere a la actualización de documentación, traducción o texto",
+        "22\/04\/2024": "22\/04\/2024",
         "Correction d'une alarte Javascript": "Se corrigió la advertencia de Javascript",
         "Amélioration de la synchronisation des commandes liées": "Sincronización mejorada de comandos vinculados",
+        "Préparation core v4.4": "Preparación básica v4.4",
         "26\/01\/2022": "26\/01\/2022",
         "Optimisations V4.2 (merci @JAG": "Optimizaciones V4.2 (gracias @JAG",
         "Refonte de la documentation": "Revisión de la documentación",
