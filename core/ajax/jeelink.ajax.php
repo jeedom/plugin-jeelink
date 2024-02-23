@@ -27,6 +27,7 @@ try {
 	if (init('action') == 'save_jeelinkMaster') {
 		$jeelinkMasterSave = jeedom::fromHumanReadable(json_decode(init('jeelink_master'), true));
 		$jeelink_master = jeelink_master::byId($jeelinkMasterSave['id']);
+		if ($jeelinkMasterSave["name"] == '') throw new Exception(__('Le nom du Jeedom cible ne peut être vide', __FILE__));
 		if (!is_object($jeelink_master)) {
 			$jeelink_master = new jeelink_master();
 		}
@@ -55,6 +56,6 @@ try {
 	throw new Exception(__('Aucune méthode correspondante à : ', __FILE__) . init('action'));
 	/*     * *********Catch exeption*************** */
 } catch (Exception $e) {
-	ajax::error(displayExeption($e), $e->getCode());
+	ajax::error(displayException($e), $e->getCode());
 }
 ?>
