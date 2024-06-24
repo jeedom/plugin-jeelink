@@ -302,23 +302,24 @@ class jeelink extends eqLogic {
 				$cmd->event($jsonrpc->getResult());
 			}
 		}
-
-		foreach ($this->getConfiguration('deamons') as $info) {
-			$cmd = $this->getCmd(null, 'deamonState::' . $info['id']);
-			if (is_object($cmd)) {
-				try {
-					if ($jsonrpc->sendRequest('plugin::deamonInfo', array('plugin_id' => $info['id']))) {
-						$result = $jsonrpc->getResult();
-						if ($result['state'] == 'ok') {
-							$cmd->event(1);
+		if(is_array($this->getConfiguration('deamons'))){
+			foreach ($this->getConfiguration('deamons') as $info) {
+				$cmd = $this->getCmd(null, 'deamonState::' . $info['id']);
+				if (is_object($cmd)) {
+					try {
+						if ($jsonrpc->sendRequest('plugin::deamonInfo', array('plugin_id' => $info['id']))) {
+							$result = $jsonrpc->getResult();
+							if ($result['state'] == 'ok') {
+								$cmd->event(1);
+							} else {
+								$cmd->event(0);
+							}
 						} else {
 							$cmd->event(0);
 						}
-					} else {
+					} catch (Exception $e) {
 						$cmd->event(0);
 					}
-				} catch (Exception $e) {
-					$cmd->event(0);
 				}
 			}
 		}
