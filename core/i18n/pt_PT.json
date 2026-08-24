@@ -15,10 +15,11 @@
         "Clé API Jeedom Link": "Chave da API Jeedom Link",
         "Indiquer la clé API Jeedom Link du Jeedom cible": "Indique a chave da API do Jeedom Link do Jeedom de destino",
         "Clé API Jeedom Link du Jeedom cible": "Chave de API do Jeedom Link do Jeedom de destino",
-        "Mode d'accès": "Modo de acesso",
+        "Mode d'accès principal": "Modo de acesso principal",
         "Renseigner le type d'accès : interne (réseau local) ou externe (accès distant)": "Digite o tipo de acesso: interno (rede local) ou externo (acesso remoto)",
         "Interne": "Interno",
         "Externe": "Externo",
+        "Mode d'accès secondaire": "Modo de acesso secundário",
         "Ajouter un équipement": "Adicionar equipamento",
         "Equipements sélectionnés": "Equipamento selecionado",
         "Nom de l\\'équipement": "Nome do equipamento",
@@ -60,6 +61,7 @@
         "Type": "Modelo",
         "ID source": "ID de origem",
         "Paramètres": "Configurações",
+        "Valeur": "Valor",
         "Actions": "Ações"
     },
     "plugins\/jeelink\/desktop\/js\/jeelink.js": {
@@ -81,6 +83,7 @@
     },
     "plugins\/jeelink\/core\/ajax\/jeelink.ajax.php": {
         "401 - Accès non autorisé": "401 - Acesso não autorizado",
+        "Le nom du Jeedom cible ne peut être vide": "O nome do Jeedom alvo não pode estar vazio",
         "Jeelink inconnu : ": "Jeelink desconhecido:",
         "Aucune méthode correspondante à : ": "Aucune methode correspondante à :"
     },
@@ -89,10 +92,10 @@
         "Démon": "Demônio",
         "Démarrer": "Começo",
         "Arrêter": "Parar",
-        "Erreur sur l\\'envoi du niveau de batterie": "Erro ao enviar o nível da bateria",
-        "Le remote ID ne peut etre vide": "O ID remoto não pode estar vazio",
-        "La remote addresse ne peut etre vide": "O endereço remoto não pode estar vazio",
-        "La remote apikey ne peut etre vide": "O apikey remoto não pode estar vazio",
+        "Erreur sur l\\'envoi du niveau de batterie : ": "Erro ao enviar o nível da bateria:",
+        "Le remote ID ne peut être vide": "O ID remoto não pode estar vazio",
+        "La remote adresse ne peut être vide": "O endereço remoto não pode estar vazio",
+        "La remote apikey ne peut être vide": "O apikey remoto não pode estar vazio",
         "Rafraichir": "Legal",
         "Joignable": "Acessível",
         "Statut": "Estado",
@@ -101,7 +104,8 @@
         "Version": "Versão",
         "Redémarrer": "Restart",
         "Mettre à jour": "Atualizar",
-        "Lancer un backup": "Iniciar um backup"
+        "Lancer un backup": "Iniciar um backup",
+        "Erreur de l\\'exécution de la commande, essai par le lien secondaire": "Erro ao executar o comando, tente usar o link secundário"
     },
     "plugins\/jeelink\/core\/api\/jeelink.api.php": {
         "JSONRPC object not defined": "Objeto JSONRPC não definido"

@@ -26,8 +26,7 @@ $eqLogics = eqLogic::byType($plugin->getId());
     <?php
     if (count($eqLogics) == 0) {
       echo '<br><div class="text-center" style="font-size:1.2em;font-weight:bold;">{{Aucun équipement Jeelink trouvé}}</div>';
-    }
-    else {
+    } else {
       echo '<div class="input-group" style="margin:5px;">';
       echo '<input class="form-control roundedLeft" placeholder="{{Rechercher}}" id="in_searchEqlogic">';
       echo '<div class="input-group-btn">';
@@ -45,9 +44,9 @@ $eqLogics = eqLogic::byType($plugin->getId());
         echo '<span class="hidden hiddenAsCard displayTableRight">';
         echo '<span class="label label-info">' . $eqLogic->getConfiguration('remote_address') . '</span>';
         echo '<span>' . $eqLogic->getConfiguration('remote_apikey') . '</span>';
-				echo ($eqLogic->getIsVisible()) ? '<i class="fas fa-eye" title="{{Equipement visible}}"></i>' : '<i class="fas fa-eye-slash" title="{{Equipement non visible}}"></i>';
+        echo ($eqLogic->getIsVisible()) ? '<i class="fas fa-eye" title="{{Equipement visible}}"></i>' : '<i class="fas fa-eye-slash" title="{{Equipement non visible}}"></i>';
         echo '</span>';
-				echo '</div>';
+        echo '</div>';
       }
       echo '</div>';
     }
@@ -146,12 +145,12 @@ $eqLogics = eqLogic::byType($plugin->getId());
 
             <div class="col-lg-6">
               <legend><i class="fas fa-info"></i> {{Informations}}</legend>
-							<div class="form-group">
-								<label class="col-sm-4 control-label">{{Description}}</label>
-								<div class="col-sm-6">
-									<textarea class="form-control eqLogicAttr autogrow" data-l1key="comment"></textarea>
-								</div>
-							</div>
+              <div class="form-group">
+                <label class="col-sm-4 control-label">{{Description}}</label>
+                <div class="col-sm-6">
+                  <textarea class="form-control eqLogicAttr autogrow" data-l1key="comment"></textarea>
+                </div>
+              </div>
             </div>
           </fieldset>
         </form>
@@ -170,6 +169,7 @@ $eqLogics = eqLogic::byType($plugin->getId());
                 <th style="min-width:80px;width:120px;">{{ID source}}</th>
                 <th style="min-width:150px;width:250px;">{{Paramètres}}</th>
                 <th style="min-width:260px;">{{Options}}</th>
+                <th>{{Valeur}}</th>
                 <th style="min-width:80px;width:200px;">{{Actions}}</th>
               </tr>
             </thead>

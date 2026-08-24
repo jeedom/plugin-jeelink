@@ -15,10 +15,11 @@
         "Clé API Jeedom Link": "Clé API Jeedom Link",
         "Indiquer la clé API Jeedom Link du Jeedom cible": "Indiquer la clé API Jeedom Link du Jeedom cible",
         "Clé API Jeedom Link du Jeedom cible": "Clé API Jeedom Link du Jeedom cible",
-        "Mode d'accès": "Mode d'accès",
+        "Mode d'accès principal": "Mode d'accès principal",
         "Renseigner le type d'accès : interne (réseau local) ou externe (accès distant)": "Renseigner le type d'accès : interne (réseau local) ou externe (accès distant)",
         "Interne": "Interne",
         "Externe": "Externe",
+        "Mode d'accès secondaire": "Mode d'accès secondaire",
         "Ajouter un équipement": "Ajouter un équipement",
         "Equipements sélectionnés": "Equipements sélectionnés",
         "Nom de l\\'équipement": "Nom de l\\'équipement",
@@ -60,6 +61,7 @@
         "Type": "Type",
         "ID source": "ID source",
         "Paramètres": "Impostazioni",
+        "Valeur": "Valeur",
         "Actions": "Actions"
     },
     "plugins\/jeelink\/desktop\/js\/jeelink.js": {
@@ -81,6 +83,7 @@
     },
     "plugins\/jeelink\/core\/ajax\/jeelink.ajax.php": {
         "401 - Accès non autorisé": "401 - Accesso non autorizzato",
+        "Le nom du Jeedom cible ne peut être vide": "Le nom du Jeedom cible ne peut etre vide",
         "Jeelink inconnu : ": "Jeelink inconnu :",
         "Aucune méthode correspondante à : ": "Nessun metodo corrispondente a:"
     },
@@ -89,10 +92,10 @@
         "Démon": "Demone",
         "Démarrer": "Avvio",
         "Arrêter": "Ferma",
-        "Erreur sur l\\'envoi du niveau de batterie": "Erreur sur l\\'envoi du niveau de batterie",
-        "Le remote ID ne peut etre vide": "Le remote ID ne peut etre vide",
-        "La remote addresse ne peut etre vide": "La remote addresse ne peut etre vide",
-        "La remote apikey ne peut etre vide": "La remote apikey ne peut etre vide",
+        "Erreur sur l\\'envoi du niveau de batterie : ": "Erreur sur l\\'envoi du niveau de batterie :",
+        "Le remote ID ne peut être vide": "Le remote ID ne peut etre vide",
+        "La remote adresse ne peut être vide": "La remote adresse ne peut être vide",
+        "La remote apikey ne peut être vide": "La remote apikey ne peut etre vide",
         "Rafraichir": "Aggiorna",
         "Joignable": "Joignable",
         "Statut": "Stato",
@@ -101,7 +104,8 @@
         "Version": "Versione",
         "Redémarrer": "Riavvia",
         "Mettre à jour": "Aggiornare",
-        "Lancer un backup": "Lancer un backup"
+        "Lancer un backup": "Lancer un backup",
+        "Erreur de l\\'exécution de la commande, essai par le lien secondaire": "Erreur de l\\'execution de la commande, essai par le lien secondaire"
     },
     "plugins\/jeelink\/core\/api\/jeelink.api.php": {
         "JSONRPC object not defined": "JSONRPC object not defined"
