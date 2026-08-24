@@ -143,7 +143,7 @@ class jeelink extends eqLogic {
 			$eqLogic->setName($eqLogic->getName() . ' remote ' . rand(0, 9999));
 			$eqLogic->save();
 		}
-		if(isset($_params['deamons']) && count($_params['deamons']) > 0){
+		if(isset($_params['deamons']) && is_array($_params['deamons']) &&  count($_params['deamons']) > 0){
 			$i = 0;
 			foreach ($_params['deamons'] as $info) {
 				$cmd = $eqLogic->getCmd(null, 'deamonState::' . $info['id']);
@@ -504,7 +504,7 @@ class jeelinkCmd extends cmd {
 			   	$base_url = $eqLogic->getConfiguration('remote_address') . '/core/api/jeeApi.php?plugin=jeelink&type=cmd&apikey=' . $eqLogic->getConfiguration('remote_apikey');
 			}
 			$url = '&id=' . $this->getConfiguration('remote_id');
-			if (count($_options) > 0) {
+			if (is_array($_options) && count($_options) > 0) {
 				foreach ($_options as $key => $value) {
 					if (in_array($key, array('apikey', 'id'))) {
 						continue;
