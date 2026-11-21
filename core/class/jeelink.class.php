@@ -289,7 +289,15 @@ class jeelink extends eqLogic {
 		if (is_object($cmd)) {
 			try {
 				if ($jsonrpc->sendRequest('message::all')) {
-					$cmd->event(count($jsonrpc->getResult()));
+					$result = $jsonrpc->getResult();
+					// jsonrpc::makeSuccess() remplace un résultat vide par 'ok' (aucun message) ; count() sur une chaîne est fatal en PHP 8
+					if (is_array($result)) {
+						$cmd->event(count($result));
+					} elseif ($result === 'ok') {
+						$cmd->event(0);
+					} else {
+						log::add('jeelink', 'warning', __('Réponse inattendue à message::all :', __FILE__) . ' ' . json_encode($result));
+					}
 				}
 			} catch (Exception $e) {
 				$cmd->event(0);
